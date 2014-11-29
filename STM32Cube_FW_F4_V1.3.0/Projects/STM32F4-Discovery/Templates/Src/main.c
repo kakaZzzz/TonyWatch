@@ -341,11 +341,11 @@ static void StartThread(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	BSP_LED_On(LED1);
+	BSP_LED_On(LED2);
 //	for( ul = 0; ul < 5000000; ul++ ) {
 //	}
 	osDelay(500);
-	BSP_LED_Off(LED1);
+	BSP_LED_Off(LED2);
 //	for( ul = 0; ul < 5000000; ul++ ) {
 //	}
 	osDelay(500);
