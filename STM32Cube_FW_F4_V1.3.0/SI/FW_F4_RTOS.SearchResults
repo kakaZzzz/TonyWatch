@@ -1,0 +1,20 @@
+---- USART_SendData Matches (3 in 1 files) ----
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):void USART_SendData(USART_TypeDef* USARTx, uint16_t Data);
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):  USART_SendData(DEBUG_UART, ch);
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):void USART_SendData(USART_TypeDef* USARTx, uint16_t Data)
+---- debug_putchar Matches (13 in 3 files) ----
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):  debug_putchar(ch);    
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug): *º¯Êý£ºvoid debug_putchar(const void *str)
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):void debug_putchar(const char ch)
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):    debug_putchar(*s++);    
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug)://  debug_putchar(ch);
+Debug_uart.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):void debug_putchar(const char ch);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x21);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x22);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x23);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x24);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x25);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x26);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):debug_putchar(0x27);
+---- put_char Matches (1 in 1 files) ----
+Debug_uart.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\debug):__inline void put_char(unsigned char ch)
