@@ -101,7 +101,7 @@ void simple_uart_config(uint8_t rts_pin_number,
         nrf_gpio_cfg_input(cts_pin_number, NRF_GPIO_PIN_NOPULL);
         NRF_UART0->PSELCTS = cts_pin_number;
         NRF_UART0->PSELRTS = rts_pin_number;
-        NRF_UART0->CONFIG  = (UART_CONFIG_HWFC_Enabled << UART_CONFIG_HWFC_Pos);
+        NRF_UART0->CONFIG  = (UART_CONFIG_HWFC_Disabled << UART_CONFIG_HWFC_Pos);
     }
 
     NRF_UART0->BAUDRATE      = (UART_BAUDRATE_BAUDRATE_Baud38400 << UART_BAUDRATE_BAUDRATE_Pos);

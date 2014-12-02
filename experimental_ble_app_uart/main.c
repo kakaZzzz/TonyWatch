@@ -37,6 +37,7 @@
 #include "simple_uart.h"
 #include "app_util_platform.h"
 #include "bsp.h"
+#include "nrf_delay.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -75,6 +76,11 @@
 #define START_STRING                    "Start...\n"                                /**< The string that will be sent over the UART when the application starts. */
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
+
+#define USER_TX_PIN_NUMBER	20
+#define USER_RX_PIN_NUMBER	19
+
+void SendHeartRateDataAgainAndAgain(void);
 
 static ble_gap_sec_params_t             m_sec_params;                               /**< Security requirements for this application. */
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
@@ -176,7 +182,7 @@ static void advertising_init(void)
     ble_advdata_t advdata;
     ble_advdata_t scanrsp;
     uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
-    
+
     ble_uuid_t adv_uuids[] = {{BLE_UUID_NUS_SERVICE, m_nus.uuid_type}};
 
     memset(&advdata, 0, sizeof(advdata));
@@ -455,7 +461,7 @@ static void power_manage(void)
 static void uart_init(void)
 {
     /**@snippet [UART Initialization] */
-    simple_uart_config(RTS_PIN_NUMBER, TX_PIN_NUMBER, CTS_PIN_NUMBER, RX_PIN_NUMBER, HWFC);
+    simple_uart_config(RTS_PIN_NUMBER, USER_TX_PIN_NUMBER, CTS_PIN_NUMBER, USER_RX_PIN_NUMBER, HWFC);
     
     NRF_UART0->INTENSET = UART_INTENSET_RXDRDY_Enabled << UART_INTENSET_RXDRDY_Pos;
 	//NRF_UART0->INTENSET = UART_INTENSET_TXDRDY_Enabled << UART_INTENSET_TXDRDY_Pos;
@@ -474,7 +480,8 @@ static void uart_init(void)
  */
 void UART0_IRQHandler(void)
 {
-    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
+//    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
+    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN+1];
     static uint8_t index = 0;
     uint32_t err_code;
 
@@ -483,9 +490,9 @@ void UART0_IRQHandler(void)
     data_array[index] = simple_uart_get();
     index++;
 
-    if ((data_array[index - 1] == '\n') || (index >= (BLE_NUS_MAX_DATA_LEN - 1)))
+    if ((data_array[index - 1] == '\n'))// || (index >= (BLE_NUS_MAX_DATA_LEN - 1)))
     {
-        err_code = ble_nus_send_string(&m_nus, data_array, index + 1);
+        err_code = ble_nus_send_string(&m_nus, data_array, index-1 );
         if (err_code != NRF_ERROR_INVALID_STATE)
         {
             APP_ERROR_CHECK(err_code);
@@ -504,18 +511,20 @@ int main(void)
 {
     uint8_t start_string[] = START_STRING;
     uint32_t err_code;
+	
     // Initialize
     timers_init();
     APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
     ble_stack_init();
     uart_init();
 
-    err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, APP_TIMER_TICKS(100, APP_TIMER_PRESCALER), NULL);
-    APP_ERROR_CHECK(err_code);
-    err_code = bsp_buttons_enable(1 << WAKEUP_BUTTON_ID);
-    APP_ERROR_CHECK(err_code);
+//    err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, APP_TIMER_TICKS(100, APP_TIMER_PRESCALER), NULL);
+//    APP_ERROR_CHECK(err_code);
+//    err_code = bsp_buttons_enable(1 << WAKEUP_BUTTON_ID);
+//    APP_ERROR_CHECK(err_code);
     gap_params_init();
     services_init();
+	m_nus.uuid_type=0x01;
     advertising_init();
     conn_params_init();
     sec_params_init();
@@ -527,9 +536,26 @@ int main(void)
     // Enter main loop
     for (;;)
     {
+//    	SendHeartRateDataAgainAndAgain();
         power_manage();
+//		nrf_delay_ms(500);
     }
 }
+
+void SendHeartRateDataAgainAndAgain(void)
+{
+	uint8_t data_array[30]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,
+		0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,
+		0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29};
+    	uint32_t err_code;
+
+        err_code = ble_nus_send_string(&m_nus, data_array, 18);
+        if (err_code != NRF_ERROR_INVALID_STATE)
+        {
+            APP_ERROR_CHECK(err_code);
+        }
+}
+
 
 /** 
  * @}
