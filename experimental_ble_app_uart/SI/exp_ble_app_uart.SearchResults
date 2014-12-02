@@ -1,0 +1,63 @@
+---- UUID Matches (87 in 5 files) ----
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):173:static uint32_t uuid_list_sized_encode(const ble_advdata_uuid_list_t * p_uuid_list,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):175:                                       uint8_t                         uuid_size,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):183:    for (i = 0; i < p_uuid_list->uuid_cnt; i++)
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):187:        ble_uuid_t uuid = p_uuid_list->p_uuids[i];
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):189:        // Find encoded uuid size.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):190:        err_code = sd_ble_uuid_encode(&uuid, &encoded_size, NULL);
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):197:        if (encoded_size == uuid_size)
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):215:            // Write UUID.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):216:            err_code = sd_ble_uuid_encode(&uuid, &encoded_size, &p_encoded_data[*p_len]);
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):235:static uint32_t uuid_list_encode(const ble_advdata_uuid_list_t * p_uuid_list,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):243:    // Encode 16 bit UUIDs.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):244:    err_code = uuid_list_sized_encode(p_uuid_list,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):254:    // Encode 128 bit UUIDs.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):255:    err_code = uuid_list_sized_encode(p_uuid_list,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):257:                                      sizeof(ble_uuid128_t),
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):395:        // Encode service UUID.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):396:        (*p_len) += uint16_encode(p_service_data->service_uuid, &p_encoded_data[*p_len]);
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):465:    // Encode 'more available' uuid list.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):466:    if (p_advdata->uuids_more_available.uuid_cnt > 0)
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):468:        err_code = uuid_list_encode(&p_advdata->uuids_more_available,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):469:                                    BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_MORE_AVAILABLE,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):470:                                    BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):479:    // Encode 'complete' uuid list.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):480:    if (p_advdata->uuids_complete.uuid_cnt > 0)
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):482:        err_code = uuid_list_encode(&p_advdata->uuids_complete,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):483:                                    BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_COMPLETE,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):484:                                    BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):493:    // Encode 'solicited service' uuid list.
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):494:    if (p_advdata->uuids_solicited.uuid_cnt > 0)
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):496:        err_code = uuid_list_encode(&p_advdata->uuids_solicited,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):497:                                    BLE_GAP_AD_TYPE_SOLICITED_SERVICE_UUIDS_16BIT,
+Ble_advdata.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):498:                                    BLE_GAP_AD_TYPE_SOLICITED_SERVICE_UUIDS_128BIT,
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):40:/**@brief UUID list type. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):43:    uint16_t                     uuid_cnt;                            /**< Number of UUID entries. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):44:    ble_uuid_t *                 p_uuids;                             /**< Pointer to UUID array entries. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):45:} ble_advdata_uuid_list_t;
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):64:    uint16_t                     service_uuid;                        /**< Service UUID. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):77:    ble_advdata_uuid_list_t      uuids_more_available;                /**< List of UUIDs in the 'More Available' list. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):78:    ble_advdata_uuid_list_t      uuids_complete;                      /**< List of UUIDs in the 'Complete' list. */
+Ble_advdata.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):79:    ble_advdata_uuid_list_t      uuids_solicited;                     /**< List of solcited UUIDs. */
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):94:    ble_uuid_t          ble_uuid;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):113:    ble_uuid.type             = p_nus->uuid_type;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):114:    ble_uuid.uuid             = BLE_UUID_NUS_RX_CHARACTERISTIC;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):128:    attr_char_value.p_uuid    = &ble_uuid;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):154:    ble_uuid_t          ble_uuid;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):167:    ble_uuid.type                       = p_nus->uuid_type;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):168:    ble_uuid.uuid                       = BLE_UUID_NUS_TX_CHARACTERISTIC;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):182:    attr_char_value.p_uuid              = &ble_uuid;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):226:    ble_uuid_t      ble_uuid;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):227:    ble_uuid128_t   nus_base_uuid = {{0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0,
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):243:    // Add custom base UUID.
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):244:    err_code = sd_ble_uuid_vs_add(&nus_base_uuid, &p_nus->uuid_type);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):250:    ble_uuid.type = p_nus->uuid_type;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):251:    ble_uuid.uuid = BLE_UUID_NUS_SERVICE;
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):255:                                        &ble_uuid,
+Ble_nus.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):40:#define BLE_UUID_NUS_SERVICE            0x0001                       /**< The UUID of the Nordic UART Service. */
+Ble_nus.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):41:#define BLE_UUID_NUS_TX_CHARACTERISTIC  0x0002                       /**< The UUID of the TX Characteristic. */
+Ble_nus.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):42:#define BLE_UUID_NUS_RX_CHARACTERISTIC  0x0003                       /**< The UUID of the RX Characteristic. */
+Ble_nus.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):72:    uint8_t                  uuid_type;               /**< UUID type for Nordic UART Service Base UUID. */
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):180:    ble_uuid_t adv_uuids[] = {{BLE_UUID_NUS_SERVICE, m_nus.uuid_type}};
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):189:    scanrsp.uuids_complete.uuid_cnt = sizeof(adv_uuids) / sizeof(adv_uuids[0]);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):190:    scanrsp.uuids_complete.p_uuids  = adv_uuids;

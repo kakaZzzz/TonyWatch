@@ -66,7 +66,8 @@ unsigned char flagTxCtrl=TX_MODE_SENDING;
 unsigned char flagPrintRxContent=RESET;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[] = " ****UART_TwoBoards communication based on DMA**** \n How are you today?\n";
+//uint8_t aTxBuffer[] = " ****UART_TwoBoards communication based on DMA**** \n How are you today?\n";
+uint8_t aTxBuffer[] = "01234567890123456789\n";
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
 
@@ -445,7 +446,7 @@ static void UartRxThread(void const * argument)
 	UartRxReady = RESET;
 //	memcpy(aTxBuffer,aRxBuffer,RXBUFFERSIZE);
 //	UartTxReady = SET;
-//	osDelay(100);
+	osDelay(500);
   }
 }
 
