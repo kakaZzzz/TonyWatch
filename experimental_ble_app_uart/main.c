@@ -490,9 +490,9 @@ void UART0_IRQHandler(void)
     data_array[index] = simple_uart_get();
     index++;
 
-    if ((data_array[index - 1] == '\n'))// || (index >= (BLE_NUS_MAX_DATA_LEN - 1)))
+    if(index>=BLE_NUS_MAX_DATA_LEN) //((data_array[index - 1] == '\n'))// || (index >= (BLE_NUS_MAX_DATA_LEN - 1)))
     {
-        err_code = ble_nus_send_string(&m_nus, data_array, index-1 );
+        err_code = ble_nus_send_string(&m_nus, data_array, index);
         if (err_code != NRF_ERROR_INVALID_STATE)
         {
             APP_ERROR_CHECK(err_code);

@@ -20,10 +20,10 @@
 .\_build\bsp.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\nrf51_deprecated.h
 .\_build\bsp.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\compiler_abstraction.h
 .\_build\bsp.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\nrf_error.h
-.\_build\bsp.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h
+.\_build\bsp.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h
 .\_build\bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\_build\bsp.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
+.\_build\bsp.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
 .\_build\bsp.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\app_util.h
-.\_build\bsp.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h
-.\_build\bsp.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_gpiote.h
-.\_build\bsp.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_button.h
+.\_build\bsp.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h
+.\_build\bsp.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_gpiote.h
+.\_build\bsp.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_button.h

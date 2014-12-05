@@ -17,8 +17,8 @@
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\nrf_error_soc.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\nrf_error.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\nrf_error_sdm.h
-.\_build\softdevice_handler.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
-.\_build\softdevice_handler.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h
+.\_build\softdevice_handler.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
+.\_build\softdevice_handler.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\app_util.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\compiler_abstraction.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.0.1\softdevice_handler\ble_stack_handler_types.h
@@ -32,4 +32,4 @@
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\ble_gattc.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\ble_gatts.h
 .\_build\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.0.1\softdevice_handler\ant_stack_handler_types.h
-.\_build\softdevice_handler.o: C:\Users\weizhong\Documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\nrf_assert.h
+.\_build\softdevice_handler.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\nrf_assert.h
