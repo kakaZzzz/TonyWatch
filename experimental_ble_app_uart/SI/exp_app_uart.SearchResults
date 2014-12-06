@@ -1,10 +1,8 @@
----- app_button_init Matches (9 in 3 files) ----
-App_button.c (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):158:uint32_t app_button_init(app_button_cfg_t *             p_buttons,
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):26: *          Use the USE_SCHEDULER parameter of the APP_BUTTON_INIT() macro to select if the
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):91:/*lint -emacro(506, APP_BUTTON_INIT) */ /* Suppress "Constant value Boolean */
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):92:#define APP_BUTTON_INIT(BUTTONS, BUTTON_COUNT, DETECTION_DELAY, USE_SCHEDULER)                     \
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):95:        uint32_t ERR_CODE = app_button_init((BUTTONS),                                             \
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):107: * @note Normally initialization should be done using the APP_BUTTON_INIT() macro, as that will take
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):122:uint32_t app_button_init(app_button_cfg_t *             p_buttons,
-App_button.h (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):145: * @param[in]  button_id     Button index (in the app_button_cfg_t array given to app_button_init) to be checked.
-Bsp.c (c:\users\weizhong\documents\ble_peripheral\experimental_ble_app_uart\pca10028\arm5\rte\board_support\nrf51422_xxac):440:        APP_BUTTON_INIT((app_button_cfg_t *)app_buttons, BUTTONS_NUMBER, ticks_per_100ms / 2, false);
+---- app_timer_create Matches (7 in 6 files) ----
+App_button.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):201:    return app_timer_create(&m_detection_delay_timer_id,
+App_timer.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):1004:uint32_t app_timer_create(app_timer_id_t *            p_timer_id,
+App_timer.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):202:uint32_t app_timer_create(app_timer_id_t *            p_timer_id,
+Ble_conn_params.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_ble\nrf51422_xxac):129:    return app_timer_create(&m_conn_params_timer_id,
+Bsp.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\board_support\nrf51422_xxac):472:        err_code = app_timer_create(&m_leds_timer_id, APP_TIMER_MODE_SINGLE_SHOT, leds_timer_handler);
+Bsp.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\board_support\nrf51422_xxac):477:        err_code = app_timer_create(&m_alert_timer_id, APP_TIMER_MODE_REPEATED, alert_timer_handler);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):515:	app_timer_create(SystemTick100Ms,APP_TIMER_MODE_REPEATED,system_tick_100ms_handler);

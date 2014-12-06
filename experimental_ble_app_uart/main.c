@@ -86,6 +86,8 @@ static ble_gap_sec_params_t             m_sec_params;                           
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 static ble_nus_t                        m_nus;                                      /**< Structure to identify the Nordic UART Service. */
 
+static app_timer_id_t SystemTick100Ms;
+static uint32_t uSystemTick100MsCnt=0;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -503,7 +505,16 @@ void UART0_IRQHandler(void)
 
     /**@snippet [Handling the data received over UART] */
 }
+static void system_tick_100ms_handler(void * p_context)
+{
+    uSystemTick100MsCnt++;
+}
 
+void SystemTimeInit(void)
+{
+	app_timer_create(&SystemTick100Ms,APP_TIMER_MODE_REPEATED,system_tick_100ms_handler);
+	app_timer_start(SystemTick100Ms,APP_TIMER_TICKS(100, APP_TIMER_PRESCALER),NULL);
+}
 
 /**@brief  Application main function.
  */
@@ -532,10 +543,15 @@ int main(void)
     //simple_uart_putstring(start_string);
     
     advertising_start();
-    
+    SystemTimeInit();
     // Enter main loop
     for (;;)
     {
+    	if(uSystemTick100MsCnt==100)
+		{
+		uSystemTick100MsCnt+=1;
+		uSystemTick100MsCnt-=1;
+	}
 //    	SendHeartRateDataAgainAndAgain();
         power_manage();
 //		nrf_delay_ms(500);
