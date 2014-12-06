@@ -69,7 +69,15 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
              (p_nus->data_handler != NULL)
             )
     {
-        p_nus->data_handler(p_nus, p_evt_write->data, p_evt_write->len);
+        p_nus->data_handler(p_nus, p_evt_write->data, p_evt_write->len,p_evt_write->handle);
+    }
+    else if (
+             (p_evt_write->handle == p_nus->ts_handles.value_handle)
+             &&
+             (p_nus->data_handler != NULL)
+            )
+    {
+        p_nus->data_handler(p_nus, p_evt_write->data, p_evt_write->len,p_evt_write->handle);
     }
     else
     {
@@ -232,7 +240,7 @@ static uint32_t time_sync_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_in
     return sd_ble_gatts_characteristic_add(p_nus->service_handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &p_nus->tx_handles);
+                                           &p_nus->ts_handles);
 }
 
 

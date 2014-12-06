@@ -208,13 +208,24 @@ static void advertising_init(void)
  *           it to the UART module.
  */
 /**@snippet [Handling the data received over BLE] */
-void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
+void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length, uint16_t handle)
 {
-    for (int i = 0; i < length; i++)
-    {
-        simple_uart_put(p_data[i]);
-    }
-    simple_uart_put('\n');
+ if(handle == p_nus->tx_handles.value_handle)
+	{
+		    for (int i = 0; i < length; i++)
+		    {
+		        simple_uart_put(p_data[i]);
+		    }
+		    simple_uart_put('\n');
+	 }
+ else if(handle == p_nus->ts_handles.value_handle)
+ 	{
+	simple_uart_put('l');
+	simple_uart_put('o');
+	simple_uart_put('v');
+	simple_uart_put('e');
+	simple_uart_put('\n');
+ 	}
 }
 /**@snippet [Handling the data received over BLE] */
 

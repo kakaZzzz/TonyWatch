@@ -54,7 +54,7 @@
 typedef struct ble_nus_s ble_nus_t;
 
 /**@brief Nordic UART Service event handler type. */
-typedef void (*ble_nus_data_handler_t) (ble_nus_t * p_nus, uint8_t * data, uint16_t length);
+typedef void (*ble_nus_data_handler_t) (ble_nus_t * p_nus, uint8_t * data, uint16_t length, uint16_t handle);
 
 /**@brief   Nordic UART Service init structure.
  *
@@ -77,6 +77,7 @@ typedef struct ble_nus_s
     uint16_t                 service_handle;          /**< Handle of Nordic UART Service (as provided by the S110 SoftDevice). */
     ble_gatts_char_handles_t tx_handles;              /**< Handles related to the TX characteristic. (as provided by the S110 SoftDevice)*/
     ble_gatts_char_handles_t rx_handles;              /**< Handles related to the RX characteristic. (as provided by the S110 SoftDevice)*/
+    ble_gatts_char_handles_t ts_handles;
     uint16_t                 conn_handle;             /**< Handle of the current connection (as provided by the S110 SoftDevice). This will be BLE_CONN_HANDLE_INVALID if not in a connection. */
     bool                     is_notification_enabled; /**< Variable to indicate if the peer has enabled notification of the RX characteristic.*/
     ble_nus_data_handler_t   data_handler;            /**< Event handler to be called for handling received data. */
