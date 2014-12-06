@@ -22,15 +22,24 @@ Dialog DLL:      TCM.DLL V1.14.2.0
  
 <h2>Project:</h2>
 Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\Project.uvprojx
-Project File Date:  11/01/2014
+Project File Date:  12/03/2014
 
 <h2>Output:</h2>
 Build target 'STM32F4-Discovery'
 compiling main.c...
+..\Src\main.c(504): warning:  #177-D: variable "aTxBuffer20Bytes" was declared but never referenced
+        uint8_t aTxBuffer20Bytes[20];
+..\Src\main.c(508): warning:  #550-D: variable "pTxBuffer" was set but never used
+        uint8_t *pTxBuffer;
+..\Src\main.c(551): warning:  #177-D: function "UartTxThread" was declared but never referenced
+  static void UartTxThread(void const * argument)
+..\Src\main.c(605): warning:  #177-D: function "UartRxThread" was declared but never referenced
+  static void UartRxThread(void const * argument)
+..\Src\main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=19208 RO-data=600 RW-data=176 ZI-data=17008  
+Program Size: Code=23196 RO-data=660 RW-data=1036 ZI-data=45884  
 FromELF: creating hex file...
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 0 Warning(s).
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
@@ -42,3 +51,6 @@ Erase Done.
 Programming Done.
 Verify OK.
 Application running ...
+</pre>
+</body>
+</html>

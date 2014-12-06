@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F439xx,USE_STM32F4_DISCO,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\..\Drivers\BSP\STM32F4-Discovery;..\..\..\..\Utilities\Log;..\..\..\..\Utilities\CPU;..\..\..\..\Drivers\CMSIS\Include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\..\..\..\Debug</IncludePath>
+              <IncludePath>..\Inc;..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\..\Drivers\BSP\STM32F4-Discovery;..\..\..\..\Utilities\Log;..\..\..\..\Utilities\CPU;..\..\..\..\Drivers\CMSIS\Include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\..\..\..\Debug;..\..\..\..\Drivers\BSP\Components\AFE44xx</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -419,40 +419,15 @@
           <GroupName>Drivers/BSP/Components</GroupName>
           <Files>
             <File>
-              <FileName>cs43l22.c</FileName>
+              <FileName>AFE4490.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\Components\cs43l22\cs43l22.c</FilePath>
-            </File>
-            <File>
-              <FileName>lis302dl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\Components\lis302dl\lis302dl.c</FilePath>
-            </File>
-            <File>
-              <FileName>lis3dsh.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\Components\lis3dsh\lis3dsh.c</FilePath>
+              <FilePath>..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Drivers/BSP/STM32F4-Discovery</GroupName>
           <Files>
-            <File>
-              <FileName>stm32f4_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4_discovery_accelerometer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery_accelerometer.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4_discovery_audio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery_audio.c</FilePath>
-            </File>
             <File>
               <FileName>stm32f4_tony.c</FileName>
               <FileType>1</FileType>

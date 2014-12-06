@@ -77,3 +77,5 @@ stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\in
 stm32f4-discovery\main.o: ..\..\..\..\Debug\debug_uart.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.h
+stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_tony.h
