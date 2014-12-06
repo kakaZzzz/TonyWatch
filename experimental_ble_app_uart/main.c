@@ -38,6 +38,7 @@
 #include "app_util_platform.h"
 #include "bsp.h"
 #include "nrf_delay.h"
+#include "hal_defs.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -86,8 +87,9 @@ static ble_gap_sec_params_t             m_sec_params;                           
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 static ble_nus_t                        m_nus;                                      /**< Structure to identify the Nordic UART Service. */
 
-static app_timer_id_t SystemTick100Ms;
-static uint32_t uSystemTick100MsCnt=0;
+static app_timer_id_t SystemTick10Ms;
+static uint32_t uSystemTick10MsCnt=0;
+static uint32_t uTimeStamp;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -220,11 +222,19 @@ void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length, uint
 	 }
  else if(handle == p_nus->ts_handles.value_handle)
  	{
-	simple_uart_put('l');
-	simple_uart_put('o');
-	simple_uart_put('v');
-	simple_uart_put('e');
-	simple_uart_put('\n');
+	 	uTimeStamp=BUILD_UINT32(p_data[3],p_data[2],p_data[1],p_data[0]);
+		simple_uart_put('T');
+		simple_uart_put('i');
+		simple_uart_put('m');
+		simple_uart_put('e');
+		simple_uart_put(' ');
+		simple_uart_put('S');
+		simple_uart_put('y');
+		simple_uart_put('n');
+		simple_uart_put('c');
+		simple_uart_put('e');
+		simple_uart_put('d');
+		simple_uart_put('\n');
  	}
 }
 /**@snippet [Handling the data received over BLE] */
@@ -516,15 +526,20 @@ void UART0_IRQHandler(void)
 
     /**@snippet [Handling the data received over UART] */
 }
-static void system_tick_100ms_handler(void * p_context)
+static void system_tick_10ms_handler(void * p_context)
 {
-    uSystemTick100MsCnt++;
+   	uSystemTick10MsCnt++;
+	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
+	{
+		uTimeStamp++;
+		uSystemTick10MsCnt=0;
+	}
 }
 
 void SystemTimeInit(void)
 {
-	app_timer_create(&SystemTick100Ms,APP_TIMER_MODE_REPEATED,system_tick_100ms_handler);
-	app_timer_start(SystemTick100Ms,APP_TIMER_TICKS(100, APP_TIMER_PRESCALER),NULL);
+	app_timer_create(&SystemTick10Ms,APP_TIMER_MODE_REPEATED,system_tick_10ms_handler);
+	app_timer_start(SystemTick10Ms,APP_TIMER_TICKS(10, APP_TIMER_PRESCALER),NULL);
 }
 
 /**@brief  Application main function.
@@ -558,10 +573,11 @@ int main(void)
     // Enter main loop
     for (;;)
     {
-    	if(uSystemTick100MsCnt==100)
+    	if(uSystemTick10MsCnt==1000)
 		{
-		uSystemTick100MsCnt+=1;
-		uSystemTick100MsCnt-=1;
+		uSystemTick10MsCnt+=1;
+		uSystemTick10MsCnt-=1;
+		
 	}
 //    	SendHeartRateDataAgainAndAgain();
         power_manage();

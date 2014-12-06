@@ -26,11 +26,16 @@ Project File Date:  11/28/2014
 
 <h2>Output:</h2>
 Build target 'nrf51422_xxac_s110'
-compiling ble_nus.c...
+compiling main.c...
+..\..\main.c(549): warning:  #177-D: variable "start_string" was declared but never referenced
+      uint8_t start_string[] = START_STRING;
+..\..\main.c(550): warning:  #177-D: variable "err_code" was declared but never referenced
+      uint32_t err_code;
+..\..\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=7016 RO-data=268 RW-data=140 ZI-data=2908  
+Program Size: Code=7104 RO-data=268 RW-data=144 ZI-data=2904  
 FromELF: creating hex file...
-".\_build\nrf51422_xxac_s110.axf" - 0 Error(s), 0 Warning(s).
+".\_build\nrf51422_xxac_s110.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -204,7 +209,9 @@ Package Vendor: NordicSemiconductor
       Include file:  headers\nrf_error_soc.h
       Include file:  headers\nrf_mbr.h
       Include file:  headers\ble_ranges.h
-Load "Z:\\Documents\\Coding\\GitHubTac\\TonyWatch\\experimental_ble_app_uart\\pca10028\\arm5\\_build\\nrf51422_xxac_s110.axf" 
+    Include file:  headers\ble_ranges.h
+Target not created.
+l_ble_app_uart\\pca10028\\arm5\\_build\\nrf51422_xxac_s110.axf" 
 Set JLink Project File to "Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\JLinkSettings.ini"
 * JLink Info: Device "NRF51422_XXAC" selected (257 KB flash, 32 KB RAM).
  
@@ -235,23 +242,7 @@ Erase Done.
 Programming Done.
 Verify OK.
 Application running ...
-F003
- 
-Target info:
-------------
-Device: nRF51422_xxAC
-VTarget = 3.300V
-State of Pins: 
-TCK: 0, TDI: 1, TDO: 1, TMS: 1, TRES: 1, TRST: 1
-Hardware-Breakpoints: 4
-Software-Breakpoints: 8192
-Watchpoints:          2
-JTAG speed: 1000 kHz
- 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
+pplication running ...
 Load "Z:\\Documents\\Coding\\GitHubTac\\TonyWatch\\experimental_ble_app_uart\\pca10028\\arm5\\_build\\nrf51422_xxac_s110.axf" 
 Set JLink Project File to "Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\JLinkSettings.ini"
 * JLink Info: Device "NRF51422_XXAC" selected (257 KB flash, 32 KB RAM).

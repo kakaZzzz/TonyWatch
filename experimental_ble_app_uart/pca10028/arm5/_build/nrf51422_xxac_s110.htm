@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf51422_xxac_s110.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf51422_xxac_s110.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Sat Dec 06 17:04:58 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Sat Dec 06 21:12:11 2014
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -63,7 +63,7 @@ Function Pointers
  <LI><a href="#[25]">nus_data_handler</a> from main.o(i.nus_data_handler) referenced from main.o(i.main)
  <LI><a href="#[26]">on_conn_params_evt</a> from main.o(i.on_conn_params_evt) referenced from main.o(i.main)
  <LI><a href="#[28]">softdevice_assertion_handler</a> from softdevice_handler.o(i.softdevice_assertion_handler) referenced from softdevice_handler.o(i.softdevice_handler_init)
- <LI><a href="#[22]">system_tick_100ms_handler</a> from main.o(i.system_tick_100ms_handler) referenced from main.o(i.SystemTimeInit)
+ <LI><a href="#[22]">system_tick_10ms_handler</a> from main.o(i.system_tick_10ms_handler) referenced from main.o(i.SystemTimeInit)
  <LI><a href="#[23]">update_timeout_handler</a> from ble_conn_params.o(i.update_timeout_handler) referenced from ble_conn_params.o(i.ble_conn_params_init)
 </UL>
 <P>
@@ -302,7 +302,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> arm_startup_nrf51.o(.text)
 </UL>
-<P><STRONG><a name="[3b]"></a>SystemTimeInit</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, main.o(i.SystemTimeInit))
+<P><STRONG><a name="[3b]"></a>SystemTimeInit</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, main.o(i.SystemTimeInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SystemTimeInit &rArr; app_timer_start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_start
@@ -480,7 +480,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SWI2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[1f]"></a>main</STRONG> (Thumb, 308 bytes, Stack size 120 bytes, main.o(i.main))
+<P><STRONG><a name="[1f]"></a>main</STRONG> (Thumb, 310 bytes, Stack size 120 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; ble_advdata_set &rArr; adv_data_encode &rArr; uuid_list_encode &rArr; uuid_list_sized_encode
 </UL>
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;softdevice_handler_init
@@ -499,7 +499,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[25]"></a>nus_data_handler</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, main.o(i.nus_data_handler))
+<P><STRONG><a name="[25]"></a>nus_data_handler</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, main.o(i.nus_data_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = nus_data_handler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
@@ -620,7 +620,7 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[22]"></a>system_tick_100ms_handler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(i.system_tick_100ms_handler))
+<P><STRONG><a name="[22]"></a>system_tick_10ms_handler</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(i.system_tick_10ms_handler))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.SystemTimeInit)
 </UL>
 <P><STRONG><a name="[68]"></a>uart_init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, main.o(i.uart_init))

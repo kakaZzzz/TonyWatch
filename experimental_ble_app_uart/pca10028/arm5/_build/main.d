@@ -55,3 +55,4 @@
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Examples\7.0.1\bsp\pca10001.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf_delay.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf.h
+.\_build\main.o: ..\..\hal_defs.h
