@@ -39,6 +39,7 @@
 #include "bsp.h"
 #include "nrf_delay.h"
 #include "hal_defs.h"
+#include "uart_protocol.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -81,6 +82,10 @@
 #define USER_TX_PIN_NUMBER	20
 #define USER_RX_PIN_NUMBER	19
 
+#define MAX_FRAME_LENGTH 128
+
+//#define countof(a)   sizeof(*(a))//(sizeof(a) / sizeof(*(a)))
+
 void SendHeartRateDataAgainAndAgain(void);
 
 static ble_gap_sec_params_t             m_sec_params;                               /**< Security requirements for this application. */
@@ -89,7 +94,16 @@ static ble_nus_t                        m_nus;                                  
 
 static app_timer_id_t SystemTick10Ms;
 static uint32_t uSystemTick10MsCnt=0;
-static uint32_t uTimeStamp;
+uint8_t *pBLErxpool;
+uint8_t bleRxReadCnt;
+uint8_t bleRxWriteCnt;
+//	app_fifo_t *pApp_fifo;
+//static uint32_t uTimeStampS;
+//static uint32_t uTimeStampMS;
+uint8_t strHeader[]={0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0xaa,0xbb};
+uint8_t strHip[]={0xbb,0xaa,0xfe,0xdc,0xba,0x98,0x76,0x54,0x32,0x10};
+
+
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -202,8 +216,18 @@ static void advertising_init(void)
     err_code = ble_advdata_set(&advdata, &scanrsp);
     APP_ERROR_CHECK(err_code);
 }
-
-
+/*
+void app_fifo_mlutibytes_put(char_data_t *pCharData)
+{
+	uint8_t *pDataTemp;
+	pDataTemp=pCharData->pData;
+	for(uint8_t i=0;i<pCharData->length;i++)
+	{
+		app_fifo_put(pApp_fifo,*(pCharData+i));
+	}
+	pCharData->state=BLE_CHAR_STATE_UPDATED;
+}
+*/
 /**@brief    Function for handling the data from the Nordic UART Service.
  *
  * @details  This function will process the data received from the Nordic UART BLE Service and send
@@ -212,29 +236,42 @@ static void advertising_init(void)
 /**@snippet [Handling the data received over BLE] */
 void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length, uint16_t handle)
 {
+	uint8_t checksum=0;
+	uint8_t cs;
  if(handle == p_nus->tx_handles.value_handle)
 	{
+/*		//collect the characteristic parameters
+		heartRateRawData_s->pData=p_data;
+		heartRateRawData_s->length=length;
+		heartRateRawData_s->state=BLE_CHAR_STATE_PENDING_UPDATE_TOCPU;
+		heartRateRawData_s->packtype=BLE_CHAR_PACKTYPE_DONE;
+		//put data into fifo
+		app_fifo_mlutibytes_put(heartRateRawData_s);
 		    for (int i = 0; i < length; i++)
 		    {
 		        simple_uart_put(p_data[i]);
 		    }
 		    simple_uart_put('\n');
+*/
+	
 	 }
- else if(handle == p_nus->ts_handles.value_handle)
+ else if(handle == p_nus->ts_handles.value_handle)//time synchronic
  	{
-	 	uTimeStamp=BUILD_UINT32(p_data[3],p_data[2],p_data[1],p_data[0]);
-		simple_uart_put('T');
-		simple_uart_put('i');
-		simple_uart_put('m');
-		simple_uart_put('e');
-		simple_uart_put(' ');
-		simple_uart_put('S');
-		simple_uart_put('y');
-		simple_uart_put('n');
-		simple_uart_put('c');
-		simple_uart_put('e');
-		simple_uart_put('d');
-		simple_uart_put('\n');
+ 		//collect the characteristic parameters
+		//send header
+		simple_uart_putstring_checksum(strHeader,11);
+		//send frame length
+		simple_uart_put(LO_UINT16(length));
+		checksum+=LO_UINT16(length);		
+		simple_uart_put(HI_UINT16(length));
+		checksum+=HI_UINT16(length);
+		//send frame data= time 
+		cs=simple_uart_putstring_checksum(p_data,length+1);
+		checksum+=cs;
+		//send hip
+		simple_uart_putstring_checksum(strHip,11);		
+		//send checksum
+		simple_uart_put(checksum);
  	}
 }
 /**@snippet [Handling the data received over BLE] */
@@ -531,7 +568,7 @@ static void system_tick_10ms_handler(void * p_context)
    	uSystemTick10MsCnt++;
 	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
 	{
-		uTimeStamp++;
+//		uTimeStampS++;
 		uSystemTick10MsCnt=0;
 	}
 }
@@ -548,7 +585,15 @@ int main(void)
 {
     uint8_t start_string[] = START_STRING;
     uint32_t err_code;
-	
+//		pBLErxpool=malloc(MAX_FRAME_LENGTH);
+
+//	package_data_t *packageDataTemp;
+//		frame_data_t *frameDataTemp;
+//		uint8_t *frameDataBuild;
+
+	//uint8_t ass11[]={1,2};
+		
+//		frameDataBuild=malloc(128);
     // Initialize
     timers_init();
     APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
@@ -570,29 +615,40 @@ int main(void)
     
     advertising_start();
     SystemTimeInit();
+
+//	app_fifo_init(pApp_fifo,pBLErxpool,sizeof(pBLErxpool));
+	
     // Enter main loop
+//    packageDataTemp->pData=heartRateDataPackageSample;
+//	packageDataTemp->length=sizeof(pHRD);//(heartRateDataPackageSample);
     for (;;)
     {
     	if(uSystemTick10MsCnt==1000)
-		{
+	{
 		uSystemTick10MsCnt+=1;
 		uSystemTick10MsCnt-=1;
-		
+//		frameDataTemp=framePackage(packageDataTemp);
 	}
+/*		memcpy(frameDataBuild,frameDataTemp->pHeader,10);//header
+		memcpy(frameDataBuild+10,frameDataTemp+10,2);//length
+		memcpy(frameDataBuild+12,frameDataTemp->pData,frameDataTemp->length-2);//data
+		memcpy(frameDataBuild+10+frameDataTemp->length,frameDataTemp->pHip,10);//hip
+		memcpy(frameDataBuild+12,frameDataTemp+20+frameDataTemp->length,1);//checksum		
+		*/
 //    	SendHeartRateDataAgainAndAgain();
         power_manage();
 //		nrf_delay_ms(500);
     }
 }
 
-void SendHeartRateDataAgainAndAgain(void)
+void SendHeartRateDataAgainAndAgain(void)//OVER BLE
 {
 	uint8_t data_array[30]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,
 		0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,
 		0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29};
     	uint32_t err_code;
 
-        err_code = ble_nus_send_string(&m_nus, data_array, 18);
+        err_code = ble_nus_send_string(&m_nus, data_array, 30);
         if (err_code != NRF_ERROR_INVALID_STATE)
         {
             APP_ERROR_CHECK(err_code);

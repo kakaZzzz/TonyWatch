@@ -56,3 +56,5 @@
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf_delay.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf.h
 .\_build\main.o: ..\..\hal_defs.h
+.\_build\main.o: ..\..\uart_protocol.h
+.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h

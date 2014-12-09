@@ -1,6 +1,7 @@
 --cpu Cortex-M0
 ".\_build\ble_nus.o"
 ".\_build\main.o"
+".\_build\uart_protocol.o"
 ".\_build\bsp.o"
 ".\_build\arm_startup_nrf51.o"
 ".\_build\system_nrf51.o"

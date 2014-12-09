@@ -175,7 +175,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>Segger\JL2CM3.dll</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -418,6 +418,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\uart_protocol.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -652,8 +657,8 @@
           <targetInfo name="nrf51422_xxac_s110" versionMatchMode="fixed"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="1.0.0" condition="nRF51 Series CMSIS Device">
-        <package license="License\license.txt" name="nRF_DeviceFamilyPack" schemaVersion="1.0" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="1.1.4"/>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="1.0.1" condition="nRF51 Series CMSIS Device">
+        <package name="nRF_DeviceFamilyPack" schemaVersion="1.0" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="1.1.4"/>
         <targetInfos>
           <targetInfo name="nrf51422_xxac_s110"/>
         </targetInfos>
@@ -871,6 +876,18 @@
         <targetInfos>
           <targetInfo name="nrf51422_xxac_s110"/>
         </targetInfos>
+      </file>
+      <file attr="config" category="source" name="fifo\app_fifo.c">
+        <instance index="0" removed="1">RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.c</instance>
+        <component Cclass="nRF_Libraries" Cgroup="app_fifo" Cvendor="NordicSemiconductor" Cversion="1.0.1" condition="app_fifo"/>
+        <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="1.0.1"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" name="fifo\app_fifo.h">
+        <instance index="0" removed="1">RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h</instance>
+        <component Cclass="nRF_Libraries" Cgroup="app_fifo" Cvendor="NordicSemiconductor" Cversion="1.0.1" condition="app_fifo"/>
+        <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="1.0.1"/>
+        <targetInfos/>
       </file>
       <file attr="config" category="source" name="gpiote\app_gpiote.c">
         <instance index="0">RTE\nRF_Libraries\nRF51422_xxAC\app_gpiote.c</instance>

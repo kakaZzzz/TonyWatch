@@ -54,6 +54,7 @@ Maximum string length is 254 characters including null character in the end.
 @param str Null terminated string to send.
 */
 void simple_uart_putstring(const uint8_t *str);
+uint8_t simple_uart_putstring_checksum(uint8_t * str, uint16_t length);
 
 /** @brief Function for configuring UART to use 38400 baud rate.
 @param rts_pin_number Chip pin number to be used for UART RTS

@@ -82,6 +82,21 @@ void simple_uart_putstring(const uint8_t * str)
     }
 }
 
+uint8_t simple_uart_putstring_checksum(uint8_t * str, uint16_t length)
+{
+    uint_fast8_t i  = 0;
+    uint8_t      ch = str[i++];
+	uint8_t checksum;
+
+    while (i<length)
+    {
+	simple_uart_put(ch);
+	checksum+=ch;
+	ch = str[i++];
+    }
+	return checksum;
+}
+
 void simple_uart_config(uint8_t rts_pin_number,
                         uint8_t txd_pin_number,
                         uint8_t cts_pin_number,
