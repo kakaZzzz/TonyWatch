@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F439xx,USE_STM32F4_DISCO,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\..\Drivers\BSP\STM32F4-Discovery;..\..\..\..\Utilities\Log;..\..\..\..\Utilities\CPU;..\..\..\..\Drivers\CMSIS\Include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\..\..\..\Debug;..\..\..\..\Drivers\BSP\Components\AFE44xx</IncludePath>
+              <IncludePath>..\Inc;..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\..\Drivers\BSP\STM32F4-Discovery;..\..\..\..\Utilities\Log;..\..\..\..\Utilities\CPU;..\..\..\..\Drivers\CMSIS\Include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source;..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\..\..\..\Debug;..\..\..\..\Drivers\BSP\Components\AFE44xx;..\..\..\..\Drivers\BSP\Components\ble_nus51422</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -422,6 +422,11 @@
               <FileName>AFE4490.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_nus51422.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c</FilePath>
             </File>
           </Files>
         </Group>

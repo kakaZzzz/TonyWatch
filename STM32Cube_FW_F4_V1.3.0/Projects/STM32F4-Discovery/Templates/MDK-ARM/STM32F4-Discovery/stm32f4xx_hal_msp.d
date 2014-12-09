@@ -60,3 +60,4 @@ stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\Inc\main.h
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h
+stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h

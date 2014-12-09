@@ -1,5 +1,6 @@
 --cpu Cortex-M4.fp
 "stm32f4-discovery\afe4490.o"
+"stm32f4-discovery\ble_nus51422.o"
 "stm32f4-discovery\stm32f4_tony.o"
 "stm32f4-discovery\system_stm32f4xx.o"
 "stm32f4-discovery\cmsis_os.o"

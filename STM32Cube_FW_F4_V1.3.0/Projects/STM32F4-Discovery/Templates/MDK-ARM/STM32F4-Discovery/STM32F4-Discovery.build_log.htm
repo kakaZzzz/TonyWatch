@@ -22,27 +22,37 @@ Dialog DLL:      TCM.DLL V1.14.2.0
  
 <h2>Project:</h2>
 Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\Project.uvprojx
-Project File Date:  12/03/2014
+Project File Date:  12/06/2014
 
 <h2>Output:</h2>
 Build target 'STM32F4-Discovery'
-compiling main.c...
-..\Src\main.c(504): warning:  #177-D: variable "aTxBuffer20Bytes" was declared but never referenced
+compiling ble_nus51422.c...
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(92): warning:  #177-D: variable "aTxBuffer20Bytes" was declared but never referenced
         uint8_t aTxBuffer20Bytes[20];
-..\Src\main.c(508): warning:  #550-D: variable "pTxBuffer" was set but never used
-        uint8_t *pTxBuffer;
-..\Src\main.c(551): warning:  #177-D: function "UartTxThread" was declared but never referenced
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(182): warning:  #177-D: function "UartTxThread" was declared but never referenced
   static void UartTxThread(void const * argument)
-..\Src\main.c(605): warning:  #177-D: function "UartRxThread" was declared but never referenced
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(222): warning:  #177-D: function "UartRxThread" was declared but never referenced
   static void UartRxThread(void const * argument)
-..\Src\main.c: 4 warnings, 0 errors
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=23196 RO-data=660 RW-data=1036 ZI-data=45884  
+Program Size: Code=23212 RO-data=660 RW-data=1028 ZI-data=46044  
 FromELF: creating hex file...
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 4 Warning(s).
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+</pre>
+</body>
+</html>
+TM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+\MDK-ARM\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
 
 <h2>Collection of Component Files used:</h2>
@@ -51,6 +61,122 @@ Erase Done.
 Programming Done.
 Verify OK.
 Application running ...
-</pre>
-</body>
-</html>
+ared but never referenced
+  static void UartTxThread(void const * argument)
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(175): warning:  #177-D: function "UartRxThread" was declared but never referenced
+  static void UartRxThread(void const * argument)
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 5 warnings, 0 errors
+compiling stm32f4_tony.c...
+compiling main.c...
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
+  #define RXBUFFERSIZE                      TXBUFFERSIZE
+..\Src\main.c: 1 warning, 0 errors
+compiling stm32f4xx_hal_msp.c...
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
+  #define RXBUFFERSIZE                      TXBUFFERSIZE
+..\Src\stm32f4xx_hal_msp.c: 1 warning, 0 errors
+compiling stm32f4xx_it.c...
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
+  #define RXBUFFERSIZE                      TXBUFFERSIZE
+..\Src\stm32f4xx_it.c: 1 warning, 0 errors
+linking...
+Program Size: Code=23196 RO-data=660 RW-data=1028 ZI-data=46044  
+FromELF: creating hex file...
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 12 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+_DMA_CHANNEL;
+..\Src\stm32f4xx_hal_msp.c(161): error:  #20: identifier "USARTx_DMA_TX_IRQn" is undefined
+    HAL_NVIC_SetPriority(USARTx_DMA_TX_IRQn, 0, 1);
+..\Src\stm32f4xx_hal_msp.c(165): error:  #20: identifier "USARTx_DMA_RX_IRQn" is undefined
+    HAL_NVIC_SetPriority(USARTx_DMA_RX_IRQn, 0, 0);   
+..\Src\stm32f4xx_hal_msp.c(189): error:  #20: identifier "USARTx_TX_GPIO_PORT" is undefined
+    HAL_GPIO_DeInit(USARTx_TX_GPIO_PORT, USARTx_TX_PIN);
+..\Src\stm32f4xx_hal_msp.c(189): error:  #20: identifier "USARTx_TX_PIN" is undefined
+    HAL_GPIO_DeInit(USARTx_TX_GPIO_PORT, USARTx_TX_PIN);
+..\Src\stm32f4xx_hal_msp.c(191): error:  #20: identifier "USARTx_RX_GPIO_PORT" is undefined
+    HAL_GPIO_DeInit(USARTx_RX_GPIO_PORT, USARTx_RX_PIN);
+..\Src\stm32f4xx_hal_msp.c(191): error:  #20: identifier "USARTx_RX_PIN" is undefined
+    HAL_GPIO_DeInit(USARTx_RX_GPIO_PORT, USARTx_RX_PIN);
+..\Src\stm32f4xx_hal_msp.c(200): error:  #20: identifier "USARTx_DMA_TX_IRQn" is undefined
+    HAL_NVIC_DisableIRQ(USARTx_DMA_TX_IRQn);
+..\Src\stm32f4xx_hal_msp.c(201): error:  #20: identifier "USARTx_DMA_RX_IRQn" is undefined
+    HAL_NVIC_DisableIRQ(USARTx_DMA_RX_IRQn);
+..\Src\stm32f4xx_hal_msp.c: 0 warnings, 18 errors
+compiling stm32f4xx_it.c...
+..\Src\stm32f4xx_it.c(179): error:  #20: identifier "huart1" is undefined
+    HAL_DMA_IRQHandler(huart1.hdmarx);
+..\Src\stm32f4xx_it.c(191): error:  #20: identifier "huart1" is undefined
+    HAL_DMA_IRQHandler(huart1.hdmatx);
+..\Src\stm32f4xx_it.c: 0 warnings, 2 errors
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 23 Error(s), 6 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+dentifier "USARTx_DMA_RX_IRQn" is undefined
+    HAL_NVIC_DisableIRQ(USARTx_DMA_RX_IRQn);
+..\Src\stm32f4xx_hal_msp.c: 6 warnings, 18 errors
+compiling stm32f4xx_it.c...
+..\Src\stm32f4xx_it.c(179): error:  #20: identifier "huart1" is undefined
+    HAL_DMA_IRQHandler(huart1.hdmarx);
+..\Src\stm32f4xx_it.c(191): error:  #20: identifier "huart1" is undefined
+    HAL_DMA_IRQHandler(huart1.hdmatx);
+..\Src\stm32f4xx_it.c: 0 warnings, 2 errors
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 23 Error(s), 12 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+
+compiling stm32f4xx_hal_iwdg.c...
+compiling stm32f4xx_hal_nand.c...
+compiling stm32f4xx_hal_nor.c...
+compiling stm32f4xx_hal_pccard.c...
+compiling stm32f4xx_hal_pcd.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling stm32f4xx_hal_rcc.c...
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling stm32f4xx_hal_rng.c...
+compiling stm32f4xx_hal_rtc.c...
+compiling stm32f4xx_hal_rtc_ex.c...
+compiling stm32f4xx_hal_sd.c...
+compiling stm32f4xx_hal_smartcard.c...
+compiling stm32f4xx_hal_spi.c...
+compiling stm32f4xx_hal_sram.c...
+compiling stm32f4xx_hal_tim.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_uart.c...
+compiling stm32f4xx_hal_usart.c...
+compiling stm32f4xx_hal_wwdg.c...
+compiling stm32f4xx_ll_fsmc.c...
+compiling stm32f4xx_ll_sdmmc.c...
+compiling stm32f4xx_ll_usb.c...
+compiling misc.c...
+compiling main.c...
+compiling stm32f4xx_hal_msp.c...
+compiling stm32f4xx_it.c...
+compiling debug_uart.c...
+compiling list.c...
+compiling queue.c...
+compiling tasks.c...
+compiling port.c...
+compiling heap_4.c...
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 3 Error(s), 24 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.

@@ -60,6 +60,7 @@ stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h
+stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h
@@ -74,8 +75,6 @@ stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CM
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h
-stm32f4-discovery\main.o: ..\..\..\..\Debug\debug_uart.h
-stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_tony.h

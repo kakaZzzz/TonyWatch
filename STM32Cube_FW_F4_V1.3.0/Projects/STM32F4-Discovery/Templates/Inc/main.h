@@ -42,15 +42,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 #include "stm32f4_discovery.h"
+#include "uart.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-extern UART_HandleTypeDef huart1;
-/* User can use this section to tailor USARTx/UARTx instance used and associated 
-   resources */
-/* Definition for USARTx clock resources */
-#define USARTx                           USART1
+
 #define USARTx_CLK_ENABLE()              __USART1_CLK_ENABLE();
 #define DMAx_CLK_ENABLE()                __DMA2_CLK_ENABLE()
 #define USARTx_RX_GPIO_CLK_ENABLE()      __GPIOA_CLK_ENABLE()
@@ -59,39 +56,9 @@ extern UART_HandleTypeDef huart1;
 #define USARTx_FORCE_RESET()             __USART1_FORCE_RESET()
 #define USARTx_RELEASE_RESET()           __USART1_RELEASE_RESET()
 
-/* Definition for USARTx Pins */
-#define USARTx_TX_PIN                    GPIO_PIN_9
-#define USARTx_TX_GPIO_PORT              GPIOA
-#define USARTx_TX_AF                     GPIO_AF7_USART1
-#define USARTx_RX_PIN                    GPIO_PIN_10
-#define USARTx_RX_GPIO_PORT              GPIOA
-#define USARTx_RX_AF                     GPIO_AF7_USART1
-
-/* Definition for USARTx's DMA */
-#define USARTx_TX_DMA_CHANNEL             DMA_CHANNEL_4
-#define USARTx_TX_DMA_STREAM              DMA2_Stream7
-#define USARTx_RX_DMA_CHANNEL             DMA_CHANNEL_4
-#define USARTx_RX_DMA_STREAM              DMA2_Stream2
-
-/* Definition for USARTx's NVIC */
-#define USARTx_DMA_TX_IRQn                DMA2_Stream7_IRQn
-#define USARTx_DMA_RX_IRQn                DMA2_Stream2_IRQn
-#define USARTx_DMA_TX_IRQHandler          DMA2_Stream7_IRQHandler
-#define USARTx_DMA_RX_IRQHandler          DMA2_Stream2_IRQHandler
-
-/* Size of Transmission buffer */
-#define TXBUFFERSIZE                     (COUNTOF(aTxBuffer) - 1)
-/* Size of Reception buffer */
-#define RXBUFFERSIZE                      8
-//TXBUFFERSIZE
-
-#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
-/* Exported functions ------------------------------------------------------- */
-void MX_USART1_UART_Init(void);
 void MX_GPIO_Init(void);
-static void StartThread(void const * argument);
-static void UartTxThread(void const * argument);
-static void UartRxThread(void const * argument);
+
+void Error_Handler(void);
 
 #endif /* __MAIN_H */
 
