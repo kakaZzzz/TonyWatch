@@ -1,17 +1,8 @@
----- osPoolCreate Matches (16 in 3 files) ----
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):599:* @note   MUST REMAIN UNCHANGED: \b osPoolCreate shall be consistent in every CMSIS-RTOS.
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):601:osPoolId osPoolCreate (osPoolDef_t *pool_def)
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):642:* @param pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):686:* @param  pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):704:* @param  pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):891:  (*(queue_def->cb))->pool = osPoolCreate(&pool_def);
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\cmsis\rtos):632:/// \note MUST REMAIN UNCHANGED: \b osPoolCreate shall be consistent in every CMSIS-RTOS.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\cmsis\rtos):633:osPoolId osPoolCreate (const osPoolDef_t *pool_def);
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\cmsis\rtos):636:/// \param[in]     pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\cmsis\rtos):642:/// \param[in]     pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\cmsis\rtos):648:/// \param[in]     pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):718:  * @note   MUST REMAIN UNCHANGED: \b osPoolCreate shall be consistent in every CMSIS-RTOS.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):720:osPoolId osPoolCreate (osPoolDef_t *pool_def);
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):724:  * @param pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):732:  * @param  pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
-Cmsis_os.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):740:  * @param  pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
+---- countof Matches (7 in 2 files) ----
+AFE4490.c (\\psf\home\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\bsp\components\afe44xx):689:			      //HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aTxBuffer_temp,COUNTOF(aTxBuffer_temp)-1);
+AFE4490.c (\\psf\home\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\bsp\components\afe44xx):690:				//HAL_UART_Transmit_DMA(&huart1, aTxBuffer_test2,COUNTOF(aTxBuffer_test2));
+AFE4490.c (\\psf\home\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\bsp\components\afe44xx):716:			            // HAL_UART_Transmit_DMA(&huart1, (uint8_t *)aTxBuffer_temp,COUNTOF(aTxBuffer_temp));
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):194:		// UART_printf(&huart1, (uint8_t*)printf_IT_sucess,COUNTOF(printf_IT_sucess)-1);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):208:			//UART_printf(&huart1, (uint8_t*)printf_Queue_data_exist,COUNTOF(printf_Queue_data_exist)-1);
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):218://			UART_printf(&huart1, (uint8_t*)aTxBuffer_initialdata,COUNTOF(aTxBuffer_initialdata)-1);  
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):222:			//UART_printf(&huart1, (uint8_t*)printf_Receiving_error,COUNTOF(printf_Receiving_error)-1);

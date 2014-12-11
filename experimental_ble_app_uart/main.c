@@ -41,6 +41,8 @@
 #include "hal_defs.h"
 #include "uart_protocol.h"
 
+#define FIRMWARE  006
+
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
 
