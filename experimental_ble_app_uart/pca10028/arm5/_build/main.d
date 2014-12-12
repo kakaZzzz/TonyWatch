@@ -47,6 +47,7 @@
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf51.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal\nrf51_bitfields.h
 .\_build\main.o: ..\..\ble_nus.h
+.\_build\main.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h
 .\_build\main.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Drivers\nRF51422_xxAC\simple_uart.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\app_util_platform.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\app_error.h
@@ -58,4 +59,3 @@
 .\_build\main.o: ..\..\hal_defs.h
 .\_build\main.o: ..\..\uart_protocol.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\_build\main.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h

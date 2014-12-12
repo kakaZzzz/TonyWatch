@@ -43,7 +43,7 @@
 #include "app_fifo.h"
 #include "stdbool.h"
 
-#define FIRMWARE  007
+#define FIRMWARE  008
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -109,7 +109,7 @@ uint8_t strHip[]={0xbb,0xaa,0xfe,0xdc,0xba,0x98,0x76,0x54,0x32,0x10};
 
 app_fifo_t gUartFifo;
 uint8_t *gUartFifoBuf;
-#define UART_FIFO_SIZE 256
+
 uint8_t gFifoDeepth;
 uint8_t gBleTxTimeout=0;
 uint8_t flagBleTxBusy=false;
@@ -724,6 +724,8 @@ int main(void)
 	{
 		bleTx();
 	}
+	updateUartRxSetting();
+	
         power_manage();
 //		nrf_delay_ms(500);
     }

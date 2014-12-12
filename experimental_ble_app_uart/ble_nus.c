@@ -41,7 +41,9 @@ static void on_disconnect(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 		simple_uart_put(0x55);
 		simple_uart_put(0x55);
 		flagStartRx=false;
-		NVIC_DisableIRQ(UART0_IRQn);
+		flagBleTxBusy=false;
+//		app_fifo_flush(&gUartFifo);
+//		NVIC_DisableIRQ(UART0_IRQn);
 }
 
 
@@ -66,7 +68,9 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 		simple_uart_put(0xFF);
 		simple_uart_put(0xFF);
 		flagStartRx=true;
-		NVIC_EnableIRQ(UART0_IRQn);
+		flagBleTxBusy=false;
+		app_fifo_init(&gUartFifo,gUartFifoBuf,UART_FIFO_SIZE);
+//		NVIC_EnableIRQ(UART0_IRQn);
         }
         else
         {
@@ -74,7 +78,9 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 		simple_uart_put(0x55);
 		simple_uart_put(0x55);
 		flagStartRx=false;
-		NVIC_DisableIRQ(UART0_IRQn);
+		flagBleTxBusy=false;
+//		app_fifo_flush(&gUartFifo);
+//		NVIC_DisableIRQ(UART0_IRQn);
         }
     }
     else if (
@@ -378,4 +384,16 @@ uint32_t ble_nus_send_string(ble_nus_t * p_nus, uint8_t * string, uint16_t lengt
     hvx_params.type   = BLE_GATT_HVX_NOTIFICATION;
     
     return sd_ble_gatts_hvx(p_nus->conn_handle, &hvx_params);
+}
+
+void updateUartRxSetting(void)
+{
+	if(flagStartRx==true)
+	{
+		NVIC_EnableIRQ(UART0_IRQn);
+	}
+	else
+	{
+		NVIC_DisableIRQ(UART0_IRQn);
+	}
 }

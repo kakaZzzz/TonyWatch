@@ -1,6 +1,6 @@
 ---- flagBleTxBusy Matches (5 in 1 files) ----
 Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):115:uint8_t flagBleTxBusy=false;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):474:		flagBleTxBusy=true;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):474:		flagBleTxBusy=false;
 Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):633:			flagBleTxBusy=true;
 Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):653:		flagBleTxBusy=true;
 Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):723:	if(false==flagBleTxBusy)

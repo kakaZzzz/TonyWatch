@@ -36,6 +36,7 @@
 #include "ble_srv_common.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include "app_fifo.h"
 
 //#define BLE_UUID_NUS_SERVICE            0x0001                       /**< The UUID of the Nordic UART Service. */
 //#define BLE_UUID_NUS_TX_CHARACTERISTIC  0x0002                       /**< The UUID of the TX Characteristic. */
@@ -50,8 +51,12 @@
 #define BLE_NUS_MAX_RX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the RX Characteristic (in bytes). */
 #define BLE_NUS_MAX_TX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the TX Characteristic (in bytes). */
 
-extern uint8_t flagStartRx;
+#define UART_FIFO_SIZE 256
 
+extern uint8_t flagStartRx;
+extern app_fifo_t gUartFifo;
+extern uint8_t *gUartFifoBuf;
+extern uint8_t flagBleTxBusy;
 // Forward declaration of the ble_nus_t type. 
 typedef struct ble_nus_s ble_nus_t;
 
@@ -127,6 +132,7 @@ void ble_nus_on_ble_evt(ble_nus_t * p_nus, ble_evt_t * p_ble_evt);
  */
 uint32_t ble_nus_send_string(ble_nus_t * p_nus, uint8_t * string, uint16_t length);
 
+void updateUartRxSetting(void);
 #endif // BLE_NUS_H__
 
 /** @} */
