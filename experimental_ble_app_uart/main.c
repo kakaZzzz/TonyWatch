@@ -40,8 +40,10 @@
 #include "nrf_delay.h"
 #include "hal_defs.h"
 #include "uart_protocol.h"
+#include "app_fifo.h"
+#include "stdbool.h"
 
-#define FIRMWARE  006
+#define FIRMWARE  007
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -105,7 +107,13 @@ uint8_t bleRxWriteCnt;
 uint8_t strHeader[]={0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,0xaa,0xbb};
 uint8_t strHip[]={0xbb,0xaa,0xfe,0xdc,0xba,0x98,0x76,0x54,0x32,0x10};
 
-
+app_fifo_t gUartFifo;
+uint8_t *gUartFifoBuf;
+#define UART_FIFO_SIZE 256
+uint8_t gFifoDeepth;
+uint8_t gBleTxTimeout=0;
+uint8_t flagBleTxBusy=false;
+uint8_t flagStartRx=false;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -405,7 +413,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-
             break;
             
         case BLE_GAP_EVT_DISCONNECTED:
@@ -461,6 +468,11 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                 APP_ERROR_CHECK(err_code);
             }
             break;
+
+	case BLE_EVT_TX_COMPLETE :
+		//tx complete call back
+		flagBleTxBusy=false;
+		break;
 
         default:
             // No implementation needed.
@@ -531,6 +543,12 @@ static void uart_init(void)
     NVIC_SetPriority(UART0_IRQn, APP_IRQ_PRIORITY_LOW);
     NVIC_EnableIRQ(UART0_IRQn);
     /**@snippet [UART Initialization] */
+
+	gUartFifoBuf=malloc(UART_FIFO_SIZE);
+	if(gUartFifoBuf!=NULL)
+	{
+		app_fifo_init(&gUartFifo,gUartFifoBuf,UART_FIFO_SIZE);//(app_fifo_t * p_fifo, uint8_t * p_buf, uint16_t buf_size)
+	}
 }
 
 
@@ -542,13 +560,32 @@ static void uart_init(void)
  */
 void UART0_IRQHandler(void)
 {
+
+	uint32_t err_code;
+	if(flagStartRx==true)
+	{
+		err_code=app_fifo_put(&gUartFifo,simple_uart_get());
+		if(NRF_SUCCESS==err_code)
+		{
+			if(gFifoDeepth<UART_FIFO_SIZE)
+				gFifoDeepth++;
+			gBleTxTimeout=0;
+		}
+		else
+		{
+			APP_ERROR_CHECK(err_code);
+		}
+	}
+
+	
+	/*
 //    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
     static uint8_t data_array[BLE_NUS_MAX_DATA_LEN+1];
     static uint8_t index = 0;
     uint32_t err_code;
-
+*/
     /**@snippet [Handling the data received over UART] */
-
+	/*
     data_array[index] = simple_uart_get();
     index++;
 
@@ -562,12 +599,14 @@ void UART0_IRQHandler(void)
         
         index = 0;
     }
-
+*/
     /**@snippet [Handling the data received over UART] */
 }
 static void system_tick_10ms_handler(void * p_context)
 {
    	uSystemTick10MsCnt++;
+	if(gBleTxTimeout<255)
+		gBleTxTimeout++;
 	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
 	{
 //		uTimeStampS++;
@@ -579,6 +618,57 @@ void SystemTimeInit(void)
 {
 	app_timer_create(&SystemTick10Ms,APP_TIMER_MODE_REPEATED,system_tick_10ms_handler);
 	app_timer_start(SystemTick10Ms,APP_TIMER_TICKS(10, APP_TIMER_PRESCALER),NULL);
+}
+
+void bleTx(void)
+{
+	uint32_t err_code;
+	 static uint8_t data_array[20];//[BLE_NUS_MAX_DATA_LEN+1];
+	 uint8_t i;
+	 memset(data_array,0,20);
+	if((gFifoDeepth>0)&&(gFifoDeepth<20))
+	{
+		if(gBleTxTimeout>20)
+		{
+			flagBleTxBusy=true;
+			i=0;
+			while(gFifoDeepth!=0)
+			{
+				err_code=app_fifo_get(&gUartFifo,&data_array[i]);
+				if((err_code==NRF_SUCCESS)&&(gFifoDeepth>0))
+				{
+					gFifoDeepth--;
+					i++;
+				}
+			}
+			 err_code = ble_nus_send_string(&m_nus, data_array, i);
+		        if (err_code != NRF_ERROR_INVALID_STATE)
+		        {
+		            APP_ERROR_CHECK(err_code);
+		        }
+		}
+	}
+	if(gFifoDeepth>=20)
+	{
+		flagBleTxBusy=true;
+		for(i=0;i<20;i++)
+		{
+			err_code=app_fifo_get(&gUartFifo,&data_array[i]);
+			if((err_code==NRF_SUCCESS)&&(gFifoDeepth>0))
+			{
+				gFifoDeepth--;
+			}
+		        if (err_code != NRF_ERROR_INVALID_STATE)
+		        {
+		            APP_ERROR_CHECK(err_code);
+		        }
+		}
+		 err_code = ble_nus_send_string(&m_nus, data_array, 20);
+	        if (err_code != NRF_ERROR_INVALID_STATE)
+	        {
+	            APP_ERROR_CHECK(err_code);
+	        }
+	}
 }
 
 /**@brief  Application main function.
@@ -629,15 +719,11 @@ int main(void)
 	{
 		uSystemTick10MsCnt+=1;
 		uSystemTick10MsCnt-=1;
-//		frameDataTemp=framePackage(packageDataTemp);
 	}
-/*		memcpy(frameDataBuild,frameDataTemp->pHeader,10);//header
-		memcpy(frameDataBuild+10,frameDataTemp+10,2);//length
-		memcpy(frameDataBuild+12,frameDataTemp->pData,frameDataTemp->length-2);//data
-		memcpy(frameDataBuild+10+frameDataTemp->length,frameDataTemp->pHip,10);//hip
-		memcpy(frameDataBuild+12,frameDataTemp+20+frameDataTemp->length,1);//checksum		
-		*/
-//    	SendHeartRateDataAgainAndAgain();
+	if(false==flagBleTxBusy)
+	{
+		bleTx();
+	}
         power_manage();
 //		nrf_delay_ms(500);
     }

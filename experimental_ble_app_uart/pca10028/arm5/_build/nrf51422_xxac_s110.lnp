@@ -16,6 +16,7 @@
 ".\_build\app_scheduler.o"
 ".\_build\app_timer.o"
 ".\_build\nrf_assert.o"
+".\_build\app_fifo.o"
 ".\_build\softdevice_handler.o"
 --library_type=microlib --strict --scatter ".\_build\nrf51422_xxac_s110.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

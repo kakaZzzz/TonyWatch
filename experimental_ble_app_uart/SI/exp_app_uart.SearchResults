@@ -1,18 +1,6 @@
----- simple_uart_put Matches (17 in 3 files) ----
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):252:		        simple_uart_put(p_data[i]);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):254:		    simple_uart_put('\n');
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):266:		simple_uart_putstring_checksum(strHeader,10);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):268:		simple_uart_put(HI_UINT16(length));
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):270:		simple_uart_put(LO_UINT16(length));
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):273:		cs=simple_uart_putstring_checksum(p_data,length);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):276:		simple_uart_putstring_checksum(strHip,10);		
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):278:		simple_uart_put(checksum);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):618:    //simple_uart_putstring(start_string);
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):60:void simple_uart_put(uint8_t cr)
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):73:void simple_uart_putstring(const uint8_t * str)
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):80:        simple_uart_put(ch);
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):85:uint8_t simple_uart_putstring_checksum(uint8_t * str, uint16_t length)
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):93:	simple_uart_put(ch);
-Simple_uart.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):49:void simple_uart_put(uint8_t cr);
-Simple_uart.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):56:void simple_uart_putstring(const uint8_t *str);
-Simple_uart.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):57:uint8_t simple_uart_putstring_checksum(uint8_t * str, uint16_t length);
+---- flagBleTxBusy Matches (5 in 1 files) ----
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):115:uint8_t flagBleTxBusy=false;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):474:		flagBleTxBusy=true;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):633:			flagBleTxBusy=true;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):653:		flagBleTxBusy=true;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):723:	if(false==flagBleTxBusy)

@@ -58,3 +58,4 @@
 .\_build\main.o: ..\..\hal_defs.h
 .\_build\main.o: ..\..\uart_protocol.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\_build\main.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h

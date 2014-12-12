@@ -50,6 +50,8 @@
 #define BLE_NUS_MAX_RX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the RX Characteristic (in bytes). */
 #define BLE_NUS_MAX_TX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the TX Characteristic (in bytes). */
 
+extern uint8_t flagStartRx;
+
 // Forward declaration of the ble_nus_t type. 
 typedef struct ble_nus_s ble_nus_t;
 

@@ -14,6 +14,8 @@
 #include "nordic_common.h"
 #include "ble_srv_common.h"
 #include <string.h>
+#include "simple_uart.h"
+#include "nrf51.h"
 
 /**@brief     Function for handling the @ref BLE_GAP_EVT_CONNECTED event from the S110 SoftDevice.
  *
@@ -36,6 +38,10 @@ static void on_disconnect(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 {
     UNUSED_PARAMETER(p_ble_evt);
     p_nus->conn_handle = BLE_CONN_HANDLE_INVALID;
+		simple_uart_put(0x55);
+		simple_uart_put(0x55);
+		flagStartRx=false;
+		NVIC_DisableIRQ(UART0_IRQn);
 }
 
 
@@ -57,10 +63,18 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
         if (ble_srv_is_notification_enabled(p_evt_write->data))
         {
             p_nus->is_notification_enabled = true;
+		simple_uart_put(0xFF);
+		simple_uart_put(0xFF);
+		flagStartRx=true;
+		NVIC_EnableIRQ(UART0_IRQn);
         }
         else
         {
             p_nus->is_notification_enabled = false;
+		simple_uart_put(0x55);
+		simple_uart_put(0x55);
+		flagStartRx=false;
+		NVIC_DisableIRQ(UART0_IRQn);
         }
     }
     else if (

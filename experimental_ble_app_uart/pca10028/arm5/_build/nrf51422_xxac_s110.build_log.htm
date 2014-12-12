@@ -22,35 +22,18 @@ Dialog DLL:      TARMCM1.DLL V1.08.00.0
  
 <h2>Project:</h2>
 Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\experimental_ble_app_uart_s110_pca10028.uvprojx
-Project File Date:  12/09/2014
+Project File Date:  12/11/2014
 
 <h2>Output:</h2>
 Build target 'nrf51422_xxac_s110'
-compiling ble_nus.c...
 compiling main.c...
-..\..\main.c(586): warning:  #177-D: variable "start_string" was declared but never referenced
+..\..\main.c(678): warning:  #177-D: variable "start_string" was declared but never referenced
       uint8_t start_string[] = START_STRING;
-..\..\main.c(587): warning:  #177-D: variable "err_code" was declared but never referenced
+..\..\main.c(679): warning:  #177-D: variable "err_code" was declared but never referenced
       uint32_t err_code;
 ..\..\main.c: 2 warnings, 0 errors
-compiling uart_protocol.c...
-compiling bsp.c...
-assembling arm_startup_nrf51.s...
-compiling system_nrf51.c...
-compiling ble_srv_common.c...
-compiling ble_advdata.c...
-compiling ble_conn_params.c...
-compiling nrf_delay.c...
-compiling simple_uart.c...
-compiling app_button.c...
-compiling app_error.c...
-compiling app_gpiote.c...
-compiling app_scheduler.c...
-compiling app_timer.c...
-compiling nrf_assert.c...
-compiling softdevice_handler.c...
 linking...
-Program Size: Code=7076 RO-data=268 RW-data=160 ZI-data=2904  
+Program Size: Code=7608 RO-data=268 RW-data=176 ZI-data=4968  
 FromELF: creating hex file...
 ".\_build\nrf51422_xxac_s110.axf" - 0 Error(s), 2 Warning(s).
 
@@ -100,6 +83,7 @@ Package Vendor: NordicSemiconductor
    * Component: app_gpiote Variant: default Version: 1.0.1
    * Component: app_button Version: 1.0.1
    * Component: app_scheduler Variant: default Version: 1.0.1
+   * Component: app_fifo Version: 1.0.1
    * Component: app_timer Variant: default Version: 1.0.1
    * Component: app_util Variant: default Version: 1.0.1
    * Component: nrf_assert Version: 1.0.1
@@ -129,6 +113,7 @@ Package Vendor: NordicSemiconductor
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\simple_uart
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Examples\7.0.1\bsp
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\button
+  C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\fifo
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\gpiote
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\scheduler
   C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\timer
@@ -192,6 +177,10 @@ Package Vendor: NordicSemiconductor
       Include file:  scheduler\app_scheduler.h
       Source file:   scheduler\app_scheduler.c
 
+   * Component: NordicSemiconductor::nRF_Libraries:app_fifo:1.0.1
+      Source file:   fifo\app_fifo.c
+      Include file:  fifo\app_fifo.h
+
    * Component: NordicSemiconductor::nRF_Libraries:app_timer:default:1.0.1
       Include file:  timer\app_timer.h
       Source file:   timer\app_timer.c
@@ -229,49 +218,3 @@ Package Vendor: NordicSemiconductor
 </pre>
 </body>
 </html>
-
-* JLink Info: Device "NRF51422_XXAC" selected (257 KB flash, 32 KB RAM).
- 
-JLink info:
-------------
-DLL: V4.92 , compiled Sep 30 2014 09:33:42
-Firmware: J-Link OB-SAM3U128-V2-NordicSemi compiled Sep 18 2014 11:53:15
-Hardware: V1.00
-S/N : 681465865 
- 
-* JLink Info: Found SWD-DP with ID 0x0BB11477
-* JLink Info: Found Cortex-M0 r0p0, Little endian.
-* JLink Info: FPUnit: 4 code (BP) slots and 0 literal slots
-ROMTableAddr = 0xE00FF003
- 
-Target info:
-------------
-Device: nRF51422_xxAC
-VTarget = 3.300V
-State of Pins: 
-TCK: 0, TDI: 1, TDO: 1, TMS: 1, TRES: 1, TRST: 1
-Hardware-Breakpoints: 4
-Software-Breakpoints: 8192
-Watchpoints:          2
-JTAG speed: 1000 kHz
- 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-.
-Application running ...
-.h
-      Include file:  headers\ble_hci.h
-      Include file:  headers\nrf_error_sdm.h
-      Include file:  headers\ble_types.h
-      Include file:  headers\nrf_error.h
-      Include file:  headers\nrf_error_soc.h
-      Include file:  headers\nrf_mbr.h
-      Include file:  headers\ble_ranges.h
-Target not created.
-:  headers\nrf_error.h
-      Include file:  headers\nrf_error_soc.h
-      Include file:  headers\nrf_mbr.h
-      Include file:  headers\ble_ranges.h
-Target not created.
