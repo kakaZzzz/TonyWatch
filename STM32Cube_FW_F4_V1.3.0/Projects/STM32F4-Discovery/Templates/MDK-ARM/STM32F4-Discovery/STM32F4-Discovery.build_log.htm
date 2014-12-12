@@ -26,33 +26,14 @@ Project File Date:  12/06/2014
 
 <h2>Output:</h2>
 Build target 'STM32F4-Discovery'
-compiling ble_nus51422.c...
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(92): warning:  #177-D: variable "aTxBuffer20Bytes" was declared but never referenced
-        uint8_t aTxBuffer20Bytes[20];
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(182): warning:  #177-D: function "UartTxThread" was declared but never referenced
-  static void UartTxThread(void const * argument)
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(222): warning:  #177-D: function "UartRxThread" was declared but never referenced
-  static void UartRxThread(void const * argument)
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 3 warnings, 0 errors
+compiling main.c...
 linking...
-Program Size: Code=23212 RO-data=660 RW-data=1028 ZI-data=46044  
+Program Size: Code=23552 RO-data=664 RW-data=1044 ZI-data=46036  
 FromELF: creating hex file...
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 3 Warning(s).
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
-
-<h2>Collection of Component Files used:</h2>
-</pre>
-</body>
-</html>
-TM32F4-Discovery.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-\MDK-ARM\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
 
 <h2>Collection of Component Files used:</h2>
@@ -61,84 +42,51 @@ Erase Done.
 Programming Done.
 Verify OK.
 Application running ...
-ared but never referenced
-  static void UartTxThread(void const * argument)
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(175): warning:  #177-D: function "UartRxThread" was declared but never referenced
-  static void UartRxThread(void const * argument)
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 5 warnings, 0 errors
+</pre>
+</body>
+</html>
+-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Error: Flash Download failed  -  Target DLL has been cancelled
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+rors
 compiling stm32f4_tony.c...
-compiling main.c...
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
-  #define RXBUFFERSIZE                      TXBUFFERSIZE
-..\Src\main.c: 1 warning, 0 errors
-compiling stm32f4xx_hal_msp.c...
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
-  #define RXBUFFERSIZE                      TXBUFFERSIZE
-..\Src\stm32f4xx_hal_msp.c: 1 warning, 0 errors
-compiling stm32f4xx_it.c...
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h(45): warning:  #47-D: incompatible redefinition of macro "RXBUFFERSIZE" (declared at line 12)
-  #define RXBUFFERSIZE                      TXBUFFERSIZE
-..\Src\stm32f4xx_it.c: 1 warning, 0 errors
-linking...
-Program Size: Code=23196 RO-data=660 RW-data=1028 ZI-data=46044  
-FromELF: creating hex file...
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 12 Warning(s).
-
-<h2>Collection of Component include folders:</h2>
-  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
-
-<h2>Collection of Component Files used:</h2>
-_DMA_CHANNEL;
-..\Src\stm32f4xx_hal_msp.c(161): error:  #20: identifier "USARTx_DMA_TX_IRQn" is undefined
-    HAL_NVIC_SetPriority(USARTx_DMA_TX_IRQn, 0, 1);
-..\Src\stm32f4xx_hal_msp.c(165): error:  #20: identifier "USARTx_DMA_RX_IRQn" is undefined
-    HAL_NVIC_SetPriority(USARTx_DMA_RX_IRQn, 0, 0);   
-..\Src\stm32f4xx_hal_msp.c(189): error:  #20: identifier "USARTx_TX_GPIO_PORT" is undefined
-    HAL_GPIO_DeInit(USARTx_TX_GPIO_PORT, USARTx_TX_PIN);
-..\Src\stm32f4xx_hal_msp.c(189): error:  #20: identifier "USARTx_TX_PIN" is undefined
-    HAL_GPIO_DeInit(USARTx_TX_GPIO_PORT, USARTx_TX_PIN);
-..\Src\stm32f4xx_hal_msp.c(191): error:  #20: identifier "USARTx_RX_GPIO_PORT" is undefined
-    HAL_GPIO_DeInit(USARTx_RX_GPIO_PORT, USARTx_RX_PIN);
-..\Src\stm32f4xx_hal_msp.c(191): error:  #20: identifier "USARTx_RX_PIN" is undefined
-    HAL_GPIO_DeInit(USARTx_RX_GPIO_PORT, USARTx_RX_PIN);
-..\Src\stm32f4xx_hal_msp.c(200): error:  #20: identifier "USARTx_DMA_TX_IRQn" is undefined
-    HAL_NVIC_DisableIRQ(USARTx_DMA_TX_IRQn);
-..\Src\stm32f4xx_hal_msp.c(201): error:  #20: identifier "USARTx_DMA_RX_IRQn" is undefined
-    HAL_NVIC_DisableIRQ(USARTx_DMA_RX_IRQn);
-..\Src\stm32f4xx_hal_msp.c: 0 warnings, 18 errors
-compiling stm32f4xx_it.c...
-..\Src\stm32f4xx_it.c(179): error:  #20: identifier "huart1" is undefined
-    HAL_DMA_IRQHandler(huart1.hdmarx);
-..\Src\stm32f4xx_it.c(191): error:  #20: identifier "huart1" is undefined
-    HAL_DMA_IRQHandler(huart1.hdmatx);
-..\Src\stm32f4xx_it.c: 0 warnings, 2 errors
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 23 Error(s), 6 Warning(s).
-
-<h2>Collection of Component include folders:</h2>
-  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
-
-<h2>Collection of Component Files used:</h2>
-Target not created.
-dentifier "USARTx_DMA_RX_IRQn" is undefined
-    HAL_NVIC_DisableIRQ(USARTx_DMA_RX_IRQn);
-..\Src\stm32f4xx_hal_msp.c: 6 warnings, 18 errors
-compiling stm32f4xx_it.c...
-..\Src\stm32f4xx_it.c(179): error:  #20: identifier "huart1" is undefined
-    HAL_DMA_IRQHandler(huart1.hdmarx);
-..\Src\stm32f4xx_it.c(191): error:  #20: identifier "huart1" is undefined
-    HAL_DMA_IRQHandler(huart1.hdmatx);
-..\Src\stm32f4xx_it.c: 0 warnings, 2 errors
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 23 Error(s), 12 Warning(s).
-
-<h2>Collection of Component include folders:</h2>
-  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
-
-<h2>Collection of Component Files used:</h2>
-Target not created.
-
+compiling system_stm32f4xx.c...
+compiling cmsis_os.c...
+compiling stm32f4xx_hal.c...
+compiling stm32f4xx_hal_adc.c...
+compiling stm32f4xx_hal_adc_ex.c...
+compiling stm32f4xx_hal_can.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling stm32f4xx_hal_crc.c...
+compiling stm32f4xx_hal_cryp.c...
+compiling stm32f4xx_hal_cryp_ex.c...
+compiling stm32f4xx_hal_dac.c...
+compiling stm32f4xx_hal_dac_ex.c...
+compiling stm32f4xx_hal_dcmi.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal_eth.c...
+compiling stm32f4xx_hal_flash.c...
+compiling stm32f4xx_hal_flash_ex.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_hcd.c...
+compiling stm32f4xx_hal_i2c.c...
+compiling stm32f4xx_hal_i2s.c...
+compiling stm32f4xx_hal_i2s_ex.c...
+compiling stm32f4xx_hal_irda.c...
 compiling stm32f4xx_hal_iwdg.c...
 compiling stm32f4xx_hal_nand.c...
 compiling stm32f4xx_hal_nor.c...
@@ -163,6 +111,7 @@ compiling stm32f4xx_ll_fsmc.c...
 compiling stm32f4xx_ll_sdmmc.c...
 compiling stm32f4xx_ll_usb.c...
 compiling misc.c...
+assembling startup_stm32f439xx.s...
 compiling main.c...
 compiling stm32f4xx_hal_msp.c...
 compiling stm32f4xx_it.c...
@@ -172,11 +121,144 @@ compiling queue.c...
 compiling tasks.c...
 compiling port.c...
 compiling heap_4.c...
-"STM32F4-Discovery\STM32F4-Discovery.axf" - 3 Error(s), 24 Warning(s).
+linking...
+Program Size: Code=23540 RO-data=664 RW-data=1044 ZI-data=46036  
+FromELF: creating hex file...
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+nclude\stm32f439xx.h(102): error:  #20: identifier "EXTI0_IRQn" is undefined
+    EXTI0_IRQn                  = 6,      /*!< EXTI Line0 Interrupt                                              */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(103): error:  #20: identifier "EXTI1_IRQn" is undefined
+    EXTI1_IRQn                  = 7,      /*!< EXTI Line1 Interrupt                                              */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(104): error:  #20: identifier "EXTI2_IRQn" is undefined
+    EXTI2_IRQn                  = 8,      /*!< EXTI Line2 Interrupt                                              */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(105): error:  #20: identifier "EXTI3_IRQn" is undefined
+    EXTI3_IRQn                  = 9,      /*!< EXTI Line3 Interrupt                                              */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(106): error:  #20: identifier "EXTI4_IRQn" is undefined
+    EXTI4_IRQn                  = 10,     /*!< EXTI Line4 Interrupt                                              */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(107): error:  #20: identifier "DMA1_Stream0_IRQn" is undefined
+    DMA1_Stream0_IRQn           = 11,     /*!< DMA1 Stream 0 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(108): error:  #20: identifier "DMA1_Stream1_IRQn" is undefined
+    DMA1_Stream1_IRQn           = 12,     /*!< DMA1 Stream 1 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(109): error:  #20: identifier "DMA1_Stream2_IRQn" is undefined
+    DMA1_Stream2_IRQn           = 13,     /*!< DMA1 Stream 2 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(110): error:  #20: identifier "DMA1_Stream3_IRQn" is undefined
+    DMA1_Stream3_IRQn           = 14,     /*!< DMA1 Stream 3 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(111): error:  #20: identifier "DMA1_Stream4_IRQn" is undefined
+    DMA1_Stream4_IRQn           = 15,     /*!< DMA1 Stream 4 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(112): error:  #20: identifier "DMA1_Stream5_IRQn" is undefined
+    DMA1_Stream5_IRQn           = 16,     /*!< DMA1 Stream 5 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(113): error:  #20: identifier "DMA1_Stream6_IRQn" is undefined
+    DMA1_Stream6_IRQn           = 17,     /*!< DMA1 Stream 6 global Interrupt                                    */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(114): error:  #20: identifier "ADC_IRQn" is undefined
+    ADC_IRQn                    = 18,     /*!< ADC1, ADC2 and ADC3 global Interrupts                             */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(115): error:  #20: identifier "CAN1_TX_IRQn" is undefined
+    CAN1_TX_IRQn                = 19,     /*!< CAN1 TX Interrupt                                                 */
+..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h(116): error:  #20: identifier "CAN1_RX0_IRQn" is undefined
+    CAN1_RX0_IRQn               = 20,     /*!< CAN1 RX0 Interrupt                                                */
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 0 warnings, 30 errors
+compiling main.c...
+..\Inc\main.h(60): error:  #130: expected a "{"
+  void MX_GPIO_Init(void);
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(137): warning:  #12-D: parsing restarts here after previous syntax error
+  {
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(138): error:  #20: identifier "portTickType" is undefined
+        configLIST_VOLATILE portTickType xItemValue;    /*< The value being listed.  In most cases this is used to sort the list in descending order. */
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(139): warning:  #177-D: variable "pxNext" was declared but never referenced
+        struct xLIST_ITEM * configLIST_VOLATILE pxNext; /*< Pointer to the next xListItem in the list. */
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(140): warning:  #177-D: variable "pxPrevious" was declared but never referenced
+        struct xLIST_ITEM * configLIST_VOLATILE pxPrevious;/*< Pointer to the previous xListItem in the list. */
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(141): warning:  #177-D: variable "pvOwner" was declared but never referenced
+        void * pvOwner;                                                                 /*< Pointer to the object (normally a TCB) that contains the list item.  There is therefore a two way link between the object containing the list item and the list item itself. */
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(142): warning:  #177-D: variable "pvContainer" was declared but never referenced
+        void * configLIST_VOLATILE pvContainer;                 /*< Pointer to the list in which this list item is placed (if any). */
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h(148): error:  #20: identifier "portTickType" is undefined
+        configLIST_VOLATILE portTickType xItemValue;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(114): error:  #20: identifier "portTickType" is undefined
+        portTickType  xTimeOnEntering;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(132): error:  #20: identifier "pdTASK_CODE" is undefined
+        pdTASK_CODE pvTaskCode;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(526): error:  #20: identifier "portTickType" is undefined
+  void vTaskDelay( portTickType xTicksToDelay ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(585): error:  #20: identifier "portTickType" is undefined
+  void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(585): error:  #20: identifier "portTickType" is undefined
+  void vTaskDelayUntil( portTickType * const pxPreviousWakeTime, portTickType xTimeIncrement ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1032): error:  #20: identifier "portTickType" is undefined
+  portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1048): error:  #20: identifier "portTickType" is undefined
+  portTickType xTaskGetTickCountFromISR( void ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1389): error:  #20: identifier "portTickType" is undefined
+  void vTaskPlaceOnEventList( xList * const pxEventList, portTickType xTicksToWait ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1404): error:  #20: identifier "portTickType" is undefined
+  void vTaskPlaceOnEventListRestricted( xList * const pxEventList, portTickType xTicksToWait ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1447): error:  #20: identifier "portTickType" is undefined
+  portBASE_TYPE xTaskCheckForTimeOut( xTimeOutType * const pxTimeOut, portTickType * const pxTicksToWait ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1477): error:  #20: identifier "pdTASK_CODE" is undefined
+  signed portBASE_TYPE xTaskGenericCreate( pdTASK_CODE pxTaskCode, const signed char * const pcName, unsigned short usStackDepth, void *pvParameters, unsigned portBASE_TYPE uxPriority, xTaskHandle *pxCreatedTask, portSTACK_TYPE *puxStackBuffer, const xMemoryRegion * const xRegions ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h(1497): error:  #20: identifier "portTickType" is undefined
+  void vTaskStepTick( portTickType xTicksToJump );
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h(234): error:  #20: identifier "portTickType" is undefined
+  xTimerHandle xTimerCreate( const signed char * const pcTimerName, portTickType xTimerPeriodInTicks, unsigned portBASE_TYPE uxAutoReload, void * pvTimerID, tmrTIMER_CALLBACK pxCallbackFunction ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h(952): error:  #20: identifier "portTickType" is undefined
+  portBASE_TYPE xTimerGenericCommand( xTimerHandle xTimer, portBASE_TYPE xCommandID, portTickType xOptionalValue, signed portBASE_TYPE *pxHigherPriorityTaskWoken, portTickType xBlockTime ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h(952): error:  #20: identifier "portTickType" is undefined
+  portBASE_TYPE xTimerGenericCommand( xTimerHandle xTimer, portBASE_TYPE xCommandID, portTickType xOptionalValue, signed portBASE_TYPE *pxHigherPriorityTaskWoken, portTickType xBlockTime ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(588): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueGenericSend( xQueueHandle xQueue, const void * const pvItemToQueue, portTickType xTicksToWait, portBASE_TYPE xCopyPosition ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(909): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueGenericReceive( xQueueHandle xQueue, void * const pvBuffer, portTickType xTicksToWait, portBASE_TYPE xJustPeek ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1449): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueAltGenericSend( xQueueHandle xQueue, const void * const pvItemToQueue, portTickType xTicksToWait, portBASE_TYPE xCopyPosition );
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1450): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueAltGenericReceive( xQueueHandle xQueue, void * const pvBuffer, portTickType xTicksToWait, portBASE_TYPE xJustPeeking );
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1467): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueCRSend( xQueueHandle xQueue, const void *pvItemToQueue, portTickType xTicksToWait );
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1468): error:  #20: identifier "portTickType" is undefined
+  signed portBASE_TYPE xQueueCRReceive( xQueueHandle xQueue, void *pvBuffer, portTickType xTicksToWait );
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1483): error:  #20: identifier "portTickType" is undefined
+  portBASE_TYPE xQueueTakeMutexRecursive( xQueueHandle xMutex, portTickType xBlockTime ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1665): error:  #20: identifier "portTickType" is undefined
+  xQueueSetMemberHandle xQueueSelectFromSet( xQueueSetHandle xQueueSet, portTickType xBlockTimeTicks ) PRIVILEGED_FUNCTION;
+..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h(1673): error:  #20: identifier "portTickType" is undefined
+  void vQueueWaitForMessageRestricted( xQueueHandle xQueue, portTickType xTicksToWait ) PRIVILEGED_FUNCTION;
+..\Src\main.c(189): error:  #20: identifier "portTickType" is undefined
+                xSemaphoreTake(xBinarySemaphore,portMAX_DELAY); //??ии?ив???
+..\Src\main.c(189): error:  #18: expected a ")"
+                xSemaphoreTake(xBinarySemaphore,portMAX_DELAY); //??ии?ив???
+..\Src\main.c(193): error:  #18: expected a ")"
+                osMessagePut (xQueue, (uint32_t)AFE44xxInitialData, portMAX_DELAY);
+..\Src\main.c: 5 warnings, 30 errors
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 60 Error(s), 5 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Project build/rebuild aborted.
+s here after previous syntax error
+  {
+..\Src\stm32f4xx_hal_msp.c(135): error:  #20: identifier "huart" is undefined
+    __HAL_LINKDMA(huart, hdmatx, hdma_tx);
+..\Src\stm32f4xx_hal_msp.c(157): error:  #20: identifier "huart" is undefined
+    __HAL_LINKDMA(huart, hdmarx, hdma_rx);
+..\Src\stm32f4xx_hal_msp.c: 1 warning, 4 errors
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 64 Error(s), 6 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Project build/rebuild aborted.

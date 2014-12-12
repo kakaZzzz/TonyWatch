@@ -1,10 +1,10 @@
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h
+stm32f4-discovery\ble_nus51422.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Debug\debug_uart.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Include\core_cm4.h
-stm32f4-discovery\ble_nus51422.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Include\core_cmInstr.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Include\core_cmFunc.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\CMSIS\Include\core_cm4_simd.h

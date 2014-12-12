@@ -43,6 +43,7 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4_discovery.h"
 #include "uart.h"
+#include "ble_nus51422.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -59,6 +60,17 @@
 void MX_GPIO_Init(void);
 
 void Error_Handler(void);
+
+extern UART_HandleTypeDef huart1;
+extern char aTxBuffer_initialdata[TX_BUF_DATA_LENGTH];
+extern void UART_printf(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+extern void startUartRxThread(void);
+//extern void UartRxThread(void const * argument);
+
+/* User can use this section to tailor USARTx/UARTx instance used and associated 
+   resources */
+/* Definition for USARTx clock resources */
+#define USARTx                           USART1
 
 #endif /* __MAIN_H */
 

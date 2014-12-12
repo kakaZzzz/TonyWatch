@@ -14,9 +14,8 @@ uint8_t printf_Receiving_error[] = " ****receiving error****\n\r ";
 uint8_t printf_IT_sucess[] = " ****IT sucess****\n\r ";
 uint8_t printf_Queue_data_exist[] = " ****Queue data exist****\n\r ";
 uint8_t printf_Queue_data_Nonexist[] = " ****Queue data Nonexist****\n\r ";
-char aTxBuffer_initialdata[37];
+char aTxBuffer_initialdata[TX_BUF_DATA_LENGTH];
 
-UART_HandleTypeDef huart1;
 __IO ITStatus UartTxReady = RESET;
 __IO ITStatus UartRxReady = RESET;
 unsigned char flagTxCtrl=TX_MODE_SENDING;
@@ -39,12 +38,45 @@ uint8_t aTxBuffer[] =// "bb01234567890123456789012345678901234567890123456789012
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint8_t *aTxPack;
 uint8_t aPackHeader[]={0x01,0x23,0x45,0x67,0x89,0xAB,0xCD,0xEF,0xAA,0xBB};
-uint8_t 
+//uint8_t 
+UART_HandleTypeDef huart1;
+uint8_t flagBleConStatus=BLE_STATUS_DISCONNECTED;
 
 /*******************************************************/
 
 
 
+static void UartRxThread(void const * argument)
+{
+	uint8_t aRxBuffer1[2];
+	for(;;)
+  	{
+		if(HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer1, 2) != HAL_OK)
+		  {
+		    Error_Handler();
+		  }
+		if((aRxBuffer1[0]==0xFF)&&(aRxBuffer1[1]==0xFF))
+		{
+			osDelay(1000);
+			flagBleConStatus=BLE_STATUS_CONNECTED;
+		}
+		if((aRxBuffer1[0]==0x55)&&(aRxBuffer1[1]==0x55))
+		{
+			flagBleConStatus=BLE_STATUS_DISCONNECTED;
+		}
+		while(UartRxReady!=SET)
+		{
+			osDelay(100);
+		}
+		UartRxReady=RESET;
+	}
+}
+
+void startUartRxThread(void)
+{
+	osThreadDef(UartRx_ThreadName, UartRxThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
+	osThreadCreate (osThread(UartRx_ThreadName), NULL);	
+}
 
 //*******************************************************/
 // UART OUTPUT
@@ -100,7 +132,7 @@ void UartUnPackage(void)
 void UartSendBySeg(uint8_t *aTxBufferTemp, uint16_t length)
 {
 //	osEvent bleSendDataEvent;
-	uint8_t aTxBuffer20Bytes[20];
+//	uint8_t aTxBuffer20Bytes[20];
 	//uint16_t uByteCount;
 	uint16_t uLoopCount;
 	uint8_t uLastLoopByteCount;
@@ -229,7 +261,7 @@ static void UartTxThread(void const * argument)
   /* USER CODE END 5 */ 
 
 }
-
+/*
 static void UartRxThread(void const * argument)
 {
  volatile unsigned long ul;
@@ -271,7 +303,9 @@ static void UartRxThread(void const * argument)
 //	UartTxReady = SET;
 	osDelay(500);
   }
-}
+}*/
+
+
 
 
 /**
@@ -304,5 +338,23 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
   /* Turn LED4 on: Transfer in reception process is correct */
   //BSP_LED_On(LED4);
 }
+
+void TxSampleSend(uint8_t *pData, uint16_t length)
+{
+//	if(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)pData, length)!= HAL_OK)
+//	{
+//		Error_Handler();
+//	}
+	while(HAL_UART_Transmit_DMA(&huart1, (uint8_t*)pData, length)!= HAL_OK)
+	{
+		osDelay(10);
+	}
+	while (UartTxReady != SET)
+	{
+		osDelay(10);
+	}
+}
+
+
 
 

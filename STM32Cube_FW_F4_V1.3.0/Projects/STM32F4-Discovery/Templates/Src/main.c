@@ -44,6 +44,8 @@
 #include <string.h>
 #include "AFE4490.h"
 #include "stm32f4_tony.h"
+#include "ble_nus51422.h"
+#include "stdio.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
@@ -201,6 +203,11 @@ void vReceiveAFE44xxDataTask(void const *argument)
 	//portTickType xLastWakeTime;
 	//xLastWakeTime = xTaskGetTickCount();
 	//const portTickType xTicksToWait = 10/portTICK_RATE_MS;
+	uint8_t TxSample[128];
+	for(uint8_t i=0;i<128;i++)
+	{
+		TxSample[i]=i;
+	}
 	for(;;)
 	{
 		if(uxQueueMessagesWaiting(xQueue) !=0) //?D???車芍D?D那?﹞?車D那y?Y
@@ -214,16 +221,22 @@ void vReceiveAFE44xxDataTask(void const *argument)
 		{
 			//sprintf(aTxBuffer_initialdata,"%lx\n%lx\n%lx\n",*AFE44xxInitialData_ADDR,*(AFE44xxInitialData_ADDR+1),*(AFE44xxInitialData_ADDR+2));
 //in order to debug uart sending, weizhong comment the following two lines
+			
 //			sprintf(aTxBuffer_initialdata,"%lx\n%lx\n%lx\n",*(long *)osEventAFE44XX.value.v,*((long *)osEventAFE44XX.value.v+1),*((long *)osEventAFE44XX.value.v+2));
-//			UART_printf(&huart1, (uint8_t*)aTxBuffer_initialdata,COUNTOF(aTxBuffer_initialdata)-1);  
+//			UART_printf(&huart1, (uint8_t *)aTxBuffer_initialdata,COUNTOF(aTxBuffer_initialdata)-1);  
+			if(flagBleConStatus==BLE_STATUS_CONNECTED)
+			{
+				TxSampleSend(TxSample,20);
+			}
 		}
 		else
 		{
 			//UART_printf(&huart1, (uint8_t*)printf_Receiving_error,COUNTOF(printf_Receiving_error)-1);
 		}
-		osDelay(10);
+		osDelay(100);
 	}
 }
+
 /**
   * @brief  Main program
   * @param  None
@@ -296,9 +309,8 @@ debug_putchar(0x27);
 		
 	osThreadDef(vReceiveAFE44xxDataTask_Thread_Name, vReceiveAFE44xxDataTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
 	osThreadCreate (osThread(vReceiveAFE44xxDataTask_Thread_Name), NULL);	
-
-	osThreadDef(SendData_Thread, SendDataThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
-	osThreadCreate (osThread(SendData_Thread), NULL);	
+	
+		startUartRxThread();
 	/* Start scheduler */
 	osKernelStart(NULL, NULL);
   	}

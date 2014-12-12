@@ -5,11 +5,6 @@
  extern "C" {
 #endif 
 
-extern UART_HandleTypeDef huart1;
-/* User can use this section to tailor USARTx/UARTx instance used and associated 
-   resources */
-/* Definition for USARTx clock resources */
-#define USARTx                           USART1
 
 /* Definition for USARTx Pins */
 #define USARTx_TX_PIN                    GPIO_PIN_9
@@ -41,7 +36,7 @@ extern UART_HandleTypeDef huart1;
 void MX_USART1_UART_Init(void);
 static void StartThread(void const * argument);
 static void UartTxThread(void const * argument);
-static void UartRxThread(void const * argument);
+//static void UartRxThread(void const * argument);
 
 
 
