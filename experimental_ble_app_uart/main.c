@@ -87,6 +87,7 @@
 #define USER_RX_PIN_NUMBER	19
 
 #define MAX_FRAME_LENGTH 128
+//#define	UART_DEBUG_PRINT
 
 //#define countof(a)   sizeof(*(a))//(sizeof(a) / sizeof(*(a)))
 
@@ -543,7 +544,7 @@ static void uart_init(void)
 	//NRF_UART0->INTENSET = UART_INTENSET_TXDRDY_Enabled << UART_INTENSET_TXDRDY_Pos;
     
     NVIC_SetPriority(UART0_IRQn, APP_IRQ_PRIORITY_LOW);
-    NVIC_EnableIRQ(UART0_IRQn);
+//    NVIC_EnableIRQ(UART0_IRQn);
     /**@snippet [UART Initialization] */
 
 	gUartFifoBuf=malloc(UART_FIFO_SIZE);
@@ -564,8 +565,9 @@ void UART0_IRQHandler(void)
 {
 
 	uint32_t err_code;
-	if(flagStartRx==true)
-	{
+//	if((flagStartRx==true)&&(app_fifo_length(&gUartFifo)<=UART_FIFO_SIZE))
+	if(1)//(flagStartRx==true)
+	{	
 		err_code=app_fifo_put(&gUartFifo,simple_uart_get());
 		if(NRF_SUCCESS==err_code)
 		{
@@ -576,7 +578,9 @@ void UART0_IRQHandler(void)
 		else
 		{
 			APP_ERROR_CHECK(err_code);
-			simple_uart_put(0x77);
+			#ifdef UART_DEBUG_PRINT
+				simple_uart_put(0x77);
+			#endif
 		}
 	}
 
@@ -646,7 +650,9 @@ void bleTx(void)
 				}
 				else
 				{
-					simple_uart_put(0x11);
+					#ifdef UART_DEBUG_PRINT
+						simple_uart_put(0x11);
+					#endif
 				}
 			}
 			 err_code = ble_nus_send_string(&m_nus, data_array, i);
@@ -656,7 +662,9 @@ void bleTx(void)
 		        }
 			else
 			{
-				simple_uart_put(0x22);
+				#ifdef UART_DEBUG_PRINT
+					simple_uart_put(0x22);
+				#endif
 			}
 		}
 	}
@@ -672,7 +680,9 @@ void bleTx(void)
 			}
 			else
 			{
-				simple_uart_put(0x33);
+				#ifdef UART_DEBUG_PRINT
+					simple_uart_put(0x33);
+				#endif
 			}
 		        if (err_code != NRF_ERROR_INVALID_STATE)
 		        {
@@ -680,7 +690,9 @@ void bleTx(void)
 		        }
 			else
 			{
-				simple_uart_put(0x44);
+				#ifdef UART_DEBUG_PRINT
+					simple_uart_put(0x44);
+				#endif
 			}
 		}
 		 err_code = ble_nus_send_string(&m_nus, data_array, 20);
@@ -690,7 +702,9 @@ void bleTx(void)
 	        }
 		else
 		{
-			simple_uart_put(0x66);
+			#ifdef UART_DEBUG_PRINT
+				simple_uart_put(0x66);
+			#endif
 		}
 	}
 }
@@ -744,11 +758,11 @@ int main(void)
 		uSystemTick10MsCnt+=1;
 		uSystemTick10MsCnt-=1;
 	}
-	if(flag1sCheckRoutine==true)
-	{
-		updateUartRxSetting();
-		flag1sCheckRoutine=false;
-	}
+//	if(flag1sCheckRoutine==true)
+//	{
+//		updateUartRxSetting();
+//		flag1sCheckRoutine=false;
+//	}
 	if(false==flagBleTxBusy)
 	{
 		bleTx();

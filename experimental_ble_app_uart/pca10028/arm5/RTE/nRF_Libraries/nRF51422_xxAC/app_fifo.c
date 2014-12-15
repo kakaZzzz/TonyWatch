@@ -71,3 +71,10 @@ uint32_t app_fifo_flush(app_fifo_t * p_fifo)
     p_fifo->read_pos = p_fifo->write_pos;
     return NRF_SUCCESS;
 }
+
+uint16_t app_fifo_length(app_fifo_t * p_fifo)
+{
+	return FIFO_LENGTH;
+}
+
+

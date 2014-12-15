@@ -77,6 +77,8 @@ uint32_t app_fifo_get(app_fifo_t * p_fifo, uint8_t * p_byte);
  */
 uint32_t app_fifo_flush(app_fifo_t * p_fifo);
 
+uint16_t app_fifo_length(app_fifo_t * p_fifo);
+
 #endif // APP_FIFO_H__
 
 /** @} */

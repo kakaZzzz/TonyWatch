@@ -68,17 +68,24 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
         if (ble_srv_is_notification_enabled(p_evt_write->data))
         {
             p_nus->is_notification_enabled = true;
-		flagStartRx=true;
-		flagStartRxUpdated=true;
-//		NVIC_EnableIRQ(UART0_IRQn);
+//		flagStartRx=true;
+//		flagStartRxUpdated=true;
+		simple_uart_put(0xFF);
+		simple_uart_put(0xFF);
+		flagBleTxBusy=false;
+		NVIC_EnableIRQ(UART0_IRQn);
+		app_fifo_init(&gUartFifo,gUartFifoBuf,UART_FIFO_SIZE);
+		gFifoDeepth=0;
         }
         else
         {
             p_nus->is_notification_enabled = false;
-		flagStartRx=false;
-		flagStartRxUpdated=true;
+//		flagStartRx=false;
+//		flagStartRxUpdated=true;
 //		app_fifo_flush(&gUartFifo);
-//		NVIC_DisableIRQ(UART0_IRQn);
+		simple_uart_put(0x55);
+		simple_uart_put(0x55);
+		NVIC_DisableIRQ(UART0_IRQn);
         }
     }
     else if (
