@@ -75,3 +75,4 @@ stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Middlewares\Third_Party\FreeR
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h
 stm32f4-discovery\stm32f4xx_hal_msp.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h
+stm32f4-discovery\stm32f4xx_hal_msp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

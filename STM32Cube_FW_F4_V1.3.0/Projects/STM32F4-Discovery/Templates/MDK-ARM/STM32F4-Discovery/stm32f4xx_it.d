@@ -75,4 +75,5 @@ stm32f4-discovery\stm32f4xx_it.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\S
 stm32f4-discovery\stm32f4xx_it.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h
 stm32f4-discovery\stm32f4xx_it.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h
 stm32f4-discovery\stm32f4xx_it.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h
+stm32f4-discovery\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 stm32f4-discovery\stm32f4xx_it.o: ..\Inc\stm32f4xx_it.h

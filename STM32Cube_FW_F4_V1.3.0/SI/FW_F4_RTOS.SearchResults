@@ -1,35 +1,4 @@
----- xSemaphoreTake Matches (36 in 5 files) ----
-Ble_nus51422.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\drivers\bsp\components\ble_nus51422):184:		hrSemaReturn=xSemaphoreTake(xBinSemaHeartRateSend,hrTicks);
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):428:  if (xSemaphoreTake(mutex_id, ticks) != pdTRUE) {
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):528:  if (xSemaphoreTake(semaphore_id, ticks) != pdTRUE) {
-Cmsis_os.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\cmsis_rtos):1275:  if (xSemaphoreTakeRecursive(mutex_id, ticks) != pdTRUE) 
-Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):231:		xSemaphoreTake(xBinarySemaphore,portMAX_DELAY); //??ии?ив???
-Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):232:		//xSemaphoreTake(xBinarySemaphore,xTicksToWait);
-Queue.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):1480: * For internal use only.  Use xSemaphoreTakeMutexRecursive() or
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):185: * <pre>xSemaphoreTake(
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):226:        if( xSemaphoreTake( xSemaphore, ( portTickType ) 10 ) == pdTRUE )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):245: * \defgroup xSemaphoreTake xSemaphoreTake
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):248:#define xSemaphoreTake( xSemaphore, xBlockTime )		xQueueGenericReceive( ( xQueueHandle ) ( xSemaphore ), NULL, ( xBlockTime ), pdFALSE )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):252: * xSemaphoreTakeRecursive(
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):279: * the task already owns the semaphore then xSemaphoreTakeRecursive() will
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):305:        if( xSemaphoreTakeRecursive( xSemaphore, ( portTickType ) 10 ) == pdTRUE )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):312:			// xSemaphoreTakeRecursive() are made on the same mutex.  In real
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):316:            xSemaphoreTakeRecursive( xMutex, ( portTickType ) 10 );
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):317:            xSemaphoreTakeRecursive( xMutex, ( portTickType ) 10 );
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):338: * \defgroup xSemaphoreTakeRecursive xSemaphoreTakeRecursive
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):341:#define xSemaphoreTakeRecursive( xMutex, xBlockTime )	xQueueTakeMutexRecursive( ( xMutex ), ( xBlockTime ) )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):345: * xSemaphoreAltTake() is an alternative version of xSemaphoreTake().
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):399:        if( xSemaphoreTake( xSemaphore, ( portTickType ) 0 ) )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):466:        if( xSemaphoreTakeRecursive( xMutex, ( portTickType ) 10 ) == pdTRUE )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):473:			// xSemaphoreTakeRecursive() are made on the same mutex.  In real
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):477:            xSemaphoreTakeRecursive( xMutex, ( portTickType ) 10 );
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):478:            xSemaphoreTakeRecursive( xMutex, ( portTickType ) 10 );
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):561:        if( xSemaphoreTake( xSemaphore, LONG_TIME ) == pdTRUE )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):613: xSemaphoreTakeFromISR(
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):633: * @param pxHigherPriorityTaskWoken xSemaphoreTakeFromISR() will set
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):636: * running task.  If xSemaphoreTakeFromISR() sets this value to pdTRUE then
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):642:#define xSemaphoreTakeFromISR( xSemaphore, pxHigherPriorityTaskWoken )			xQueueReceiveFromISR( ( xQueueHandle ) ( xSemaphore ), NULL, ( pxHigherPriorityTaskWoken ) )
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):651: * Mutexes created using this macro can be accessed using the xSemaphoreTake()
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):652: * and xSemaphoreGive() macros.  The xSemaphoreTakeRecursive() and
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):700: * xSemaphoreTakeRecursive() and xSemaphoreGiveRecursive() macros.  The
-Semphr.h (z:\documents\coding\stm32cube_fw_f4_v1.3.0\middlewares\third_party\freertos\source\include):701: * xSemaphoreTake() and xSemaphoreGive() macros should not be used.
+---- 0x66 Matches (3 in 1 files) ----
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):327:	gHeartRateValueHeader[6]=0x66;
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):341:	gHeartRateRawHeader[6]=0x66;
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):355:	gHeartRateProcessHeader[6]=0x66;

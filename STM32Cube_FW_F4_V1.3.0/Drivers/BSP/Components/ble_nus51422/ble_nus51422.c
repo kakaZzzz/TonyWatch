@@ -20,6 +20,7 @@ __IO ITStatus UartTxReady = RESET;
 __IO ITStatus UartRxReady = RESET;
 unsigned char flagTxCtrl=TX_MODE_SENDING;
 unsigned char flagPrintRxContent=RESET;
+uint8_t gRxBufferLast;
 
 /* Buffer used for transmission */
 //uint8_t aTxBuffer[] = " ****UART_TwoBoards communication based on DMA**** \n How are you today?\n";
@@ -37,16 +38,16 @@ uint8_t aTxBuffer[] =// "bb01234567890123456789012345678901234567890123456789012
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint8_t *aTxPack;
-//uint8_t 
 UART_HandleTypeDef huart1;
 uint8_t flagBleConStatus=BLE_STATUS_DISCONNECTED;
+uint8_t flagHRDSend=false;
 
 /*******************************************************/
 
 
 
 static void UartRxThread(void const * argument)
-{
+{/*
 	uint8_t aRxBuffer1[2];
 	for(;;)
   	{
@@ -69,6 +70,54 @@ static void UartRxThread(void const * argument)
 		}
 		UartRxReady=RESET;
 	}
+	*/
+
+
+	uint8_t aRxBuffer1[2];
+	uint8_t flagCommand=0;
+	for(;;)
+  	{
+		if(HAL_UART_Receive_DMA(&huart1, (uint8_t *)aRxBuffer1, 2) != HAL_OK)
+		  {
+		    Error_Handler();
+		  }
+		if((gRxBufferLast==0xFF)&&(aRxBuffer1[0]==0xFF))
+		{
+			flagCommand=1;
+		}
+		if((aRxBuffer1[0]==0xFF)&&(aRxBuffer1[1]==0xFF))
+		{
+			flagCommand=1;
+		}
+		if((gRxBufferLast==0x55)&&(aRxBuffer1[0]==0x55))
+		{
+			flagCommand=2;
+		}
+		if((aRxBuffer1[0]==0x55)&&(aRxBuffer1[1]==0x55))
+		{
+			flagCommand=2;
+		}
+		if(flagCommand==1)
+		{
+//			osDelay(1000);
+			flagBleConStatus=BLE_STATUS_CONNECTED;
+		}
+		else if(flagCommand==2)
+		{
+			flagBleConStatus=BLE_STATUS_DISCONNECTED;
+		}
+		else
+		{}
+		while(UartRxReady!=SET)
+		{
+			osDelay(100);
+		}
+		UartRxReady=RESET;
+		gRxBufferLast=aRxBuffer1[1];
+		osDelay(100);
+	}
+
+	/**/
 }
 
 void startUartRxThread(void)
@@ -178,18 +227,22 @@ void HeartRateSendThread(void const *argument)
 	uint16_t aCnt;
 	uint16_t uOffset;
 	portTickType hrTicks = 5000 / portTICK_RATE_MS;
-	portBASE_TYPE hrSemaReturn;
+//	portBASE_TYPE hrSemaReturn;
 	for(;;)
 	{
-		hrSemaReturn=xSemaphoreTake(xBinSemaHeartRateSend,hrTicks);
-		if(hrSemaReturn==pdPASS)
+//		hrSemaReturn=xSemaphoreTake(xBinSemaHeartRateSend,hrTicks);
+		while(flagHRDSend==false)
 		{
-			aCnt=0;
+			osDelay(10);
 		}
-		else
-		{
-			aCnt=1;
-		}
+//		if(hrSemaReturn==pdPASS)
+//		{
+//			aCnt=0;
+//		}
+//		else
+//		{
+//			aCnt=1;
+//		}
 		uByteCount=sizeof(gHeartRateTxPackBuf);
 		uLoopCount=uByteCount/20;
 		uLastLoopByteCount=(uint8_t)(uByteCount-uLoopCount*20);
@@ -198,31 +251,38 @@ void HeartRateSendThread(void const *argument)
 		{
 			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(gHeartRateTxPackBuf+uOffset), 20)!= HAL_OK)
 			  {
-			    //Error_Handler();
+			    Error_Handler();
 			  }
 			uOffset+=20;
+			while(UartTxReady!=SET)
+			{
+				osDelay(10);
+			}
+			UartTxReady=RESET;
 			//osDelay(100);
 		}
 		if(uLastLoopByteCount!=0)
 		{
 			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(gHeartRateTxPackBuf+uOffset), uLastLoopByteCount)!= HAL_OK)
 			  {
-			    //Error_Handler();
+			    Error_Handler();
 			  }
-			//osDelay(100);
+			while(UartTxReady!=SET)
+			{
+				osDelay(10);
+			}
+			UartTxReady=RESET;
 		}
 		uOffset=0;
+		flagHRDSend=false;
 		//osDelay(100);
 //		xSemaphoreGive(xBinSemaHeartRateSend);
 	}
 }
-/**/
+/*
 static void UartTxThread(void const * argument)
 {
-
-  /* USER CODE BEGIN 5 */
  volatile unsigned long ul;	
-  /* Infinite loop */
   for(;;)
   {
 	switch (flagTxCtrl)
@@ -251,11 +311,9 @@ static void UartTxThread(void const * argument)
 	}
 
 	  UartTxReady = RESET;
-//	  osDelay(100);
   }
-  /* USER CODE END 5 */ 
 
-}
+}*/
 /*
 static void UartRxThread(void const * argument)
 {
@@ -348,6 +406,7 @@ void TxSampleSend(uint8_t *pData, uint16_t length)
 	{
 		osDelay(10);
 	}
+	UartTxReady=RESET;
 }
 
 

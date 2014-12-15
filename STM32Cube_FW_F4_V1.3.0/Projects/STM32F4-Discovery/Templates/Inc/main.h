@@ -44,6 +44,7 @@
 #include "stm32f4_discovery.h"
 #include "uart.h"
 #include "ble_nus51422.h"
+#include "stdbool.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -62,6 +63,7 @@ void MX_GPIO_Init(void);
 void Error_Handler(void);
 
 extern UART_HandleTypeDef huart1;
+extern uint8_t flagHRDSend;
 extern char aTxBuffer_initialdata[TX_BUF_DATA_LENGTH];
 extern void UART_printf(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 extern void startUartRxThread(void);

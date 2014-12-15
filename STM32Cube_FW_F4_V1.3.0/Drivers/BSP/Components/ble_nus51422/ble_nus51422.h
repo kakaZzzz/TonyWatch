@@ -16,7 +16,7 @@
 //extern ITStatus UartTxReady;
 extern uint8_t flagBleConStatus;
 extern  void TxSampleSend(uint8_t *pData, uint16_t length);
-extern osSemaphoreId xBinSemaHeartRateSend;
+//extern osSemaphoreId xBinSemaHeartRateSend;
 extern uint8_t gHeartRateTxPackBuf[HR_PACK_LENGTH];
 #ifdef __cplusplus
 }

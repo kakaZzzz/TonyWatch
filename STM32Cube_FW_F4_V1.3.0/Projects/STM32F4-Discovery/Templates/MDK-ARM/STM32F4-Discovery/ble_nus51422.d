@@ -79,3 +79,4 @@ stm32f4-discovery\ble_nus51422.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32f4-discovery\ble_nus51422.o: ..\Inc\main.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h
 stm32f4-discovery\ble_nus51422.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h
+stm32f4-discovery\ble_nus51422.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

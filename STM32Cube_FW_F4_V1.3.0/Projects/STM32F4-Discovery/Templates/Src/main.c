@@ -57,12 +57,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define PACK_STATUS_HEADER 1
-#define PACK_STATUS_BODY 2
-#define HR_BLOCK0_BASE		0
-#define HR_BLOCK1_BASE		(HR_BLOCK0_BASE+sizeof(sysTime))//8
-#define HR_BLOCK2_BASE		(HR_BLOCK1_BASE+sizeof(hr_data_header_t)+gHeartRateValue.length)//23
-#define HR_BLOCK3_BASE		(HR_BLOCK2_BASE+sizeof(hr_data_header_t)+gHeartRateRaw.length)//76
 
 
 typedef struct
@@ -95,7 +89,7 @@ extern void  AFE44xx_Init(void);
 extern long * AFE44xx_RecData(void);
 
 osSemaphoreId xBinarySemaphore;
-osSemaphoreId xBinSemaHeartRateSend;
+//osSemaphoreId xBinSemaHeartRateSend;
 osMessageQId xQueue;
 
 uint8_t aPackHeader[]={0x01,0x23,0x45,0x67,0x89,0xAB,0xCD,0xEF,0xAA,0xBB};
@@ -111,9 +105,32 @@ uint8_t gDataClass=0;
 uint8_t gPackCnt=1;
 
 
-	hr_data_header_t gHeartRateValue;
-	hr_data_header_t gHeartRateRaw;
-	hr_data_header_t gHeartRateProcess;
+//	hr_data_header_t gHeartRateValue;
+//	hr_data_header_t gHeartRateRaw;
+//	hr_data_header_t gHeartRateProcess;
+#define SIZEOF_DATA1 	2//sizeof(gHeartRate)	
+#define SIZEOF_DATA2		4	
+#define SIZEOF_DATA3		4
+#define DATA_HEADER_LENGTH									13
+#define HEART_RATE_VALUE_STRUCT_LENGTH				(DATA_HEADER_LENGTH+SIZEOF_DATA1)		//15
+#define HEART_RATE_RAW_STRUCT_LENGTH					(DATA_HEADER_LENGTH+SIZEOF_DATA2*10)	//53
+#define HEART_RATE_PORCESS_STRUCT_LENGTH			(DATA_HEADER_LENGTH+SIZEOF_DATA3*10)	//53
+	uint8_t gHeartRateValueHeader[DATA_HEADER_LENGTH];
+	uint8_t gHeartRateRawHeader[DATA_HEADER_LENGTH];
+	uint8_t gHeartRateProcessHeader[DATA_HEADER_LENGTH];
+#define PACK_STATUS_HEADER 1
+#define PACK_STATUS_BODY 2
+#define HR_BLOCK0_BASE		0
+#define HR_BLOCK1_BASE		(HR_BLOCK0_BASE+sizeof(sysTime))//8
+#define HR_BLOCK2_BASE		(HR_BLOCK1_BASE+HEART_RATE_VALUE_STRUCT_LENGTH)//23
+#define HR_BLOCK3_BASE		(HR_BLOCK2_BASE+HEART_RATE_RAW_STRUCT_LENGTH)//76
+	uint8_t ghr_block1_offset=0;
+	uint8_t ghr_block2_offset=0;
+	uint8_t ghr_block3_offset=0;
+
+//	uint8_t gSizeofHRV;
+//	uint8_t gSizeofHRR;
+//	uint8_t gSizeofHRP;
 	
 	hr_time_t sysTime;
 /* Private functions ---------------------------------------------------------*/
@@ -275,8 +292,14 @@ void vReceiveAFE44xxDataTask(void const *argument)
 //				TxSampleSend(pPara1,12);
 //				TxSampleSend(aPackHip,10);
 //			}
-
-			packHeartRateData(osEventAFE44XX);
+			if(flagBleConStatus==BLE_STATUS_CONNECTED)
+			{
+				packHeartRateData(osEventAFE44XX);
+			}
+			else
+			{
+				gPackCnt=0;
+			}
 		}
 		else
 		{
@@ -295,23 +318,47 @@ Block3:		76~128	//data3,length=53B			offset=76
 
 void initHeartRateDataType(void)
 {
-	gHeartRateValue.type=0x01;
-	gHeartRateValue.time.sec=0;
-	gHeartRateValue.time.msec=0;
-	gHeartRateValue.period=500;
-	gHeartRateValue.length=2;
+	gHeartRateValueHeader[0]=0x01;
+	gHeartRateValueHeader[1]=0x11;
+	gHeartRateValueHeader[2]=0x22;
+	gHeartRateValueHeader[3]=0x33;
+	gHeartRateValueHeader[4]=0x44;
+	gHeartRateValueHeader[5]=0x55;
+	gHeartRateValueHeader[6]=0x66;
+	gHeartRateValueHeader[7]=0x77;
+	gHeartRateValueHeader[8]=0x88;
+	gHeartRateValueHeader[9]=0xF4;
+	gHeartRateValueHeader[10]=0x01;
+	gHeartRateValueHeader[11]=0x02;
+	gHeartRateValueHeader[12]=0x00;
 	
-	gHeartRateRaw.type=0x02;
-	gHeartRateRaw.time.sec=0;
-	gHeartRateRaw.time.msec=0;
-	gHeartRateRaw.period=50;
-	gHeartRateRaw.length=40;
+	gHeartRateRawHeader[0]=0x02;
+	gHeartRateRawHeader[1]=0x11;
+	gHeartRateRawHeader[2]=0x22;
+	gHeartRateRawHeader[3]=0x33;
+	gHeartRateRawHeader[4]=0x44;
+	gHeartRateRawHeader[5]=0x55;
+	gHeartRateRawHeader[6]=0x66;
+	gHeartRateRawHeader[7]=0x77;
+	gHeartRateRawHeader[8]=0x88;
+	gHeartRateRawHeader[9]=0x32;
+	gHeartRateRawHeader[10]=0x00;
+	gHeartRateRawHeader[11]=0x28;
+	gHeartRateRawHeader[12]=0x00;
 	
-	gHeartRateProcess.type=0x03;
-	gHeartRateProcess.time.sec=0;
-	gHeartRateProcess.time.msec=0;
-	gHeartRateProcess.period=50;
-	gHeartRateProcess.length=40;
+	gHeartRateProcessHeader[0]=0x03;
+	gHeartRateProcessHeader[1]=0x11;
+	gHeartRateProcessHeader[2]=0x22;
+	gHeartRateProcessHeader[3]=0x33;
+	gHeartRateProcessHeader[4]=0x44;
+	gHeartRateProcessHeader[5]=0x55;
+	gHeartRateProcessHeader[6]=0x66;
+	gHeartRateProcessHeader[7]=0x77;
+	gHeartRateProcessHeader[8]=0x88;
+	gHeartRateProcessHeader[9]=0x32;
+	gHeartRateProcessHeader[10]=0x00;
+	gHeartRateProcessHeader[11]=0x28;
+	gHeartRateProcessHeader[12]=0x00;
 
 	sysTime.sec=0x11223344;
 	sysTime.msec=0x55667788;
@@ -322,33 +369,52 @@ void packHeartRateData(osEvent data)
 	uint32_t data0=*((long *)data.value.v+0);
 	uint32_t data1=*((long *)data.value.v+1);
 //	uint32_t data2=*((long *)data.value.v+2);
-
-	uint8_t ghr_block1_offset=0;
-	uint8_t ghr_block2_offset=0;
-	uint8_t ghr_block3_offset=0;
 	
 	if(gPackCnt==1)
 	{
-		memset(gHeartRateTxPack,0,HR_PACK_LENGTH);
+		memset(gHeartRateTxPack,0,HR_PACK_LENGTH);//clear package
+		ghr_block1_offset=0;
+		ghr_block2_offset=0;
+		ghr_block3_offset=0;
+		
 		memcpy(gHeartRateTxPack+HR_BLOCK0_BASE,&sysTime,sizeof(sysTime));//start time
 		
-		memcpy(gHeartRateTxPack+HR_BLOCK1_BASE,&gHeartRateValue,sizeof(gHeartRateValue));
-		ghr_block1_offset=HR_BLOCK1_BASE+sizeof(gHeartRateValue);
-		memcpy(gHeartRateTxPack+ghr_block1_offset,&gHeartRate,sizeof(gHeartRate));
+//		memcpy(gHeartRateTxPack+HR_BLOCK1_BASE,&gHeartRateValue,sizeof(gHeartRateValue));//header
+//		ghr_block1_offset=HR_BLOCK1_BASE+sizeof(gHeartRateValue);
+//		memcpy(gHeartRateTxPack+ghr_block1_offset,&gHeartRate,sizeof(gHeartRate));//data
+		memcpy(gHeartRateTxPack+HR_BLOCK1_BASE,&gHeartRateValueHeader,DATA_HEADER_LENGTH);//data1 header
+		ghr_block1_offset=HR_BLOCK1_BASE+DATA_HEADER_LENGTH;
+		memcpy(gHeartRateTxPack+ghr_block1_offset,&gHeartRate,SIZEOF_DATA1);//piece1 of data1
+		ghr_block1_offset+=SIZEOF_DATA1;
 		
-		memcpy(gHeartRateTxPack+HR_BLOCK2_BASE,&gHeartRateRaw,sizeof(gHeartRateRaw));
-		ghr_block2_offset=HR_BLOCK2_BASE+sizeof(gHeartRateRaw);
-		memcpy(gHeartRateTxPack+ghr_block2_offset,&data0,sizeof(data0));
+//		memcpy(gHeartRateTxPack+HR_BLOCK2_BASE,&gHeartRateRaw,sizeof(gHeartRateRaw));//header
+//		ghr_block2_offset=HR_BLOCK2_BASE+sizeof(gHeartRateRaw);
+//		memcpy(gHeartRateTxPack+ghr_block2_offset,&data0,sizeof(data0));//data
+		memcpy(gHeartRateTxPack+HR_BLOCK2_BASE,&gHeartRateRawHeader,DATA_HEADER_LENGTH);//header
+		ghr_block2_offset=HR_BLOCK2_BASE+DATA_HEADER_LENGTH;
+		memcpy(gHeartRateTxPack+ghr_block2_offset,&data0,SIZEOF_DATA2);//data
+		ghr_block2_offset+=SIZEOF_DATA2;
 		
-		memcpy(gHeartRateTxPack+HR_BLOCK3_BASE,&gHeartRateProcess,sizeof(gHeartRateProcess));
-		ghr_block3_offset=HR_BLOCK3_BASE+sizeof(gHeartRateProcess);
-		memcpy(gHeartRateTxPack+ghr_block3_offset,&data1,sizeof(data1));
+//		memcpy(gHeartRateTxPack+HR_BLOCK3_BASE,&gHeartRateProcess,sizeof(gHeartRateProcess));//header
+//		ghr_block3_offset=HR_BLOCK3_BASE+sizeof(gHeartRateProcess);
+//		memcpy(gHeartRateTxPack+ghr_block3_offset,&data1,sizeof(data1));//data
+		memcpy(gHeartRateTxPack+HR_BLOCK3_BASE,&gHeartRateProcessHeader,DATA_HEADER_LENGTH);//header
+		ghr_block3_offset=HR_BLOCK3_BASE+DATA_HEADER_LENGTH;
+		memcpy(gHeartRateTxPack+ghr_block3_offset,&data1,SIZEOF_DATA3);//data
+		ghr_block3_offset+=SIZEOF_DATA3;
 	}
 	else if((gPackCnt>=2)&&(gPackCnt<=10))
 	{
-		memcpy(gHeartRateTxPack+ghr_block1_offset+sizeof(gHeartRate)*(gPackCnt-1),&gHeartRate,sizeof(gHeartRate));
-		memcpy(gHeartRateTxPack+ghr_block2_offset+sizeof(gHeartRateRaw)*(gPackCnt-1),&gHeartRateRaw,sizeof(gHeartRateRaw));
-		memcpy(gHeartRateTxPack+ghr_block3_offset+sizeof(gHeartRateProcess)*(gPackCnt-1),&gHeartRateProcess,sizeof(gHeartRateProcess));
+//		memcpy(gHeartRateTxPack+ghr_block1_offset+sizeof(gHeartRate)*(gPackCnt-1),&gHeartRate,sizeof(gHeartRate));
+//		memcpy(gHeartRateTxPack+ghr_block2_offset+sizeof(gHeartRateRaw)*(gPackCnt-1),&gHeartRateRaw,sizeof(gHeartRateRaw));
+//		memcpy(gHeartRateTxPack+ghr_block3_offset+sizeof(gHeartRateProcess)*(gPackCnt-1),&gHeartRateProcess,sizeof(gHeartRateProcess));
+
+		//HeartRateValue only has one data in 500ms, so here we comments it out
+//		memcpy(gHeartRateTxPack+ghr_block1_offset+sizeof(gHeartRate)*(gPackCnt-1),&gHeartRate,sizeof(gHeartRate));
+		memcpy(gHeartRateTxPack+ghr_block2_offset,&data0,SIZEOF_DATA2);
+		ghr_block2_offset+=SIZEOF_DATA2;
+		memcpy(gHeartRateTxPack+ghr_block3_offset,&data1,SIZEOF_DATA3);
+		ghr_block3_offset+=SIZEOF_DATA3;
 	}
 	else
 	{
@@ -359,7 +425,8 @@ void packHeartRateData(osEvent data)
 	{
 		memcpy(gHeartRateTxPackBuf,gHeartRateTxPack,HR_PACK_LENGTH);
 		gPackCnt=0;
-		xSemaphoreGive(xBinSemaHeartRateSend);
+		flagHRDSend=true;
+//		xSemaphoreGive(xBinSemaHeartRateSend);
 	}
 	gPackCnt++;
 	/*
@@ -503,7 +570,7 @@ debug_putchar(0x27);
 
 	osMessageQDef(AFE44XXMsg, 2, sizeof(long));
 	vSemaphoreCreateBinary(xBinarySemaphore);
-	vSemaphoreCreateBinary(xBinSemaHeartRateSend);
+//	vSemaphoreCreateBinary(xBinSemaHeartRateSend);
 
 	prvSetupHardware();
 	HAL_Init();
@@ -544,7 +611,7 @@ debug_putchar(0x27);
 	osThreadDef(HRS_Thread_Name, HeartRateSendThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
 	osThreadCreate (osThread(HRS_Thread_Name), NULL);
 	
-//	startUartRxThread();
+	startUartRxThread();
 	/* Start scheduler */
 	osKernelStart(NULL, NULL);
   	}

@@ -35,7 +35,7 @@
 /* Exported functions ------------------------------------------------------- */
 void MX_USART1_UART_Init(void);
 static void StartThread(void const * argument);
-static void UartTxThread(void const * argument);
+//static void UartTxThread(void const * argument);
 //static void UartRxThread(void const * argument);
 
 

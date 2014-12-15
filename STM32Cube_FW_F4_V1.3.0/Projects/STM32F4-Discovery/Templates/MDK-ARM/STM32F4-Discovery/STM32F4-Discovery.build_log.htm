@@ -25,20 +25,32 @@ Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\
 Project File Date:  12/06/2014
 
 <h2>Output:</h2>
-Rebuild target 'STM32F4-Discovery'
-compiling AFE4490.c...
-..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c(700): warning:  #550-D: variable "dataModifyflag" was set but never used
-              unsigned char dataModifyflag = 0;
-..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c(701): warning:  #550-D: variable "dataModifyAddr" was set but never used
-              unsigned char dataModifyAddr = 0;
-..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c(702): warning:  #550-D: variable "mmaDataA_Pre" was set but never used
-              unsigned long mmaDataA_Pre;
-..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c(703): warning:  #550-D: variable "Mem_RDV0_Initial" was set but never used
-              long Mem_RDV0_Initial[Len_Mem];
-..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.c: 4 warnings, 0 errors
+Build target 'STM32F4-Discovery'
 compiling ble_nus51422.c...
-..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(220): warning:  #177-D: function "UartTxThread" was declared but never referenced
-  static void UartTxThread(void const * argument)
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c(230): warning:  #177-D: variable "hrTicks" was declared but never referenced
+        portTickType hrTicks = 5000 / portTICK_RATE_MS;
+..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 1 warning, 0 errors
+linking...
+Program Size: Code=24268 RO-data=700 RW-data=1088 ZI-data=46336  
+FromELF: creating hex file...
+"STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 1 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+rTicks = 5000 / portTICK_RATE_MS;
 ..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c: 1 warning, 0 errors
 compiling stm32f4_tony.c...
 compiling system_stm32f4xx.c...
@@ -100,7 +112,7 @@ compiling tasks.c...
 compiling port.c...
 compiling heap_4.c...
 linking...
-Program Size: Code=23704 RO-data=660 RW-data=1084 ZI-data=46348  
+Program Size: Code=23776 RO-data=660 RW-data=1084 ZI-data=46340  
 FromELF: creating hex file...
 "STM32F4-Discovery\STM32F4-Discovery.axf" - 0 Error(s), 5 Warning(s).
 
@@ -109,6 +121,13 @@ FromELF: creating hex file...
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-</pre>
-</body>
-</html>
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Load "STM32F4-Discovery\\STM32F4-Discovery.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
