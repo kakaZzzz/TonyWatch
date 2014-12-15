@@ -1,25 +1,5 @@
----- simple_uart_put Matches (24 in 4 files) ----
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):43://		simple_uart_put(0x55);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):73:		simple_uart_put(0xFF);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):74:		simple_uart_put(0xFF);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):86:		simple_uart_put(0x55);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):87:		simple_uart_put(0x55);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):398:		simple_uart_put(0xFF);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):399:		simple_uart_put(0xFF);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):409:		simple_uart_put(0x55);
-Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):410:		simple_uart_put(0x55);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):264:		        simple_uart_put(p_data[i]);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):266:		    simple_uart_put('\n');
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):276:		simple_uart_put(LO_UINT16(length));
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):278:		simple_uart_put(HI_UINT16(length));
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):286:		simple_uart_put(checksum);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):580:			simple_uart_put(0x77);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):650:					simple_uart_put(0x11);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):660:				simple_uart_put(0x22);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):676:				simple_uart_put(0x33);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):684:				simple_uart_put(0x44);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):694:			simple_uart_put(0x66);
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):60:void simple_uart_put(uint8_t cr)
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):80:        simple_uart_put(ch);
-Simple_uart.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):93:	simple_uart_put(ch);
-Simple_uart.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_drivers\nrf51422_xxac):49:void simple_uart_put(uint8_t cr);
+---- ts_handles Matches (4 in 3 files) ----
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):100:             (p_evt_write->handle == p_nus->ts_handles.value_handle)
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):268:                                           &p_nus->ts_handles);
+Ble_nus.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):89:    ble_gatts_char_handles_t ts_handles;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):271: else if(handle == p_nus->ts_handles.value_handle)//time synchronic

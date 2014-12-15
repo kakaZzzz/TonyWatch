@@ -735,8 +735,8 @@ int main(void)
 //    err_code = bsp_buttons_enable(1 << WAKEUP_BUTTON_ID);
 //    APP_ERROR_CHECK(err_code);
     gap_params_init();
-    services_init();
 	m_nus.uuid_type=0x01;
+    services_init();
     advertising_init();
     conn_params_init();
     sec_params_init();
