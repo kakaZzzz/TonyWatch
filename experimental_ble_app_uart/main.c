@@ -114,6 +114,8 @@ uint8_t gFifoDeepth;
 uint8_t gBleTxTimeout=0;
 uint8_t flagBleTxBusy=false;
 uint8_t flagStartRx=false;
+uint8_t flagStartRxUpdated=false;
+uint8_t flag1sCheckRoutine=false;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -574,6 +576,7 @@ void UART0_IRQHandler(void)
 		else
 		{
 			APP_ERROR_CHECK(err_code);
+			simple_uart_put(0x77);
 		}
 	}
 
@@ -611,6 +614,7 @@ static void system_tick_10ms_handler(void * p_context)
 	{
 //		uTimeStampS++;
 		uSystemTick10MsCnt=0;
+		flag1sCheckRoutine=true;
 	}
 }
 
@@ -640,12 +644,20 @@ void bleTx(void)
 					gFifoDeepth--;
 					i++;
 				}
+				else
+				{
+					simple_uart_put(0x11);
+				}
 			}
 			 err_code = ble_nus_send_string(&m_nus, data_array, i);
 		        if (err_code != NRF_ERROR_INVALID_STATE)
 		        {
 		            APP_ERROR_CHECK(err_code);
 		        }
+			else
+			{
+				simple_uart_put(0x22);
+			}
 		}
 	}
 	if(gFifoDeepth>=20)
@@ -658,16 +670,28 @@ void bleTx(void)
 			{
 				gFifoDeepth--;
 			}
+			else
+			{
+				simple_uart_put(0x33);
+			}
 		        if (err_code != NRF_ERROR_INVALID_STATE)
 		        {
 		            APP_ERROR_CHECK(err_code);
 		        }
+			else
+			{
+				simple_uart_put(0x44);
+			}
 		}
 		 err_code = ble_nus_send_string(&m_nus, data_array, 20);
 	        if (err_code != NRF_ERROR_INVALID_STATE)
 	        {
 	            APP_ERROR_CHECK(err_code);
 	        }
+		else
+		{
+			simple_uart_put(0x66);
+		}
 	}
 }
 
@@ -715,16 +739,20 @@ int main(void)
 //	packageDataTemp->length=sizeof(pHRD);//(heartRateDataPackageSample);
     for (;;)
     {
-    	if(uSystemTick10MsCnt==1000)
+    	if(uSystemTick10MsCnt==100)
 	{
 		uSystemTick10MsCnt+=1;
 		uSystemTick10MsCnt-=1;
+	}
+	if(flag1sCheckRoutine==true)
+	{
+		updateUartRxSetting();
+		flag1sCheckRoutine=false;
 	}
 	if(false==flagBleTxBusy)
 	{
 		bleTx();
 	}
-	updateUartRxSetting();
 	
         power_manage();
 //		nrf_delay_ms(500);

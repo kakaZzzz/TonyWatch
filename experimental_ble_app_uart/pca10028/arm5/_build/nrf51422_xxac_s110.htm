@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf51422_xxac_s110.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf51422_xxac_s110.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Fri Dec 12 15:44:39 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Fri Dec 12 16:44:19 2014
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -215,13 +215,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;service_data_encode
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manuf_specific_data_encode
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adv_data_encode
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
 </UL>
 
-<P><STRONG><a name="[59]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
+<P><STRONG><a name="[5a]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
 </UL>
 
 <P><STRONG><a name="[7c]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
@@ -244,9 +244,9 @@ Global Symbols
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bleTx
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advertising_start
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_char_add
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_sync_add
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_char_add
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_char_add
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_sync_add
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_char_add
 </UL>
 
 <P><STRONG><a name="[7f]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
@@ -343,7 +343,7 @@ Global Symbols
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_nrf_callback
 <LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_IRQHandler
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_conn_params_evt
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_error_handler
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advertising_start
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intern_softdevice_events_execute
@@ -355,9 +355,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bleTx
 </UL>
 
-<P><STRONG><a name="[71]"></a>app_fifo_init</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, app_fifo.o(i.app_fifo_init))
+<P><STRONG><a name="[73]"></a>app_fifo_init</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, app_fifo.o(i.app_fifo_init))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_write
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateUartRxSetting
 </UL>
 
 <P><STRONG><a name="[3f]"></a>app_fifo_put</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, app_fifo.o(i.app_fifo_put))
@@ -375,7 +375,7 @@ Global Symbols
 <P><STRONG><a name="[3c]"></a>app_timer_create</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, app_timer.o(i.app_timer_create))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = app_timer_create
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemTimeInit
 </UL>
 
@@ -395,7 +395,7 @@ Global Symbols
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_id_get
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_list_handler_sched
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_led_indication
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemTimeInit
 </UL>
@@ -408,7 +408,7 @@ Global Symbols
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_list_handler_sched
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_led_indication
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
 </UL>
 
 <P><STRONG><a name="[53]"></a>assert_nrf_callback</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(i.assert_nrf_callback))
@@ -419,18 +419,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;softdevice_assertion_handler
 </UL>
 
-<P><STRONG><a name="[54]"></a>bleTx</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, main.o(i.bleTx))
+<P><STRONG><a name="[54]"></a>bleTx</STRONG> (Thumb, 210 bytes, Stack size 24 bytes, main.o(i.bleTx))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = bleTx &rArr; app_error_handler &rArr; bsp_indication_set &rArr; bsp_led_indication &rArr; app_timer_start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_get
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_send_string
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_send_string
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[57]"></a>ble_advdata_set</STRONG> (Thumb, 102 bytes, Stack size 88 bytes, ble_advdata.o(i.ble_advdata_set))
+<P><STRONG><a name="[58]"></a>ble_advdata_set</STRONG> (Thumb, 102 bytes, Stack size 88 bytes, ble_advdata.o(i.ble_advdata_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = ble_advdata_set &rArr; adv_data_encode &rArr; uuid_list_encode &rArr; uuid_list_sized_encode
 </UL>
 <BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adv_data_encode
@@ -438,46 +439,45 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[58]"></a>ble_conn_params_init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, ble_conn_params.o(i.ble_conn_params_init))
+<P><STRONG><a name="[59]"></a>ble_conn_params_init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, ble_conn_params.o(i.ble_conn_params_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ble_conn_params_init &rArr; app_timer_create
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_create
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5a]"></a>ble_conn_params_on_ble_evt</STRONG> (Thumb, 134 bytes, Stack size 24 bytes, ble_conn_params.o(i.ble_conn_params_on_ble_evt))
+<P><STRONG><a name="[5b]"></a>ble_conn_params_on_ble_evt</STRONG> (Thumb, 134 bytes, Stack size 24 bytes, ble_conn_params.o(i.ble_conn_params_on_ble_evt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ble_conn_params_on_ble_evt &rArr; conn_params_negotiation &rArr; app_timer_start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_stop
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_evt_dispatch
 </UL>
 
-<P><STRONG><a name="[5e]"></a>ble_nus_init</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, ble_nus.o(i.ble_nus_init))
+<P><STRONG><a name="[5f]"></a>ble_nus_init</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, ble_nus.o(i.ble_nus_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = ble_nus_init &rArr; rx_char_add
 </UL>
-<BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_char_add
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_sync_add
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_char_add
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_char_add
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_sync_add
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_char_add
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5c]"></a>ble_nus_on_ble_evt</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, ble_nus.o(i.ble_nus_on_ble_evt))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ble_nus_on_ble_evt &rArr; on_write
+<P><STRONG><a name="[5d]"></a>ble_nus_on_ble_evt</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, ble_nus.o(i.ble_nus_on_ble_evt))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ble_nus_on_ble_evt &rArr; on_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_write
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_evt_dispatch
 </UL>
 
-<P><STRONG><a name="[56]"></a>ble_nus_send_string</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, ble_nus.o(i.ble_nus_send_string))
+<P><STRONG><a name="[57]"></a>ble_nus_send_string</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, ble_nus.o(i.ble_nus_send_string))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ble_nus_send_string
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bleTx
@@ -486,7 +486,7 @@ Global Symbols
 <P><STRONG><a name="[70]"></a>bsp_buttons_enable</STRONG> (Thumb, 66 bytes, Stack size 20 bytes, bsp.o(i.bsp_buttons_enable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = bsp_buttons_enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
 </UL>
 
 <P><STRONG><a name="[4a]"></a>bsp_indication_set</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, bsp.o(i.bsp_indication_set))
@@ -495,7 +495,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_led_indication
 </UL>
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advertising_start
 </UL>
 
@@ -507,13 +507,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SWI2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[1f]"></a>main</STRONG> (Thumb, 324 bytes, Stack size 120 bytes, main.o(i.main))
+<P><STRONG><a name="[1f]"></a>main</STRONG> (Thumb, 330 bytes, Stack size 120 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; ble_advdata_set &rArr; adv_data_encode &rArr; uuid_list_encode &rArr; uuid_list_sized_encode
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;softdevice_handler_init
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;softdevice_ble_evt_handler_set
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_advdata_set
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_init
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_advdata_set
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_init
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_gpiote_init
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bleTx
@@ -523,12 +523,12 @@ Global Symbols
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sec_params_init
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advertising_start
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateUartRxSetting
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[73]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
+<P><STRONG><a name="[72]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -538,11 +538,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = nus_data_handler &rArr; simple_uart_putstring_checksum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_putstring_checksum
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[72]"></a>simple_uart_config</STRONG> (Thumb, 76 bytes, Stack size 20 bytes, simple_uart.o(i.simple_uart_config))
+<P><STRONG><a name="[71]"></a>simple_uart_config</STRONG> (Thumb, 76 bytes, Stack size 20 bytes, simple_uart.o(i.simple_uart_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = simple_uart_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -552,17 +552,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[63]"></a>simple_uart_put</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, simple_uart.o(i.simple_uart_put))
+<P><STRONG><a name="[56]"></a>simple_uart_put</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, simple_uart.o(i.simple_uart_put))
 <BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_putstring_checksum
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nus_data_handler
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_on_ble_evt
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_write
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bleTx
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateUartRxSetting
 </UL>
 
 <P><STRONG><a name="[6f]"></a>simple_uart_putstring_checksum</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, simple_uart.o(i.simple_uart_putstring_checksum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = simple_uart_putstring_checksum
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
+<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
 </UL>
 <BR>[Called By]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nus_data_handler
 </UL>
@@ -584,44 +584,46 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6e]"></a>updateUartRxSetting</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, ble_nus.o(i.updateUartRxSetting))
-<BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[6e]"></a>updateUartRxSetting</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, ble_nus.o(i.updateUartRxSetting))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = updateUartRxSetting
+</UL>
+<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[62]"></a>on_write</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, ble_nus.o(i.on_write))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = on_write
+<P><STRONG><a name="[63]"></a>on_write</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, ble_nus.o(i.on_write))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = on_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_put
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_on_ble_evt
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_on_ble_evt
 </UL>
 
-<P><STRONG><a name="[5f]"></a>rx_char_add</STRONG> (Thumb, 158 bytes, Stack size 80 bytes, ble_nus.o(i.rx_char_add))
+<P><STRONG><a name="[60]"></a>rx_char_add</STRONG> (Thumb, 158 bytes, Stack size 80 bytes, ble_nus.o(i.rx_char_add))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = rx_char_add
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
 </UL>
 
-<P><STRONG><a name="[61]"></a>time_sync_add</STRONG> (Thumb, 130 bytes, Stack size 72 bytes, ble_nus.o(i.time_sync_add))
+<P><STRONG><a name="[62]"></a>time_sync_add</STRONG> (Thumb, 130 bytes, Stack size 72 bytes, ble_nus.o(i.time_sync_add))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = time_sync_add
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
 </UL>
 
-<P><STRONG><a name="[60]"></a>tx_char_add</STRONG> (Thumb, 128 bytes, Stack size 72 bytes, ble_nus.o(i.tx_char_add))
+<P><STRONG><a name="[61]"></a>tx_char_add</STRONG> (Thumb, 128 bytes, Stack size 72 bytes, ble_nus.o(i.tx_char_add))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = tx_char_add
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_init
 </UL>
 
 <P><STRONG><a name="[48]"></a>advertising_start</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, main.o(i.advertising_start))
@@ -632,15 +634,15 @@ Local Symbols
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
 </UL>
 
 <P><STRONG><a name="[24]"></a>ble_evt_dispatch</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, main.o(i.ble_evt_dispatch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = ble_evt_dispatch &rArr; on_ble_evt &rArr; advertising_start &rArr; bsp_indication_set &rArr; bsp_led_indication &rArr; app_timer_start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_on_ble_evt
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ble_evt
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_nus_on_ble_evt
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
@@ -651,7 +653,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[5d]"></a>on_ble_evt</STRONG> (Thumb, 190 bytes, Stack size 16 bytes, main.o(i.on_ble_evt))
+<P><STRONG><a name="[5e]"></a>on_ble_evt</STRONG> (Thumb, 190 bytes, Stack size 16 bytes, main.o(i.on_ble_evt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = on_ble_evt &rArr; advertising_start &rArr; bsp_indication_set &rArr; bsp_led_indication &rArr; app_timer_start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_indication_set
@@ -674,15 +676,15 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[22]"></a>system_tick_10ms_handler</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, main.o(i.system_tick_10ms_handler))
+<P><STRONG><a name="[22]"></a>system_tick_10ms_handler</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, main.o(i.system_tick_10ms_handler))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.SystemTimeInit)
 </UL>
 <P><STRONG><a name="[6c]"></a>uart_init</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, main.o(i.uart_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = uart_init &rArr; simple_uart_config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_config
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_init
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;simple_uart_config
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_init
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -718,7 +720,7 @@ Local Symbols
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_int_encode
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_advdata_set
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_advdata_set
 </UL>
 
 <P><STRONG><a name="[45]"></a>conn_int_encode</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, ble_advdata.o(i.conn_int_encode))
@@ -774,17 +776,17 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uuid_list_encode
 </UL>
 
-<P><STRONG><a name="[5b]"></a>conn_params_negotiation</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, ble_conn_params.o(i.conn_params_negotiation))
+<P><STRONG><a name="[5c]"></a>conn_params_negotiation</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, ble_conn_params.o(i.conn_params_negotiation))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = conn_params_negotiation &rArr; app_timer_start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_conn_params_ok
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_start
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_conn_params_on_ble_evt
 </UL>
 
 <P><STRONG><a name="[67]"></a>is_conn_params_ok</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, ble_conn_params.o(i.is_conn_params_ok))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
+<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_negotiation
 </UL>
 
 <P><STRONG><a name="[23]"></a>update_timeout_handler</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, ble_conn_params.o(i.update_timeout_handler))

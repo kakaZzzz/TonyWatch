@@ -1,6 +1,8 @@
----- flagBleTxBusy Matches (5 in 1 files) ----
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):115:uint8_t flagBleTxBusy=false;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):474:		flagBleTxBusy=false;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):633:			flagBleTxBusy=true;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):653:		flagBleTxBusy=true;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):723:	if(false==flagBleTxBusy)
+---- uSystemTick10MsCnt Matches (7 in 1 files) ----
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):100:static uint32_t uSystemTick10MsCnt=0;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):609:   	uSystemTick10MsCnt++;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):612:	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):615:		uSystemTick10MsCnt=0;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):740:    	if(uSystemTick10MsCnt==1000)
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):742:		uSystemTick10MsCnt+=1;
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):743:		uSystemTick10MsCnt-=1;

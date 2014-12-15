@@ -38,10 +38,13 @@ static void on_disconnect(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 {
     UNUSED_PARAMETER(p_ble_evt);
     p_nus->conn_handle = BLE_CONN_HANDLE_INVALID;
-		simple_uart_put(0x55);
-		simple_uart_put(0x55);
 		flagStartRx=false;
-		flagBleTxBusy=false;
+		
+//		simple_uart_put(0x55);
+//		simple_uart_pullt(0x55);
+//		flagBleTxBusy=false;
+//		gFifoDeepth=0;
+		
 //		app_fifo_flush(&gUartFifo);
 //		NVIC_DisableIRQ(UART0_IRQn);
 }
@@ -65,20 +68,15 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
         if (ble_srv_is_notification_enabled(p_evt_write->data))
         {
             p_nus->is_notification_enabled = true;
-		simple_uart_put(0xFF);
-		simple_uart_put(0xFF);
 		flagStartRx=true;
-		flagBleTxBusy=false;
-		app_fifo_init(&gUartFifo,gUartFifoBuf,UART_FIFO_SIZE);
+		flagStartRxUpdated=true;
 //		NVIC_EnableIRQ(UART0_IRQn);
         }
         else
         {
             p_nus->is_notification_enabled = false;
-		simple_uart_put(0x55);
-		simple_uart_put(0x55);
 		flagStartRx=false;
-		flagBleTxBusy=false;
+		flagStartRxUpdated=true;
 //		app_fifo_flush(&gUartFifo);
 //		NVIC_DisableIRQ(UART0_IRQn);
         }
@@ -388,12 +386,26 @@ uint32_t ble_nus_send_string(ble_nus_t * p_nus, uint8_t * string, uint16_t lengt
 
 void updateUartRxSetting(void)
 {
-	if(flagStartRx==true)
+	if((flagStartRx==true)&&(flagStartRxUpdated==true))
 	{
+		simple_uart_put(0xFF);
+		simple_uart_put(0xFF);
+		flagStartRx=true;
+		flagBleTxBusy=false;
+		gFifoDeepth=0;
+		app_fifo_init(&gUartFifo,gUartFifoBuf,UART_FIFO_SIZE);
 		NVIC_EnableIRQ(UART0_IRQn);
+		flagStartRxUpdated=false;
+	}
+	else if((flagStartRx==false)&&(flagStartRxUpdated==true))
+	{
+		simple_uart_put(0x55);
+		simple_uart_put(0x55);
+		flagBleTxBusy=false;
+		gFifoDeepth=0;
+		NVIC_DisableIRQ(UART0_IRQn);
+		flagStartRxUpdated=false;
 	}
 	else
-	{
-		NVIC_DisableIRQ(UART0_IRQn);
-	}
+		{}
 }

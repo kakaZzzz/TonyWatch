@@ -54,9 +54,11 @@
 #define UART_FIFO_SIZE 256
 
 extern uint8_t flagStartRx;
+extern uint8_t flagStartRxUpdated;
 extern app_fifo_t gUartFifo;
 extern uint8_t *gUartFifoBuf;
 extern uint8_t flagBleTxBusy;
+extern uint8_t gFifoDeepth;
 // Forward declaration of the ble_nus_t type. 
 typedef struct ble_nus_s ble_nus_t;
 
