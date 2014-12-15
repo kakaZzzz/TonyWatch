@@ -62,6 +62,7 @@ stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h
+stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h
@@ -71,11 +72,11 @@ stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\po
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h
-stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
-stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h
 stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h
+stm32f4-discovery\main.o: ..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
+stm32f4-discovery\main.o: ..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 stm32f4-discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.h
 stm32f4-discovery\main.o: ..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_tony.h

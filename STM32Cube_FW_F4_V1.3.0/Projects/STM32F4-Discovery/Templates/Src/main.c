@@ -57,6 +57,27 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define PACK_STATUS_HEADER 1
+#define PACK_STATUS_BODY 2
+#define HR_BLOCK0_BASE		0
+#define HR_BLOCK1_BASE		(HR_BLOCK0_BASE+sizeof(sysTime))//8
+#define HR_BLOCK2_BASE		(HR_BLOCK1_BASE+sizeof(hr_data_header_t)+gHeartRateValue.length)//23
+#define HR_BLOCK3_BASE		(HR_BLOCK2_BASE+sizeof(hr_data_header_t)+gHeartRateRaw.length)//76
+
+
+typedef struct
+{
+	uint32_t sec;
+	uint32_t msec;
+}hr_time_t;
+
+typedef struct
+{
+	uint8_t type;
+	hr_time_t time;
+	uint16_t period;
+	uint16_t length;
+}hr_data_header_t;
 
 static long * AFE44xxInitialData;
 //static long * AFE44xxInitialData_ADDR;
@@ -67,13 +88,34 @@ static long * AFE44xxInitialData;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 void SendDataThread(void const *argument);
+void HeartRateSendThread(void const *argument);
+void packHeartRateData(osEvent data);
 /*extern function prototypes---------------------------------*/
 extern void  AFE44xx_Init(void);
 extern long * AFE44xx_RecData(void);
 
 osSemaphoreId xBinarySemaphore;
+osSemaphoreId xBinSemaHeartRateSend;
 osMessageQId xQueue;
 
+uint8_t aPackHeader[]={0x01,0x23,0x45,0x67,0x89,0xAB,0xCD,0xEF,0xAA,0xBB};
+uint8_t aPackHip[]={0xBB,0xAA,0xFE,0xDC,0xBA,0x98,0x76,0x54,0x32,0x10};
+uint32_t gSystemTimeInS=0;
+uint32_t gSystemTimeInMS=0;
+uint8_t gHeartRateTxPackBuf[HR_PACK_LENGTH];
+uint8_t gHeartRateTxPack[HR_PACK_LENGTH];
+uint8_t gHeartRateTxPackCnt=0;
+uint8_t gPackStatus;
+uint16_t gHeartRate=121;
+uint8_t gDataClass=0;
+uint8_t gPackCnt=1;
+
+
+	hr_data_header_t gHeartRateValue;
+	hr_data_header_t gHeartRateRaw;
+	hr_data_header_t gHeartRateProcess;
+	
+	hr_time_t sysTime;
 /* Private functions ---------------------------------------------------------*/
 /*-----------------------------------------------------------*/
 
@@ -162,7 +204,7 @@ static void AFE44xxInterrupt_Enable(void)
 void EXTI4_IRQHandler(void)
 {
 	static portBASE_TYPE xHigherPriorityTaskWoken;
-  HAL_GPIO_EXTI_IRQHandler(AFE44XX_ADRDY_PIN);//?“辰??D??辰y??㏒?GPIO?D?㏒那?????∩ㄓ﹞⊿﹞?那?
+  	HAL_GPIO_EXTI_IRQHandler(AFE44XX_ADRDY_PIN);//?“辰??D??辰y??㏒?GPIO?D?㏒那?????∩ㄓ﹞⊿﹞?那?
 	xHigherPriorityTaskWoken = pdFALSE;
 	xSemaphoreGiveFromISR(xBinarySemaphore, &xHigherPriorityTaskWoken);//﹞⊿3?芍???
 	if(xHigherPriorityTaskWoken == pdTRUE)
@@ -191,7 +233,7 @@ void vHandlerAFE44xxITTASK(void const *argument)
 		AFE44xxInitialData = AFE44xx_RecData();
 		//xQueueSendToBack(xQueue, &AFE44xxInitialData,portMAX_DELAY);
 		osMessagePut (xQueue, (uint32_t)AFE44xxInitialData, portMAX_DELAY);
-		osDelay(10);
+		osDelay(50);//		osDelay(10);
 		//osDelayUntil(xLastWakeTime,10);
 		// UART_printf(&huart1, (uint8_t*)printf_IT_sucess,COUNTOF(printf_IT_sucess)-1);
 	}
@@ -203,11 +245,12 @@ void vReceiveAFE44xxDataTask(void const *argument)
 	//portTickType xLastWakeTime;
 	//xLastWakeTime = xTaskGetTickCount();
 	//const portTickType xTicksToWait = 10/portTICK_RATE_MS;
-	uint8_t TxSample[128];
-	for(uint8_t i=0;i<128;i++)
-	{
-		TxSample[i]=i;
-	}
+	//uint8_t TxSample[128];
+	//uint8_t *pPara1;
+	//for(uint8_t i=0;i<128;i++)
+	//{
+	//	TxSample[i]=i;
+	//}
 	for(;;)
 	{
 		if(uxQueueMessagesWaiting(xQueue) !=0) //?D???車芍D?D那?﹞?車D那y?Y
@@ -221,22 +264,208 @@ void vReceiveAFE44xxDataTask(void const *argument)
 		{
 			//sprintf(aTxBuffer_initialdata,"%lx\n%lx\n%lx\n",*AFE44xxInitialData_ADDR,*(AFE44xxInitialData_ADDR+1),*(AFE44xxInitialData_ADDR+2));
 //in order to debug uart sending, weizhong comment the following two lines
-			
+
 //			sprintf(aTxBuffer_initialdata,"%lx\n%lx\n%lx\n",*(long *)osEventAFE44XX.value.v,*((long *)osEventAFE44XX.value.v+1),*((long *)osEventAFE44XX.value.v+2));
 //			UART_printf(&huart1, (uint8_t *)aTxBuffer_initialdata,COUNTOF(aTxBuffer_initialdata)-1);  
-			if(flagBleConStatus==BLE_STATUS_CONNECTED)
-			{
-				TxSampleSend(TxSample,20);
-			}
+
+//			pPara1=osEventAFE44XX.value.p;
+//			if(flagBleConStatus==BLE_STATUS_CONNECTED)
+//			{
+//				TxSampleSend(aPackHeader,10);
+//				TxSampleSend(pPara1,12);
+//				TxSampleSend(aPackHip,10);
+//			}
+
+			packHeartRateData(osEventAFE44XX);
 		}
 		else
 		{
 			//UART_printf(&huart1, (uint8_t*)printf_Receiving_error,COUNTOF(printf_Receiving_error)-1);
 		}
-		osDelay(100);
+		osDelay(50);
 	}
 }
+/*
+Block0: 	0~7 		//start time,length=8B		offset=0
+Block1:		8~22 		//data1,length=15B			offset=8
+Block2:		23~75 		//data2,length=53B			offset=23
+Block3:		76~128	//data3,length=53B			offset=76
 
+*/
+
+void initHeartRateDataType(void)
+{
+	gHeartRateValue.type=0x01;
+	gHeartRateValue.time.sec=0;
+	gHeartRateValue.time.msec=0;
+	gHeartRateValue.period=500;
+	gHeartRateValue.length=2;
+	
+	gHeartRateRaw.type=0x02;
+	gHeartRateRaw.time.sec=0;
+	gHeartRateRaw.time.msec=0;
+	gHeartRateRaw.period=50;
+	gHeartRateRaw.length=40;
+	
+	gHeartRateProcess.type=0x03;
+	gHeartRateProcess.time.sec=0;
+	gHeartRateProcess.time.msec=0;
+	gHeartRateProcess.period=50;
+	gHeartRateProcess.length=40;
+
+	sysTime.sec=0x11223344;
+	sysTime.msec=0x55667788;
+}
+	
+void packHeartRateData(osEvent data)
+{
+	uint32_t data0=*((long *)data.value.v+0);
+	uint32_t data1=*((long *)data.value.v+1);
+//	uint32_t data2=*((long *)data.value.v+2);
+
+	uint8_t ghr_block1_offset=0;
+	uint8_t ghr_block2_offset=0;
+	uint8_t ghr_block3_offset=0;
+	
+	if(gPackCnt==1)
+	{
+		memset(gHeartRateTxPack,0,HR_PACK_LENGTH);
+		memcpy(gHeartRateTxPack+HR_BLOCK0_BASE,&sysTime,sizeof(sysTime));//start time
+		
+		memcpy(gHeartRateTxPack+HR_BLOCK1_BASE,&gHeartRateValue,sizeof(gHeartRateValue));
+		ghr_block1_offset=HR_BLOCK1_BASE+sizeof(gHeartRateValue);
+		memcpy(gHeartRateTxPack+ghr_block1_offset,&gHeartRate,sizeof(gHeartRate));
+		
+		memcpy(gHeartRateTxPack+HR_BLOCK2_BASE,&gHeartRateRaw,sizeof(gHeartRateRaw));
+		ghr_block2_offset=HR_BLOCK2_BASE+sizeof(gHeartRateRaw);
+		memcpy(gHeartRateTxPack+ghr_block2_offset,&data0,sizeof(data0));
+		
+		memcpy(gHeartRateTxPack+HR_BLOCK3_BASE,&gHeartRateProcess,sizeof(gHeartRateProcess));
+		ghr_block3_offset=HR_BLOCK3_BASE+sizeof(gHeartRateProcess);
+		memcpy(gHeartRateTxPack+ghr_block3_offset,&data1,sizeof(data1));
+	}
+	else if((gPackCnt>=2)&&(gPackCnt<=10))
+	{
+		memcpy(gHeartRateTxPack+ghr_block1_offset+sizeof(gHeartRate)*(gPackCnt-1),&gHeartRate,sizeof(gHeartRate));
+		memcpy(gHeartRateTxPack+ghr_block2_offset+sizeof(gHeartRateRaw)*(gPackCnt-1),&gHeartRateRaw,sizeof(gHeartRateRaw));
+		memcpy(gHeartRateTxPack+ghr_block3_offset+sizeof(gHeartRateProcess)*(gPackCnt-1),&gHeartRateProcess,sizeof(gHeartRateProcess));
+	}
+	else
+	{
+		
+	}
+
+	if(gPackCnt==10)
+	{
+		memcpy(gHeartRateTxPackBuf,gHeartRateTxPack,HR_PACK_LENGTH);
+		gPackCnt=0;
+		xSemaphoreGive(xBinSemaHeartRateSend);
+	}
+	gPackCnt++;
+	/*
+	switch(gPackStatus)
+	{
+		case PACK_STATUS_HEADER:
+			//part1: start time
+			gHeartRateTxPack[0+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInS,0);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[1+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInS,1);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[2+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInS,2);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[3+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInS,3);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[4+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInMS,0);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[5+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInMS,1);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[6+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInMS,2);
+			gHeartRateTxPackCnt++;
+			gHeartRateTxPack[7+HR_BLOCK0_OFFSET]=BREAK_UINT32(gSystemTimeInMS,3);
+			gHeartRateTxPackCnt++;
+			//part2: data type
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+0]=0x01;
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+0]=0x02;
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+0]=0x03;
+			//part3: data start time
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+1]=BREAK_UINT32(gSystemTimeInS,0);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+2]=BREAK_UINT32(gSystemTimeInS,1);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+3]=BREAK_UINT32(gSystemTimeInS,2);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+4]=BREAK_UINT32(gSystemTimeInS,3);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+5]=BREAK_UINT32(gSystemTimeInMS,4);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+6]=BREAK_UINT32(gSystemTimeInMS,5);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+7]=BREAK_UINT32(gSystemTimeInMS,6);
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+8]=BREAK_UINT32(gSystemTimeInMS,7);
+			
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+1]=BREAK_UINT32(gSystemTimeInS,0);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+2]=BREAK_UINT32(gSystemTimeInS,1);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+3]=BREAK_UINT32(gSystemTimeInS,2);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+4]=BREAK_UINT32(gSystemTimeInS,3);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+5]=BREAK_UINT32(gSystemTimeInMS,4);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+6]=BREAK_UINT32(gSystemTimeInMS,5);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+7]=BREAK_UINT32(gSystemTimeInMS,6);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+8]=BREAK_UINT32(gSystemTimeInMS,7);
+			
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+1]=BREAK_UINT32(gSystemTimeInS,0);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+2]=BREAK_UINT32(gSystemTimeInS,1);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+3]=BREAK_UINT32(gSystemTimeInS,2);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+4]=BREAK_UINT32(gSystemTimeInS,3);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+5]=BREAK_UINT32(gSystemTimeInMS,4);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+6]=BREAK_UINT32(gSystemTimeInMS,5);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+7]=BREAK_UINT32(gSystemTimeInMS,6);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+8]=BREAK_UINT32(gSystemTimeInMS,7);
+			//part4: data period
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+9]=0xf4;//0x01f4=500
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+10]=0x01;
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+9]=0x32;//0x0032=50
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+10]=0x00;
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+9]=0x32;//0x0032=50
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+10]=0x00;
+			//part5: data length
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+11]=0x02;//0x0002=2
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+12]=0x00;
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+11]=0x28;//0x0028=40
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+12]=0x00;
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+11]=0x28;//0x0028=40
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+12]=0x00;
+			//part6: data body 
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+13]=LO_UINT16(gHeartRate);//data1
+			gHeartRateTxPack[HR_BLOCK1_OFFSET+14]=HI_UINT16(gHeartRate);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+13]=BREAK_UINT32(*((long *)data.value.v+0),0);//data2
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+14]=BREAK_UINT32(*((long *)data.value.v+0),1);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+15]=BREAK_UINT32(*((long *)data.value.v+0),2);
+			gHeartRateTxPack[HR_BLOCK2_OFFSET+16]=BREAK_UINT32(*((long *)data.value.v+0),3);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+13]=BREAK_UINT32(*((long *)data.value.v+1),0);//data3
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+14]=BREAK_UINT32(*((long *)data.value.v+1),1);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+15]=BREAK_UINT32(*((long *)data.value.v+1),2);
+			gHeartRateTxPack[HR_BLOCK3_OFFSET+16]=BREAK_UINT32(*((long *)data.value.v+1),3);
+			gDataClass=1;
+			break;
+		case PACK_STATUS_BODY:
+			if(gDataClass==1)
+			{
+				gHeartRateTxPack[HR_BLOCK1_OFFSET+15]=LO_UINT16(gHeartRate);
+				gHeartRateTxPack[HR_BLOCK1_OFFSET+16]=HI_UINT16(gHeartRate);
+				gHeartRateTxPack[HR_BLOCK2_OFFSET+17]=BREAK_UINT32(*((long *)data.value.v+0),0);//data2
+				gHeartRateTxPack[HR_BLOCK2_OFFSET+18]=BREAK_UINT32(*((long *)data.value.v+0),1);
+				gHeartRateTxPack[HR_BLOCK2_OFFSET+19]=BREAK_UINT32(*((long *)data.value.v+0),2);
+				gHeartRateTxPack[HR_BLOCK2_OFFSET+20]=BREAK_UINT32(*((long *)data.value.v+0),3);
+				gHeartRateTxPack[HR_BLOCK3_OFFSET+17]=BREAK_UINT32(*((long *)data.value.v+1),0);//data3
+				gHeartRateTxPack[HR_BLOCK3_OFFSET+18]=BREAK_UINT32(*((long *)data.value.v+1),1);
+				gHeartRateTxPack[HR_BLOCK3_OFFSET+19]=BREAK_UINT32(*((long *)data.value.v+1),2);
+				gHeartRateTxPack[HR_BLOCK3_OFFSET+20]=BREAK_UINT32(*((long *)data.value.v+1),3);
+			}
+			else//gDataClass!=1
+			{
+				gHeartRateTxPack[]
+				
+			}
+			break;
+		default:
+			break;
+	}*/
+
+}
 /**
   * @brief  Main program
   * @param  None
@@ -274,6 +503,7 @@ debug_putchar(0x27);
 
 	osMessageQDef(AFE44XXMsg, 2, sizeof(long));
 	vSemaphoreCreateBinary(xBinarySemaphore);
+	vSemaphoreCreateBinary(xBinSemaHeartRateSend);
 
 	prvSetupHardware();
 	HAL_Init();
@@ -290,7 +520,9 @@ debug_putchar(0x27);
 
 	AFE44xx_Init();       
 	AFE44xxInterrupt_Init();
- 
+	
+ 	initHeartRateDataType();
+	
 	xQueue = osMessageCreate (&os_messageQ_def_AFE44XXMsg, vHandlerAFE44xxITTASK);
 	
 	AFE44xxInterrupt_Enable()	;
@@ -309,8 +541,10 @@ debug_putchar(0x27);
 		
 	osThreadDef(vReceiveAFE44xxDataTask_Thread_Name, vReceiveAFE44xxDataTask, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
 	osThreadCreate (osThread(vReceiveAFE44xxDataTask_Thread_Name), NULL);	
+	osThreadDef(HRS_Thread_Name, HeartRateSendThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	
+	osThreadCreate (osThread(HRS_Thread_Name), NULL);
 	
-		startUartRxThread();
+//	startUartRxThread();
 	/* Start scheduler */
 	osKernelStart(NULL, NULL);
   	}

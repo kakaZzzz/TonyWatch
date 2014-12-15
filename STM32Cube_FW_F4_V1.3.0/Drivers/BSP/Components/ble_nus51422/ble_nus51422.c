@@ -37,7 +37,6 @@ uint8_t aTxBuffer[] =// "bb01234567890123456789012345678901234567890123456789012
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
 uint8_t *aTxPack;
-uint8_t aPackHeader[]={0x01,0x23,0x45,0x67,0x89,0xAB,0xCD,0xEF,0xAA,0xBB};
 //uint8_t 
 UART_HandleTypeDef huart1;
 uint8_t flagBleConStatus=BLE_STATUS_DISCONNECTED;
@@ -170,58 +169,54 @@ void SendDataThread(void const *argument)
 {
 	UartSendBySeg(aTxBuffer, sizeof(aTxBuffer));
 }
-/*
-void SendDataThread(void const *argument)
+
+void HeartRateSendThread(void const *argument)
 {
-//	osEvent bleSendDataEvent;
-	uint8_t aTxBuffer20Bytes[20];
 	uint16_t uByteCount;
 	uint16_t uLoopCount;
 	uint8_t uLastLoopByteCount;
-	uint8_t *pTxBuffer;
 	uint16_t aCnt;
 	uint16_t uOffset;
-	uByteCount=sizeof(aTxBuffer);
-	uLoopCount=uByteCount/20;
-	uLastLoopByteCount=(uint8_t)(uByteCount-uLoopCount*20);
-	uOffset=0;
+	portTickType hrTicks = 5000 / portTICK_RATE_MS;
+	portBASE_TYPE hrSemaReturn;
 	for(;;)
 	{
+		hrSemaReturn=xSemaphoreTake(xBinSemaHeartRateSend,hrTicks);
+		if(hrSemaReturn==pdPASS)
+		{
+			aCnt=0;
+		}
+		else
+		{
+			aCnt=1;
+		}
+		uByteCount=sizeof(gHeartRateTxPackBuf);
+		uLoopCount=uByteCount/20;
+		uLastLoopByteCount=(uint8_t)(uByteCount-uLoopCount*20);
+		uOffset=0;
 		for(aCnt=0;aCnt<uLoopCount;aCnt++)
 		{
-			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(aTxBuffer+uOffset), 20)!= HAL_OK)
+			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(gHeartRateTxPackBuf+uOffset), 20)!= HAL_OK)
 			  {
-			    Error_Handler();
+			    //Error_Handler();
 			  }
 			uOffset+=20;
-			osDelay(100);
+			//osDelay(100);
 		}
 		if(uLastLoopByteCount!=0)
 		{
-			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(aTxBuffer+uOffset), uLastLoopByteCount)!= HAL_OK)
+			if(HAL_UART_Transmit_DMA(&huart1, (uint8_t *)(gHeartRateTxPackBuf+uOffset), uLastLoopByteCount)!= HAL_OK)
 			  {
-			    Error_Handler();
+			    //Error_Handler();
 			  }
-			osDelay(100);
+			//osDelay(100);
 		}
-		pTxBuffer=aTxBuffer;
 		uOffset=0;
-		//feed header
-		
-		//feed frame bytes number
-
-		//feed body
-
-		//feed hip
-
-		//feed checksum
-
-		//start sending
-		osDelay(1000);
-		
+		//osDelay(100);
+//		xSemaphoreGive(xBinSemaHeartRateSend);
 	}
 }
-*/
+/**/
 static void UartTxThread(void const * argument)
 {
 

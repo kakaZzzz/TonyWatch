@@ -78,15 +78,28 @@ I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
-F (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c)(0x5489C06E)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\ble_nus51422.o --omf_browse stm32f4-discovery\ble_nus51422.crf --depend stm32f4-discovery\ble_nus51422.d)
-I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x5489A9AA)
+F (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.c)(0x548BA31D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\ble_nus51422.o --omf_browse stm32f4-discovery\ble_nus51422.crf --depend stm32f4-discovery\ble_nus51422.d)
+I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x548B0CFE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54199D7A)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
+I (..\..\..\..\Drivers\CMSIS\Include\core_cmFunc.h)(0x53AB9234)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x53AB9262)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x54199D7A)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOSConfig.h)(0x5449E1A7)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h)(0x53AB9266)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
 I (..\..\..\..\Debug\debug_uart.h)(0x545496D2)
 I (..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5447B89C)
 I (..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f439xx.h)(0x53AB924A)
 I (..\..\..\..\Drivers\CMSIS\Include\core_cm4.h)(0x53AB9234)
 I (..\..\..\..\Drivers\CMSIS\Include\core_cmInstr.h)(0x53AB9234)
-I (..\..\..\..\Drivers\CMSIS\Include\core_cmFunc.h)(0x53AB9234)
 I (..\..\..\..\Drivers\CMSIS\Include\core_cm4_simd.h)(0x53AB9234)
 I (..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x53AB924A)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x53AB9250)
@@ -140,19 +153,6 @@ I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x53AB9250)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x53AB9250)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h)(0x53AB9250)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x54199D7C)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x53AB9262)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x54199D7A)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOSConfig.h)(0x5449E1A7)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h)(0x53AB9266)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x54199D7C)
 I (..\Inc\main.h)(0x5489AB5F)
 I (..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h)(0x5448D32F)
@@ -3035,7 +3035,7 @@ I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x53AB9250)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x53AB9250)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h)(0x53AB9250)
 F (..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f439xx.s)(0x5449D84E)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include--pd "STM32F429_439xx SETA 1"--list startup_stm32f439xx.lst --xref -o stm32f4-discovery\startup_stm32f439xx.o --depend stm32f4-discovery\startup_stm32f439xx.d)
-F (..\Src\main.c)(0x5489C40E)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\main.o --omf_browse stm32f4-discovery\main.crf --depend stm32f4-discovery\main.d)
+F (..\Src\main.c)(0x548BA204)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\main.o --omf_browse stm32f4-discovery\main.crf --depend stm32f4-discovery\main.d)
 I (..\Inc\main.h)(0x5489AB5F)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x53AB9250)
 I (..\Inc\stm32f4xx_hal_conf.h)(0x54549673)
@@ -3097,7 +3097,8 @@ I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x53AB92
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h)(0x53AB9250)
 I (..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h)(0x5448D32F)
 I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h)(0x5489A646)
-I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x5489A9AA)
+I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x548B0CFE)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x53AB9262)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x54199D7A)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x53AB9262)
@@ -3107,11 +3108,10 @@ I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\po
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x53AB9262)
-I (..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x5448DF01)
-I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
 I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
+I (..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x5448DF01)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x54199D7C)
 I (..\..\..\..\Drivers\BSP\Components\AFE44xx\AFE4490.h)(0x547838A8)
 I (..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_tony.h)(0x54831773)
@@ -3178,7 +3178,20 @@ I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h)(0x53AB9250)
 I (..\Inc\main.h)(0x5489AB5F)
 I (..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h)(0x5448D32F)
 I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h)(0x5489A646)
-I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x5489A9AA)
+I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x548B0CFE)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x53AB9262)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x54199D7A)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOSConfig.h)(0x5449E1A7)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h)(0x53AB9266)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
 F (..\Src\stm32f4xx_it.c)(0x5453AB4A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\stm32f4xx_it.o --omf_browse stm32f4-discovery\stm32f4xx_it.crf --depend stm32f4-discovery\stm32f4xx_it.d)
 I (..\Inc\main.h)(0x5489AB5F)
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x53AB9250)
@@ -3241,7 +3254,20 @@ I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x53AB92
 I (..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h)(0x53AB9250)
 I (..\..\..\..\Drivers\BSP\STM32F4-Discovery\stm32f4_discovery.h)(0x5448D32F)
 I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\uart.h)(0x5489A646)
-I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x5489A9AA)
+I (..\..\..\..\Drivers\BSP\Components\ble_nus51422\ble_nus51422.h)(0x548B0CFE)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x53AB9262)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x54199D7A)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOSConfig.h)(0x5449E1A7)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h)(0x53AB9266)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x53AB9262)
+I (..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x53AB9262)
 I (..\Inc\stm32f4xx_it.h)(0x5453B163)
 F (..\..\..\..\Debug\debug_uart.c)(0x5454850A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Inc -I..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\..\..\Drivers\BSP\STM32F4-Discovery -I..\..\..\..\Utilities\Log -I..\..\..\..\Utilities\CPU -I..\..\..\..\Drivers\CMSIS\Include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source -I..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS -I..\..\..\..\Drivers\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Debug -I..\..\..\..\Drivers\BSP\Components\AFE44xx -I..\..\..\..\Drivers\BSP\Components\ble_nus51422 --C99-I Z:\Documents\Coding\STM32Cube_FW_F4_V1.3.0\Projects\STM32F4-Discovery\Templates\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-DSTM32F429_439xx -DUSE_HAL_DRIVER -DSTM32F439xx -DUSE_STM32F4_DISCO-o stm32f4-discovery\debug_uart.o --omf_browse stm32f4-discovery\debug_uart.crf --depend stm32f4-discovery\debug_uart.d)
 I (..\..\..\..\Debug\debug_uart.h)(0x545496D2)
