@@ -46,12 +46,18 @@
 #define BLE_UUID_NUS_RX_CHARACTERISTIC  0x2401                       /**< The UUID of the RX Characteristic. */
 #define BLE_UUID_NUS_TIME_SYNC_CHARACTERISTIC 0x2403
 
+
+//#define BLE_UUID_HEART_RATE_MEASUREMENT_CHAR  0x2A37     /**< The UUID of the HR Characteristic. */
+#define BLE_UUID_HEART_RATE_RAW_CHAR  0x2B01     /**< The UUID of the RAWD Characteristic. */
+#define BLE_UUID_HEART_RATE_PROCESS_CHAR  0x2B02     /**< The UUID of the PROD Characteristic. */
+
 #define BLE_NUS_MAX_DATA_LEN            (GATT_MTU_SIZE_DEFAULT - 3)  /**< Maximum length of data (in bytes) that can be transmitted by the Nordic UART service module to the peer. */
 
 #define BLE_NUS_MAX_RX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the RX Characteristic (in bytes). */
 #define BLE_NUS_MAX_TX_CHAR_LEN         BLE_NUS_MAX_DATA_LEN         /**< Maximum length of the TX Characteristic (in bytes). */
 
 #define UART_FIFO_SIZE 256
+
 
 extern uint8_t flagStartRx;
 extern uint8_t flagStartRxUpdated;
@@ -87,6 +93,9 @@ typedef struct ble_nus_s
     ble_gatts_char_handles_t tx_handles;              /**< Handles related to the TX characteristic. (as provided by the S110 SoftDevice)*/
     ble_gatts_char_handles_t rx_handles;              /**< Handles related to the RX characteristic. (as provided by the S110 SoftDevice)*/
     ble_gatts_char_handles_t ts_handles;
+	ble_gatts_char_handles_t hr_handles;	//heart rate
+	ble_gatts_char_handles_t rawd_handles; //raw data
+	ble_gatts_char_handles_t prod_handles;  //process data
     uint16_t                 conn_handle;             /**< Handle of the current connection (as provided by the S110 SoftDevice). This will be BLE_CONN_HANDLE_INVALID if not in a connection. */
     bool                     is_notification_enabled; /**< Variable to indicate if the peer has enabled notification of the RX characteristic.*/
     ble_nus_data_handler_t   data_handler;            /**< Event handler to be called for handling received data. */
@@ -116,6 +125,8 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init);
  * @param[in]   p_ble_evt  Event received from the S110 SoftDevice.
  */
 void ble_nus_on_ble_evt(ble_nus_t * p_nus, ble_evt_t * p_ble_evt);
+
+uint32_t ble_nus_send_string_byhandle(ble_nus_t * p_nus, uint8_t * string, uint16_t length, uint8_t hdid);
 
 /**@brief       Function for sending a string to the peer.
  *

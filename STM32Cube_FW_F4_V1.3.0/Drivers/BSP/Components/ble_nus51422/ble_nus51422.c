@@ -114,6 +114,7 @@ static void UartRxThread(void const * argument)
 		}
 		UartRxReady=RESET;
 		gRxBufferLast=aRxBuffer1[1];
+		flagCommand=0;
 		osDelay(100);
 	}
 

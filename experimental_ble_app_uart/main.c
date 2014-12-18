@@ -20,7 +20,7 @@
  * This file contains the source code for a sample application that uses the Nordic UART service.
  * This application uses the @ref srvlib_conn_params module.
  */
-
+#include "main.h"
 #include <stdint.h>
 #include <string.h>
 #include "nordic_common.h"
@@ -42,6 +42,7 @@
 #include "uart_protocol.h"
 #include "app_fifo.h"
 #include "stdbool.h"
+#include "queue.h"
 
 #define FIRMWARE  008
 
@@ -50,7 +51,7 @@
 
 #define WAKEUP_BUTTON_ID                0                                           /**< Button used to wake up the application. */
 
-#define DEVICE_NAME                     "Nordic_UART"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "Nordic_UART2"                               /**< Name of device. Will be included in the advertising data. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
@@ -117,6 +118,8 @@ uint8_t flagBleTxBusy=false;
 uint8_t flagStartRx=false;
 uint8_t flagStartRxUpdated=false;
 uint8_t flag1sCheckRoutine=false;
+
+uint8_t flagBleTxCplt=false;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -214,7 +217,8 @@ static void advertising_init(void)
     ble_advdata_t scanrsp;
     uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
 
-    ble_uuid_t adv_uuids[] = {{BLE_UUID_NUS_SERVICE, m_nus.uuid_type}};
+//   ble_uuid_t adv_uuids[] = {{BLE_UUID_NUS_SERVICE, m_nus.uuid_type}};
+ 	ble_uuid_t adv_uuids[] = {{BLE_UUID_HEART_RATE_SERVICE, m_nus.uuid_type}};
 
     memset(&advdata, 0, sizeof(advdata));
     advdata.name_type               = BLE_ADVDATA_FULL_NAME;
@@ -275,7 +279,7 @@ void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length, uint
 		simple_uart_putstring_checksum(strHeader,11);
 		//send frame length
 		simple_uart_put(LO_UINT16(length));
-		checksum+=LO_UINT16(length);		
+		checksum+=LO_UINT16(length);
 		simple_uart_put(HI_UINT16(length));
 		checksum+=HI_UINT16(length);
 		//send frame data= time 
@@ -475,6 +479,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
 	case BLE_EVT_TX_COMPLETE :
 		//tx complete call back
 		flagBleTxBusy=false;
+		flagBleTxCplt=true;
 		break;
 
         default:
@@ -563,7 +568,7 @@ static void uart_init(void)
  */
 void UART0_IRQHandler(void)
 {
-
+/*
 	uint32_t err_code;
 //	if((flagStartRx==true)&&(app_fifo_length(&gUartFifo)<=UART_FIFO_SIZE))
 	if(1)//(flagStartRx==true)
@@ -582,9 +587,13 @@ void UART0_IRQHandler(void)
 				simple_uart_put(0x77);
 			#endif
 		}
+	} */
+	uint32_t err_code;
+	err_code=app_fifo_put(&upQueue,simple_uart_get());
+	if(NRF_SUCCESS==err_code)
+	{
+		APP_ERROR_CHECK(err_code);
 	}
-
-	
 	/*
 //    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
     static uint8_t data_array[BLE_NUS_MAX_DATA_LEN+1];
@@ -614,12 +623,12 @@ static void system_tick_10ms_handler(void * p_context)
    	uSystemTick10MsCnt++;
 	if(gBleTxTimeout<255)
 		gBleTxTimeout++;
-	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
-	{
+//	if(uSystemTick10MsCnt>=100)//10ms *100 = 1s
+//	{
 //		uTimeStampS++;
-		uSystemTick10MsCnt=0;
-		flag1sCheckRoutine=true;
-	}
+//		uSystemTick10MsCnt=0;
+//		flag1sCheckRoutine=true;
+//	}
 }
 
 void SystemTimeInit(void)
@@ -713,8 +722,8 @@ void bleTx(void)
  */
 int main(void)
 {
-    uint8_t start_string[] = START_STRING;
-    uint32_t err_code;
+//   uint8_t start_string[] = START_STRING;
+//    uint32_t err_code;
 //		pBLErxpool=malloc(MAX_FRAME_LENGTH);
 
 //	package_data_t *packageDataTemp;
@@ -745,7 +754,7 @@ int main(void)
     
     advertising_start();
     SystemTimeInit();
-
+QueueInit();
 //	app_fifo_init(pApp_fifo,pBLErxpool,sizeof(pBLErxpool));
 	
     // Enter main loop
@@ -753,20 +762,31 @@ int main(void)
 //	packageDataTemp->length=sizeof(pHRD);//(heartRateDataPackageSample);
     for (;;)
     {
-    	if(uSystemTick10MsCnt==100)
+    	if(uSystemTick10MsCnt>=10)
 	{
-		uSystemTick10MsCnt+=1;
-		uSystemTick10MsCnt-=1;
+		uSystemTick10MsCnt=0;
+		if((m_nus.conn_handle != BLE_CONN_HANDLE_INVALID) && (m_nus.is_notification_enabled))
+			upQueueWrite();
 	}
 //	if(flag1sCheckRoutine==true)
 //	{
 //		updateUartRxSetting();
 //		flag1sCheckRoutine=false;
 //	}
+
+/*
 	if(false==flagBleTxBusy)
 	{
 		bleTx();
-	}
+	}*/
+
+	//up queue write
+	
+	//up queue read
+	upQueueRead(&m_nus);
+	//down queue write
+	
+	//down queue read
 	
         power_manage();
 //		nrf_delay_ms(500);

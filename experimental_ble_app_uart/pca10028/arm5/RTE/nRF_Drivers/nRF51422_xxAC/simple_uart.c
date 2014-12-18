@@ -86,7 +86,7 @@ uint8_t simple_uart_putstring_checksum(uint8_t * str, uint16_t length)
 {
     uint_fast8_t i  = 0;
     uint8_t      ch = str[i++];
-	uint8_t checksum;
+	uint8_t checksum=0;;
 
     while (i<length)
     {

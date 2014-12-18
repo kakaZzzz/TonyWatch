@@ -16,6 +16,7 @@
 #include <string.h>
 #include "simple_uart.h"
 #include "nrf51.h"
+#include "Queue.h"
 
 /**@brief     Function for handling the @ref BLE_GAP_EVT_CONNECTED event from the S110 SoftDevice.
  *
@@ -86,6 +87,51 @@ static void on_write(ble_nus_t * p_nus, ble_evt_t * p_ble_evt)
 		simple_uart_put(0x55);
 		simple_uart_put(0x55);
 		NVIC_DisableIRQ(UART0_IRQn);
+        }
+    }
+	else if (
+        (p_evt_write->handle == p_nus->hr_handles.cccd_handle)
+        &&
+        (p_evt_write->len == 2)
+       )
+    {
+        if (ble_srv_is_notification_enabled(p_evt_write->data))
+        {
+            p_nus->is_notification_enabled = true;
+        }
+        else
+        {
+            p_nus->is_notification_enabled = false;
+        }
+    }
+	else if (
+        (p_evt_write->handle == p_nus->rawd_handles.cccd_handle)
+        &&
+        (p_evt_write->len == 2)
+       )
+    {
+        if (ble_srv_is_notification_enabled(p_evt_write->data))
+        {
+            p_nus->is_notification_enabled = true;
+        }
+        else
+        {
+            p_nus->is_notification_enabled = false;
+        }
+    }
+	else if (
+        (p_evt_write->handle == p_nus->rawd_handles.cccd_handle)
+        &&
+        (p_evt_write->len == 2)
+       )
+    {
+        if (ble_srv_is_notification_enabled(p_evt_write->data))
+        {
+            p_nus->is_notification_enabled = true;
+        }
+        else
+        {
+            p_nus->is_notification_enabled = false;
         }
     }
     else if (
@@ -171,6 +217,190 @@ static uint32_t rx_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init
     /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
 
 }
+
+/**@brief       Function for adding HR characteristic.
+ *
+ * @param[in]   p_nus        Nordic UART Service structure.
+ * @param[in]   p_nus_init   Information needed to initialize the service.
+ *
+ * @return      NRF_SUCCESS on success, otherwise an error code.
+ */
+static uint32_t hr_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
+{
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_md_t cccd_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_gatts_attr_md_t attr_md;
+    
+    memset(&cccd_md, 0, sizeof(cccd_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
+
+    cccd_md.vloc = BLE_GATTS_VLOC_STACK;
+    
+    memset(&char_md, 0, sizeof(char_md));
+    
+    char_md.char_props.notify = 1;
+    char_md.p_char_user_desc  = NULL;
+    char_md.p_char_pf         = NULL;
+    char_md.p_user_desc_md    = NULL;
+    char_md.p_cccd_md         = &cccd_md;
+    char_md.p_sccd_md         = NULL;
+    
+    ble_uuid.type             = p_nus->uuid_type;
+    ble_uuid.uuid             = BLE_UUID_HEART_RATE_MEASUREMENT_CHAR;
+    
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
+    
+    attr_md.vloc              = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth           = 0;
+    attr_md.wr_auth           = 0;
+    attr_md.vlen              = 1;
+    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_len  = sizeof(uint8_t);
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = BLE_NUS_MAX_RX_CHAR_LEN;
+    
+    return sd_ble_gatts_characteristic_add(p_nus->service_handle,
+                                           &char_md,
+                                           &attr_char_value,
+                                           &p_nus->hr_handles);
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+
+}
+
+/**@brief       Function for adding RAWD characteristic.
+ *
+ * @param[in]   p_nus        Nordic UART Service structure.
+ * @param[in]   p_nus_init   Information needed to initialize the service.
+ *
+ * @return      NRF_SUCCESS on success, otherwise an error code.
+ */
+static uint32_t rawd_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
+{
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_md_t cccd_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_gatts_attr_md_t attr_md;
+    
+    memset(&cccd_md, 0, sizeof(cccd_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
+
+    cccd_md.vloc = BLE_GATTS_VLOC_STACK;
+    
+    memset(&char_md, 0, sizeof(char_md));
+    
+    char_md.char_props.notify = 1;
+    char_md.p_char_user_desc  = NULL;
+    char_md.p_char_pf         = NULL;
+    char_md.p_user_desc_md    = NULL;
+    char_md.p_cccd_md         = &cccd_md;
+    char_md.p_sccd_md         = NULL;
+    
+    ble_uuid.type             = p_nus->uuid_type;
+    ble_uuid.uuid             = BLE_UUID_HEART_RATE_RAW_CHAR;
+    
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
+    
+    attr_md.vloc              = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth           = 0;
+    attr_md.wr_auth           = 0;
+    attr_md.vlen              = 1;//12;
+    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_len  = sizeof(uint8_t);
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = BLE_NUS_MAX_RX_CHAR_LEN;
+    
+    return sd_ble_gatts_characteristic_add(p_nus->service_handle,
+                                           &char_md,
+                                           &attr_char_value,
+                                           &p_nus->rawd_handles);
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+
+}
+
+/**@brief       Function for adding PROD characteristic.
+ *
+ * @param[in]   p_nus        Nordic UART Service structure.
+ * @param[in]   p_nus_init   Information needed to initialize the service.
+ *
+ * @return      NRF_SUCCESS on success, otherwise an error code.
+ */
+static uint32_t prod_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
+{
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_md_t cccd_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_gatts_attr_md_t attr_md;
+    
+    memset(&cccd_md, 0, sizeof(cccd_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
+
+    cccd_md.vloc = BLE_GATTS_VLOC_STACK;
+    
+    memset(&char_md, 0, sizeof(char_md));
+    
+    char_md.char_props.notify = 1;
+    char_md.p_char_user_desc  = NULL;
+    char_md.p_char_pf         = NULL;
+    char_md.p_user_desc_md    = NULL;
+    char_md.p_cccd_md         = &cccd_md;
+    char_md.p_sccd_md         = NULL;
+    
+    ble_uuid.type             = p_nus->uuid_type;
+    ble_uuid.uuid             = BLE_UUID_HEART_RATE_PROCESS_CHAR;
+    
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
+    
+    attr_md.vloc              = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth           = 0;
+    attr_md.wr_auth           = 0;
+    attr_md.vlen              = 1;//4;
+    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_len  = sizeof(uint8_t);
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = BLE_NUS_MAX_RX_CHAR_LEN;
+    
+    return sd_ble_gatts_characteristic_add(p_nus->service_handle,
+                                           &char_md,
+                                           &attr_char_value,
+                                           &p_nus->prod_handles);
+    /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
+
+}
+
 
 
 /**@brief       Function for adding TX characteristic.
@@ -303,8 +533,8 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
     ble_uuid_t      ble_uuid;
 //    ble_uuid128_t   nus_base_uuid = {{0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0,
 //                                     0x93, 0xF3, 0xA3, 0xB5, 0x00, 0x00, 0x40, 0x6E}};
-    ble_uuid128_t   nus_base_uuid = {{0xFF, 0xFF, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0,
-                                     0x93, 0xF3, 0xA3, 0xB5, 0x00, 0x00, 0x40, 0x6E}};
+//    ble_uuid128_t   nus_base_uuid = {{0xFF, 0xFF, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0,
+//                                     0x93, 0xF3, 0xA3, 0xB5, 0x00, 0x00, 0x40, 0x6E}};
 
     if ((p_nus == NULL) || (p_nus_init == NULL))
     {
@@ -327,7 +557,8 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
 //    }
 
     ble_uuid.type = p_nus->uuid_type;
-    ble_uuid.uuid = BLE_UUID_NUS_SERVICE;
+//    ble_uuid.uuid = BLE_UUID_NUS_SERVICE;
+    ble_uuid.uuid = BLE_UUID_HEART_RATE_SERVICE;
 
     // Add service.
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,
@@ -346,6 +577,26 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
         return err_code;
     }
 
+    // Add HR Characteristic.
+    err_code = hr_char_add(p_nus, p_nus_init);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }/**/
+	 // Add RAWD Characteristic.
+    err_code = rawd_char_add(p_nus, p_nus_init);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+	
+	 // Add PROD Characteristic.
+    err_code = prod_char_add(p_nus, p_nus_init);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }/**/
+/*
     // Add TX Characteristic.
     err_code = tx_char_add(p_nus, p_nus_init);
     if (err_code != NRF_SUCCESS)
@@ -358,11 +609,53 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
-    }
+    }*/
 	
     return NRF_SUCCESS;
 }
 
+uint32_t ble_nus_send_string_byhandle(ble_nus_t * p_nus, uint8_t * string, uint16_t length, uint8_t hdid)
+{
+    ble_gatts_hvx_params_t hvx_params;
+
+    if (p_nus == NULL)
+    {
+        return NRF_ERROR_NULL;
+    }
+    
+    if ((p_nus->conn_handle == BLE_CONN_HANDLE_INVALID) || (!p_nus->is_notification_enabled))
+    {
+        return NRF_ERROR_INVALID_STATE;
+    }
+    
+    if (length > BLE_NUS_MAX_DATA_LEN)
+    {
+        return NRF_ERROR_INVALID_PARAM;
+    }
+    
+    memset(&hvx_params, 0, sizeof(hvx_params));
+
+	switch(hdid)
+	{
+		case BLE_NUS_HR_CHAR_HANDLE:
+			hvx_params.handle = p_nus->hr_handles.value_handle;
+			break;
+		case BLE_NUS_RAWD_CHAR_HANDLE:
+			hvx_params.handle = p_nus->rawd_handles.value_handle;
+			break;
+		case BLE_NUS_PROD_CHAR_HANDLE:
+			hvx_params.handle = p_nus->prod_handles.value_handle;
+			break;
+		default:
+			break;
+	}
+//    hvx_params.handle = p_nus->rx_handles.value_handle;
+    hvx_params.p_data = string;
+    hvx_params.p_len  = &length;
+    hvx_params.type   = BLE_GATT_HVX_NOTIFICATION;
+    
+    return sd_ble_gatts_hvx(p_nus->conn_handle, &hvx_params);
+}
 
 uint32_t ble_nus_send_string(ble_nus_t * p_nus, uint8_t * string, uint16_t length)
 {
