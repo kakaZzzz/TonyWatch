@@ -570,25 +570,25 @@ uint32_t ble_nus_init(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init)
         return err_code;
     }
     
-    // Add RX Characteristic.
+ /*   // Add RX Characteristic.
     err_code = rx_char_add(p_nus, p_nus_init);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
-    }
+    }*/
 
     // Add HR Characteristic.
     err_code = hr_char_add(p_nus, p_nus_init);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
-    }/**/
+    }/*
 	 // Add RAWD Characteristic.
     err_code = rawd_char_add(p_nus, p_nus_init);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
-    }
+    }*/
 	
 	 // Add PROD Characteristic.
     err_code = prod_char_add(p_nus, p_nus_init);

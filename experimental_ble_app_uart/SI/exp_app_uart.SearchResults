@@ -1,10 +1,5 @@
----- app_fifo_get Matches (9 in 4 files) ----
-App_fifo.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):56:uint32_t app_fifo_get(app_fifo_t * p_fifo, uint8_t * p_byte)
-App_fifo.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart\pca10028\arm5\rte\nrf_libraries\nrf51422_xxac):70:uint32_t app_fifo_get(app_fifo_t * p_fifo, uint8_t * p_byte);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):654:				err_code=app_fifo_get(&gUartFifo,&data_array[i]);
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):685:			err_code=app_fifo_get(&gUartFifo,&data_array[i]);
-Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):34:	app_fifo_get(p_fifo,pData);		
-Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):36:	app_fifo_get(p_fifo,pData);	
-Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):38:	app_fifo_get(p_fifo,pData);	
-Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):40:	app_fifo_get(p_fifo,pData);	
-Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):42:	app_fifo_get(p_fifo,pData);	
+---- hrBuf Matches (4 in 1 files) ----
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):71:	uint8_t hrBuf[2];
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):84:		*hrBuf=*pData;
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):92://		err_code=ble_nus_send_string_byhandle(p_nus, hrBuf, 1,BLE_NUS_HR_CHAR_HANDLE);
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):95:		while(ble_nus_send_string_byhandle(p_nus, hrBuf, 1,BLE_NUS_HR_CHAR_HANDLE)==NRF_ERROR_BUSY)

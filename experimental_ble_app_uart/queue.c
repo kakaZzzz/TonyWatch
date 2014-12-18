@@ -26,29 +26,17 @@ void QueueInit(void)
 	app_fifo_init(&upQueue,pQueueMem,HRS_UPQUENE_SIZE);//(app_fifo_t * p_fifo, uint8_t * p_buf, uint16_t buf_size)
 }
 
+
 up_queue_data_t upQueueGetStruct(app_fifo_t * p_fifo)
 {
-//	uint32_t err_code;
 	up_queue_data_t queueData;
-	uint8_t *pData;
-/*	app_fifo_get(p_fifo,pData);		
-	queueData.hr=*pData;
-	app_fifo_get(p_fifo,pData);	
-	queueData.rawd[0]=*pData;
-	app_fifo_get(p_fifo,pData);	
-	queueData.rawd[1]=*pData;
-	app_fifo_get(p_fifo,pData);	
-	queueData.rawd[2]=*pData;
-	app_fifo_get(p_fifo,pData);	
-	queueData.prod=*pData;
-*/
+	uint8_t i;
 
 	app_fifo_get(p_fifo,&queueData.hr);
-	app_fifo_get(p_fifo,&queueData.rawd[0]);	
-	app_fifo_get(p_fifo,&queueData.rawd[1]);	
-	app_fifo_get(p_fifo,&queueData.rawd[2]);	
-	app_fifo_get(p_fifo,&queueData.prod);	
-	
+	for(i=0;i<10;i++)
+	{
+		app_fifo_get(p_fifo,&queueData.prod[i]);	
+	}
 	return queueData;
 }
 
@@ -73,38 +61,41 @@ uint32_t upQueueRead(ble_nus_t * p_nus)
 {
 	uint16_t qLength;
 	uint32_t err_code;
-	up_queue_data_t queueData;
-	uint8_t *hrBuf;
-	uint8_t rawdBuf[12];
-	uint8_t prodBuf[4];
+//	up_queue_data_t queueData;
+	uint8_t hrBuf[2];
+//	uint8_t rawdBuf[12];
+	uint8_t prodBuf[10];
 	uint8_t i;
+	uint8_t *pData;
 	//check if queue is empty
 	qLength=app_fifo_length(&upQueue);
 	//if not, send data
 	//check if ble is connected, if chars can be notified
-	if((qLength>=20)&&(p_nus->conn_handle != BLE_CONN_HANDLE_INVALID) && (p_nus->is_notification_enabled))// 4 groups of data in 100ms
+	if((qLength>=11)&&(p_nus->conn_handle != BLE_CONN_HANDLE_INVALID) && (p_nus->is_notification_enabled))// 4 groups of data in 100ms
 	{
-		for(i=0;i<4;i++)
+		//get hr data 2 bytes
+		err_code=app_fifo_get(&upQueue,pData);
+		hrBuf[0]=*pData;
+		err_code=app_fifo_get(&upQueue,pData);
+		hrBuf[1]=*pData;
+		//get rawd data 10 bytes
+		for(i=0;i<10;i++)
 		{
-			queueData=upQueueGetStruct(&upQueue);
-			*hrBuf=queueData.hr;
-			rawdBuf[i+0]=queueData.rawd[0];
-			rawdBuf[i+1]=queueData.rawd[1];
-			rawdBuf[i+2]=queueData.rawd[2];
-			prodBuf[i+0]=queueData.prod;
+			err_code=app_fifo_get(&upQueue,pData);
+			prodBuf[i]=*pData;
 		}
 //		flagBleTxCplt=false;
 //		err_code=ble_nus_send_string_byhandle(p_nus, hrBuf, 1,BLE_NUS_HR_CHAR_HANDLE);
 //		while(flagBleTxCplt==false)
 //		{}
-		while(ble_nus_send_string_byhandle(p_nus, hrBuf, 1,BLE_NUS_HR_CHAR_HANDLE)==NRF_ERROR_BUSY)
+		while(ble_nus_send_string_byhandle(p_nus, hrBuf, sizeof(hrBuf),BLE_NUS_HR_CHAR_HANDLE)==NRF_ERROR_BUSY)
 		{}
 //		flagBleTxCplt=false;
 //		err_code=ble_nus_send_string_byhandle(p_nus, rawdBuf, sizeof(rawdBuf),BLE_NUS_RAWD_CHAR_HANDLE);
 //		while(flagBleTxCplt==false)
 //		{}		
-		while(ble_nus_send_string_byhandle(p_nus, rawdBuf, sizeof(rawdBuf),BLE_NUS_RAWD_CHAR_HANDLE)==NRF_ERROR_BUSY)
-		{}
+//		while(ble_nus_send_string_byhandle(p_nus, rawdBuf, sizeof(rawdBuf),BLE_NUS_RAWD_CHAR_HANDLE)==NRF_ERROR_BUSY)
+//		{}
 		
 //		flagBleTxCplt=false;
 //		err_code=ble_nus_send_string_byhandle(p_nus, prodBuf, sizeof(prodBuf),BLE_NUS_PROD_CHAR_HANDLE);

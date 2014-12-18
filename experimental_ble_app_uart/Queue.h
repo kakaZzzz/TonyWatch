@@ -7,8 +7,8 @@
 typedef struct
 {
 	uint8_t hr;//heart rate value
-	uint8_t rawd[3];//raw data
-	uint8_t prod;//process data
+//	uint8_t rawd[3];//raw data
+	uint8_t prod[10];//process data
 }up_queue_data_t;
 
 #define BLE_NUS_HR_CHAR_HANDLE			1

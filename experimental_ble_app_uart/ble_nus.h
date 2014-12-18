@@ -48,8 +48,8 @@
 
 
 //#define BLE_UUID_HEART_RATE_MEASUREMENT_CHAR  0x2A37     /**< The UUID of the HR Characteristic. */
-#define BLE_UUID_HEART_RATE_RAW_CHAR  0x2B01     /**< The UUID of the RAWD Characteristic. */
-#define BLE_UUID_HEART_RATE_PROCESS_CHAR  0x2B02     /**< The UUID of the PROD Characteristic. */
+#define BLE_UUID_HEART_RATE_RAW_CHAR  0x2C02     /**< The UUID of the RAWD Characteristic. */
+#define BLE_UUID_HEART_RATE_PROCESS_CHAR  0x2C01     /**< The UUID of the PROD Characteristic. */
 
 #define BLE_NUS_MAX_DATA_LEN            (GATT_MTU_SIZE_DEFAULT - 3)  /**< Maximum length of data (in bytes) that can be transmitted by the Nordic UART service module to the peer. */
 
