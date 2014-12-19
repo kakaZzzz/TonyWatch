@@ -1,0 +1,13 @@
+---- UART0_IRQn Matches (12 in 2 files) ----
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):42:	NVIC_DisableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):51://		NVIC_DisableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):73:NVIC_EnableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):80:		NVIC_EnableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):87:			NVIC_DisableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):93:		NVIC_DisableIRQ(UART0_IRQn);*/
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):703:		NVIC_EnableIRQ(UART0_IRQn);
+Ble_nus.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):712:		NVIC_DisableIRQ(UART0_IRQn);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):556:    NVIC_SetPriority(UART0_IRQn, APP_IRQ_PRIORITY_LOW);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):557://    NVIC_EnableIRQ(UART0_IRQn);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):808:		NVIC_DisableIRQ(UART0_IRQn);
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart):810:		NVIC_EnableIRQ(UART0_IRQn);
