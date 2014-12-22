@@ -1,0 +1,3 @@
+---- vTask1a Matches (2 in 1 files) ----
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):185:void vTask1a(void const *argument)
+Main.c (z:\documents\coding\stm32cube_fw_f4_v1.3.0\projects\stm32f4-discovery\templates\src):653:	osThreadDef(vTask1a_ThreadName, vTask1a, osPriorityNormal, 0, configMINIMAL_STACK_SIZE);	

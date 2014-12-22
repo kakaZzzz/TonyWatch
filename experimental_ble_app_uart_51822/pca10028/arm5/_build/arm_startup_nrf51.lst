@@ -343,26 +343,26 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M0 --apcs=interwork --depend=.\_build
 \arm_startup_nrf51.d -o.\_build\arm_startup_nrf51.o -IZ:\Documents\Coding\GitHu
-bTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE -IZ:\Documents\Codin
-g\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_BLE\nRF51
-422_xxAC -IZ:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pc
-a10028\arm5\RTE\nRF_Drivers\nRF51422_xxAC -IZ:\Documents\Coding\GitHubTac\TonyW
-atch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC -I
-C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\NordicS
-emiconductor\nRF_BLE\1.0.1\common -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF
-_DeviceFamilyPack\1.1.4\Device\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconducto
-r\nRF_Drivers\1.1.0\hal -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\1
-.1.0\simple_uart -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Examples\7.0.1\b
-sp -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\button -IC:\Ke
-il_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\fifo -IC:\Keil_v5\ARM\PA
-CK\NordicSemiconductor\nRF_Libraries\1.0.1\gpiote -IC:\Keil_v5\ARM\PACK\NordicS
-emiconductor\nRF_Libraries\1.0.1\scheduler -IC:\Keil_v5\ARM\PACK\NordicSemicond
-uctor\nRF_Libraries\1.0.1\timer -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_L
-ibraries\1.0.1\util -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Co
-mmon\1.0.1\softdevice_handler -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Sof
-tDevice_S110\7.1.0-2\headers --predefine="__MICROLIB SETA 1" --predefine="_RTE_
- SETA 1" --predefine="NRF51 SETA 1" --list=.\_build\arm_startup_nrf51.lst RTE\D
-evice\nRF51422_xxAC\arm_startup_nrf51.s
+bTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE -IZ:\Documents
+\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\n
+RF_BLE\nRF51422_xxAC -IZ:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble
+_app_uart_51822\pca10028\arm5\RTE\nRF_Drivers\nRF51422_xxAC -IZ:\Documents\Codi
+ng\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Li
+braries\nRF51422_xxAC -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\
+Keil_v5\ARM\PACK\NordicSemiconductor\nRF_BLE\1.0.1\common -IC:\Keil_v5\ARM\PACK
+\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include -IC:\Keil_v5\ARM
+\PACK\NordicSemiconductor\nRF_Drivers\1.1.0\hal -IC:\Keil_v5\ARM\PACK\NordicSem
+iconductor\nRF_Drivers\1.1.0\simple_uart -IC:\Keil_v5\ARM\PACK\NordicSemiconduc
+tor\nRF_Examples\7.0.1\bsp -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Librar
+ies\1.0.1\button -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\
+fifo -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\gpiote -IC:\
+Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\scheduler -IC:\Keil_v5
+\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\timer -IC:\Keil_v5\ARM\PACK\N
+ordicSemiconductor\nRF_Libraries\1.0.1\util -IC:\Keil_v5\ARM\PACK\NordicSemicon
+ductor\nRF_SoftDevice_Common\1.0.1\softdevice_handler -IC:\Keil_v5\ARM\PACK\Nor
+dicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers --predefine="__MICROLIB SE
+TA 1" --predefine="_RTE_ SETA 1" --predefine="NRF51 SETA 1" --list=.\_build\arm
+_startup_nrf51.lst RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
 
 
 

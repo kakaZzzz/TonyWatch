@@ -19,7 +19,7 @@
 .\_build\ble_conn_params.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\_build\ble_conn_params.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\nordic_common.h
 .\_build\ble_conn_params.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\7.1.0-2\headers\ble_hci.h
-.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h
+.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h
 .\_build\ble_conn_params.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
-.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h
+.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
+.\_build\ble_conn_params.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_scheduler.h

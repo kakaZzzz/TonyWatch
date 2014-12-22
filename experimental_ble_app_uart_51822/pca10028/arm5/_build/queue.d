@@ -1,5 +1,5 @@
 .\_build\queue.o: ..\..\queue.c
-.\_build\queue.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h
+.\_build\queue.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h
 .\_build\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\_build\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\_build\queue.o: ..\..\queue.h
@@ -21,4 +21,4 @@
 .\_build\queue.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\compiler_abstraction.h
 .\_build\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\queue.o: ..\..\Hal_defs.h
-.\_build\queue.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
+.\_build\queue.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h

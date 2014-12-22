@@ -51,7 +51,7 @@
 
 #define WAKEUP_BUTTON_ID                0                                           /**< Button used to wake up the application. */
 
-#define DEVICE_NAME                     "NRF51822"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "AddingHRM"                               /**< Name of device. Will be included in the advertising data. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
@@ -124,6 +124,7 @@ uint8_t flag1sCheckRoutine=false;
 
 uint8_t flagBleTxCplt=false;
 uint8_t flagStartQueueRead=false;
+uint8_t gDeviceNameStr[15]="TonyRun_000000";
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -192,9 +193,12 @@ static void gap_params_init(void)
 
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
     
+//    err_code = sd_ble_gap_device_name_set(&sec_mode,
+//                                         (const uint8_t *) DEVICE_NAME,
+//                                          strlen(DEVICE_NAME));
     err_code = sd_ble_gap_device_name_set(&sec_mode,
-                                          (const uint8_t *) DEVICE_NAME,
-                                          strlen(DEVICE_NAME));
+                                          (const uint8_t *) gDeviceNameStr,
+                                          strlen(gDeviceNameStr));
     APP_ERROR_CHECK(err_code);
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
@@ -736,6 +740,57 @@ void bleTx(void)
 	}
 }
 
+void charTrans(uint8_t *dst, uint8_t *sr)
+{
+	uint8_t srTemp;
+
+	srTemp=(*sr)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	
+	srTemp=((*sr)>>4)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	sr++;
+
+	srTemp=(*sr)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	
+	srTemp=((*sr)>>4)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	sr++;
+
+	srTemp=(*sr)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	
+	srTemp=((*sr)>>4)&0x0f;
+	if(srTemp>=0x0a)
+		*dst=(char)(srTemp+0x40);
+	else
+		*dst=(char)(srTemp+0x30);
+	dst--;
+	sr++;
+
+}
+
 /**@brief  Application main function.
  */
 int main(void)
@@ -752,6 +807,36 @@ int main(void)
 		
 //		frameDataBuild=malloc(128);
     // Initialize
+
+/*	uint32_t tonyDeviceAddr[2];
+	uint32_t tonyDeviceId[2];
+	tonyDeviceAddr[0]=NRF_FICR->DEVICEADDR[0];
+	tonyDeviceAddr[1]=NRF_FICR->DEVICEADDR[1];
+	tonyDeviceId[0]=NRF_FICR->DEVICEID[0];
+	tonyDeviceId[1]=NRF_FICR->DEVICEID[1];*/
+
+	uint8_t gapaddr[6];
+	uint8_t gdnCnt=0;
+	
+	gapaddr[0] =  NRF_FICR->DEVICEADDR[0] & 0xFF;
+	gapaddr[1] = (NRF_FICR->DEVICEADDR[0] >> 8) & 0xFF;
+	gapaddr[2] = (NRF_FICR->DEVICEADDR[0] >> 16) & 0xFF;
+	gapaddr[3] = (NRF_FICR->DEVICEADDR[0] >>24) & 0xFF;     
+	gapaddr[4] =  NRF_FICR->DEVICEADDR[1] & 0xFF;
+	gapaddr[5] = (NRF_FICR->DEVICEADDR[1] >> 8) |0xc0;
+	gDeviceNameStr[13]=(char)((gapaddr[3]&0x0f)+0x30);
+	gDeviceNameStr[12]=(char)(((gapaddr[3]>>4)&0x0f)+0x30);
+	gDeviceNameStr[11]=(char)((gapaddr[4]&0x0f)+0x30);
+	gDeviceNameStr[10]=(char)(((gapaddr[4]>>4)&0x0f)+0x30);
+	gDeviceNameStr[9]=(char)((gapaddr[5]&0x0f)+0x30);
+	gDeviceNameStr[8]=(char)(((gapaddr[5]>>4)&0x0f)+0x30);
+	for(gdnCnt=0;gdnCnt<6;gdnCnt++)
+	{
+		if(gDeviceNameStr[gdnCnt+8]>=0x3A)
+			gDeviceNameStr[gdnCnt+8]+=0x07;
+	}
+//	charTrans(&gDeviceNameStr[12],&gapaddr[0]);
+	
     timers_init();
     APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
     ble_stack_init();

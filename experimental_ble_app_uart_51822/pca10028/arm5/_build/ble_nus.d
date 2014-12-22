@@ -16,11 +16,11 @@
 .\_build\ble_nus.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\app_util.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\compiler_abstraction.h
-.\_build\ble_nus.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h
+.\_build\ble_nus.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Libraries\nRF51422_xxAC\app_fifo.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\1.0.1\util\nordic_common.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\_build\ble_nus.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart\pca10028\arm5\RTE\nRF_Drivers\nRF51422_xxAC\simple_uart.h
+.\_build\ble_nus.o: Z:\Documents\Coding\GitHubTac\TonyWatch\experimental_ble_app_uart_51822\pca10028\arm5\RTE\nRF_Drivers\nRF51422_xxAC\simple_uart.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.4\Device\Include\nrf51.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm0.h
 .\_build\ble_nus.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h

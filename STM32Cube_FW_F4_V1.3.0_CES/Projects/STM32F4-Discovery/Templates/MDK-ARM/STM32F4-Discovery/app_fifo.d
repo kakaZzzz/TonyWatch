@@ -1,0 +1,11 @@
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\app_fifo.c
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\app_fifo.h
+stm32f4-discovery\app_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stm32f4-discovery\app_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\nrf_error.h
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\app_util.h
+stm32f4-discovery\app_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\compiler_abstraction.h
+stm32f4-discovery\app_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\Hal_defs.h
+stm32f4-discovery\app_fifo.o: ..\..\..\..\Middlewares\User\app_error.h
