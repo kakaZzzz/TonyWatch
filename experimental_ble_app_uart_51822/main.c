@@ -125,6 +125,7 @@ uint8_t flag1sCheckRoutine=false;
 uint8_t flagBleTxCplt=false;
 uint8_t flagStartQueueRead=false;
 uint8_t gDeviceNameStr[15]="TonyRun_000000";
+uint8_t gLastByte=0;
 
 /**@brief     Error handler function, which is called when an error has occurred.
  *
@@ -577,26 +578,6 @@ static void uart_init(void)
  */
 void UART0_IRQHandler(void)
 {
-/*
-	uint32_t err_code;
-//	if((flagStartRx==true)&&(app_fifo_length(&gUartFifo)<=UART_FIFO_SIZE))
-	if(1)//(flagStartRx==true)
-	{	
-		err_code=app_fifo_put(&gUartFifo,simple_uart_get());
-		if(NRF_SUCCESS==err_code)
-		{
-			if(gFifoDeepth<UART_FIFO_SIZE)
-				gFifoDeepth++;
-			gBleTxTimeout=0;
-		}
-		else
-		{
-			APP_ERROR_CHECK(err_code);
-			#ifdef UART_DEBUG_PRINT
-				simple_uart_put(0x77);
-			#endif
-		}
-	} */
 	uint32_t err_code;
 	uint8_t dataTemp;
 	dataTemp=simple_uart_get();
@@ -605,40 +586,11 @@ void UART0_IRQHandler(void)
 	{
 		APP_ERROR_CHECK(err_code);
 	}
-	if(dataTemp=='*')
+	if((dataTemp=='*')&&(gLastByte=='*'))
 	{
 		flagStartQueueRead=true;
 	}
-/*
-	uint32_t err_code;
-	err_code=app_fifo_put(&upQueue,simple_uart_get());
-	if(NRF_SUCCESS==err_code)
-	{
-		APP_ERROR_CHECK(err_code);
-	}*/
-	/*
-//    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
-    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN+1];
-    static uint8_t index = 0;
-    uint32_t err_code;
-*/
-    /**@snippet [Handling the data received over UART] */
-	/*
-    data_array[index] = simple_uart_get();
-    index++;
-
-    if(index>=BLE_NUS_MAX_DATA_LEN) //((data_array[index - 1] == '\n'))// || (index >= (BLE_NUS_MAX_DATA_LEN - 1)))
-    {
-        err_code = ble_nus_send_string(&m_nus, data_array, index);
-        if (err_code != NRF_ERROR_INVALID_STATE)
-        {
-            APP_ERROR_CHECK(err_code);
-        }
-        
-        index = 0;
-    }
-*/
-    /**@snippet [Handling the data received over UART] */
+	gLastByte=dataTemp;
 }
 static void system_tick_10ms_handler(void * p_context)
 {
@@ -795,26 +747,6 @@ void charTrans(uint8_t *dst, uint8_t *sr)
  */
 int main(void)
 {
-//   uint8_t start_string[] = START_STRING;
-//    uint32_t err_code;
-//		pBLErxpool=malloc(MAX_FRAME_LENGTH);
-
-//	package_data_t *packageDataTemp;
-//		frame_data_t *frameDataTemp;
-//		uint8_t *frameDataBuild;
-
-	//uint8_t ass11[]={1,2};
-		
-//		frameDataBuild=malloc(128);
-    // Initialize
-
-/*	uint32_t tonyDeviceAddr[2];
-	uint32_t tonyDeviceId[2];
-	tonyDeviceAddr[0]=NRF_FICR->DEVICEADDR[0];
-	tonyDeviceAddr[1]=NRF_FICR->DEVICEADDR[1];
-	tonyDeviceId[0]=NRF_FICR->DEVICEID[0];
-	tonyDeviceId[1]=NRF_FICR->DEVICEID[1];*/
-
 	uint8_t gapaddr[6];
 	uint8_t gdnCnt=0;
 	
@@ -873,17 +805,6 @@ QueueInit();
 				upQueueWrite();
 		#endif
 	}
-//	if(flag1sCheckRoutine==true)
-//	{
-//		updateUartRxSetting();
-//		flag1sCheckRoutine=false;
-//	}
-
-/*
-	if(false==flagBleTxBusy)
-	{
-		bleTx();
-	}*/
 
 	//up queue write
 	
@@ -891,8 +812,10 @@ QueueInit();
 	if(flagStartQueueRead==true)
 	{
 		NVIC_DisableIRQ(UART0_IRQn);
-		upQueueRead(&m_nus);
+		upQueueRead();
 		NVIC_EnableIRQ(UART0_IRQn);
+		//process data rxed
+		processDataRxed(&m_nus);
 		flagStartQueueRead=false;
 	}
 	//down queue write

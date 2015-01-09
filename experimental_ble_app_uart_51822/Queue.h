@@ -20,7 +20,8 @@ extern uint8_t flagBleTxCplt;
 
 void QueueInit(void);
 void upQueueWrite(void);
-uint32_t upQueueRead(ble_nus_t * p_nus);
+void upQueueRead(void);
+uint32_t processDataRxed(ble_nus_t * p_nus);
 
 #endif /* QUEUE_H__ */
 

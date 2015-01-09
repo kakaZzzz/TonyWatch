@@ -13,12 +13,14 @@ how to implemented?
 #include "Hal_defs.h"
 #include "app_error.h"
 
-#define HRS_UPQUENE_SIZE		128
+#define HRS_UPQUENE_SIZE		512
 
 app_fifo_t upQueue;
 app_fifo_t downQueue;
 uint8_t * pQueueMem;
 uint8_t writeByte=0;
+uint8_t gBleTxBuf[512];
+uint32_t gBleTxBufDeepth;
 
 void QueueInit(void)
 {
@@ -84,7 +86,95 @@ void upQueueWrite(void)
 	}
 }
 
-uint32_t upQueueRead(ble_nus_t * p_nus)
+void upQueueRead(void)
+{
+	uint16_t qLength;
+	uint32_t err_code;
+	uint8_t dataTemp;
+	uint16_t i;
+	uint8_t dataView[512];
+	qLength=app_fifo_length(&upQueue);
+	if(qLength<256)
+	{
+		memset(gBleTxBuf,0,sizeof(gBleTxBuf));
+		for(i=0;i<qLength;i++)
+		{
+			err_code=app_fifo_get(&upQueue,&gBleTxBuf[i]);
+		}
+	}
+	else if((qLength>256)&&(qLength<=442)) //if qLength >=256 and  <442, code error
+	{
+		memset(gBleTxBuf,0,sizeof(gBleTxBuf));
+		for(i=0;i<qLength;i++)
+		{
+			err_code=app_fifo_get(&upQueue,&gBleTxBuf[i]);
+		}
+//		dataTemp=dataView[0];
+//		if(dataTemp!=0)
+//		{
+//			gBleTxBufDeepth=(uint32_t)qLength;
+//		}
+	}		
+	else //if qLength >442, code error
+	{
+		for(i=0;i<qLength;i++)
+		{
+			err_code=app_fifo_get(&upQueue,&dataView[i]);
+		}
+		dataTemp=dataView[0];
+		if(dataTemp!=0)
+		{
+			gBleTxBufDeepth=(uint32_t)qLength;
+		}
+	}		
+	gBleTxBufDeepth=(uint32_t)qLength;
+}
+
+uint32_t processDataRxed(ble_nus_t * p_nus)
+{
+	uint8_t segCnt;
+	uint8_t segHipLength;
+	uint8_t i,k;
+	uint8_t txbuf[20];
+
+	if((p_nus->conn_handle != BLE_CONN_HANDLE_INVALID) && (p_nus->is_notification_enabled))
+	{
+		//calculate seg cnt and hip length
+		segCnt=gBleTxBufDeepth/20;
+		if(gBleTxBufDeepth>segCnt*20)
+		{
+			segHipLength=gBleTxBufDeepth-segCnt*20;
+		}
+		else
+		{
+			segHipLength=0;
+		}
+		//send seg
+		for(i=0;i<segCnt;i++)
+		{
+			for(k=0;k<20;k++)
+			{
+				txbuf[k]=gBleTxBuf[i*20+k];
+			}
+			while(ble_nus_send_string_byhandle(p_nus, txbuf, sizeof(txbuf),BLE_NUS_PROD_CHAR_HANDLE)==NRF_ERROR_BUSY)
+			{}
+		}
+		//send hip
+		if(segHipLength!=0)
+		{
+			memset(txbuf,0,sizeof(txbuf));
+			for(k=0;k<segHipLength;k++)
+			{
+				txbuf[k]=gBleTxBuf[segCnt*20+k];
+			}
+			while(ble_nus_send_string_byhandle(p_nus, txbuf, segHipLength,BLE_NUS_PROD_CHAR_HANDLE)==NRF_ERROR_BUSY)
+			{}
+		}
+	}
+	return 1;
+}
+/*
+uint32_t processDataRxed2(ble_nus_t * p_nus)
 {
 	uint16_t qLength;
 	uint32_t err_code=NRF_ERROR_INVALID_LENGTH;
@@ -101,7 +191,6 @@ uint32_t upQueueRead(ble_nus_t * p_nus)
 	//if not, send data
 	//check if ble is connected, if chars can be notified
 	if((qLength>=26)&&(p_nus->conn_handle != BLE_CONN_HANDLE_INVALID) && (p_nus->is_notification_enabled))// 4 groups of data in 100ms
-	if((p_nus->conn_handle != BLE_CONN_HANDLE_INVALID) && (p_nus->is_notification_enabled))// 4 groups of data in 100ms
 	{
 		//find #
 		for(i=0;i<qLength;i++)
@@ -149,26 +238,11 @@ uint32_t upQueueRead(ble_nus_t * p_nus)
 			while(ble_nus_send_string_byhandle(p_nus, prodBuf, sizeof(prodBuf),BLE_NUS_PROD_CHAR_HANDLE)==NRF_ERROR_BUSY)
 			{}
 		}
-	/*
-		//get hr data 2 bytes
-		err_code=app_fifo_get(&upQueue,pData);
-		hrBuf[0]=*pData;
-		err_code=app_fifo_get(&upQueue,pData);
-		hrBuf[1]=*pData;
-		//get rawd data 10 bytes
-		for(i=0;i<10;i++)
-		{
-			err_code=app_fifo_get(&upQueue,pData);
-			prodBuf[i]=*pData;
-		}
-		while(ble_nus_send_string_byhandle(p_nus, hrBuf, sizeof(hrBuf),BLE_NUS_HR_CHAR_HANDLE)==NRF_ERROR_BUSY)
-		{}
-		while(ble_nus_send_string_byhandle(p_nus, prodBuf, sizeof(prodBuf),BLE_NUS_PROD_CHAR_HANDLE)==NRF_ERROR_BUSY)
-		{}*/
-		
 	}
 	return err_code;
 }
+
+*/
 void downQueueWrite(void)
 {
 	

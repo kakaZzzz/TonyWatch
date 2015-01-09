@@ -1,10 +1,14 @@
----- gDeviceNameStr Matches (9 in 1 files) ----
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):127:uint8_t gDeviceNameStr[14]="TonyRun000000";
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):200:                                          (const uint8_t *) gDeviceNameStr,
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):201:                                          strlen(gDeviceNameStr));
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):775:	gDeviceNameStr[7]=(gapaddr[0]&0x0f)+0x30;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):776:	gDeviceNameStr[8]=((gapaddr[0]>>4)&0x0f)+0x30;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):777:	gDeviceNameStr[9]=(gapaddr[1]&0x0f)+0x30;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):778:	gDeviceNameStr[10]=((gapaddr[1]>>4)&0x0f)+0x30;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):779:	gDeviceNameStr[11]=(gapaddr[2]&0x0f)+0x30;
-Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):780:	gDeviceNameStr[12]=((gapaddr[2]>>4)&0x0f)+0x30;
+---- upQueue Matches (9 in 3 files) ----
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):584:	err_code=app_fifo_put(&upQueue,dataTemp);
+Main.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):7:extern app_fifo_t upQueue;
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):18:app_fifo_t upQueue;
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):28:	app_fifo_init(&upQueue,pQueueMem,HRS_UPQUENE_SIZE);//(app_fifo_t * p_fifo, uint8_t * p_buf, uint16_t buf_size)
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):78:	if(app_fifo_length(&upQueue)<=HRS_UPQUENE_SIZE)
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):80:		err_code=app_fifo_put(&upQueue,writeByte++);
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):95:	qLength=app_fifo_length(&upQueue);
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):101:			err_code=app_fifo_get(&upQueue,&gBleTxBuf[i]);
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):108:			err_code=app_fifo_get(&upQueue,&dataTemp);
+---- upQueueWrite Matches (3 in 3 files) ----
+Main.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):805:				upQueueWrite();
+Queue.c (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):72:void upQueueWrite(void)
+Queue.h (z:\documents\coding\githubtac\tonywatch\experimental_ble_app_uart_51822):22:void upQueueWrite(void);
