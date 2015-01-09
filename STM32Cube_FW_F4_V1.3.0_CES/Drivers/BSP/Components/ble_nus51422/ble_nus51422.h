@@ -13,6 +13,7 @@
 #define BLE_STATUS_CONNECTED           1
 
 #define HR_PACK_LENGTH		129
+#define HR_DATA_SAMPLE_INTERVAL		3  // uint in ms
 //extern ITStatus UartTxReady;
 extern uint8_t flagBleConStatus;
 extern  void TxSampleSend(uint8_t *pData, uint16_t length);

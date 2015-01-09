@@ -193,16 +193,8 @@ void vTask1a(void const *argument)
 		BSP_LED_Off(LED0);
 		for( ul = 0; ul < 10000000; ul++ ) {
 		}*/
-//		if(gHRData>=160)
-//		{
-//			gHRData=55;
-//		}
-//		else
-//		{
-//			gHRData++;			
-//		}
 		gPROData++;
-		osDelay(10);
+		osDelay(100);
 	}
 }
 

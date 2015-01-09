@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F4-Discovery\STM32F4-Discovery.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F4-Discovery\STM32F4-Discovery.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Fri Dec 19 23:12:23 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Fri Jan 09 00:32:53 2015
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -893,7 +893,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvSetupHardware
 </UL>
 
-<P><STRONG><a name="[ac]"></a>QueueInit</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, app_fifo.o(i.QueueInit))
+<P><STRONG><a name="[ac]"></a>QueueInit</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, app_fifo.o(i.QueueInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = QueueInit &rArr; malloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_init
@@ -1051,8 +1051,8 @@ Global Symbols
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[eb]"></a>packageHRD</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, ble_nus51422.o(i.packageHRD))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = packageHRD
+<P><STRONG><a name="[eb]"></a>packageHRDnew</STRONG> (Thumb, 74 bytes, Stack size 12 bytes, ble_nus51422.o(i.packageHRDnew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = packageHRDnew
 </UL>
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;upQueueReadThread
 </UL>
@@ -1074,8 +1074,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
 </UL>
 
-<P><STRONG><a name="[72]"></a>upQueueReadThread</STRONG> (Thumb, 128 bytes, Stack size 48 bytes, ble_nus51422.o(i.upQueueReadThread))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = upQueueReadThread &rArr; osMutexWait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[72]"></a>upQueueReadThread</STRONG> (Thumb, 128 bytes, Stack size 184 bytes, ble_nus51422.o(i.upQueueReadThread))
+<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = upQueueReadThread &rArr; osMutexWait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexWait
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
@@ -1083,14 +1083,14 @@ Global Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_length
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_fifo_get
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_DMA
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;packageHRD
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;packageHRDnew
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
-<P><STRONG><a name="[73]"></a>upQueueWriteThread</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, ble_nus51422.o(i.upQueueWriteThread))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = upQueueWriteThread &rArr; osMutexWait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[73]"></a>upQueueWriteThread</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, ble_nus51422.o(i.upQueueWriteThread))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = upQueueWriteThread &rArr; osMutexWait &rArr; xQueueGenericReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexWait
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease

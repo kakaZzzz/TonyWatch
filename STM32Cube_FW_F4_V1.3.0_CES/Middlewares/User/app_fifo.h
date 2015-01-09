@@ -102,7 +102,7 @@ typedef struct
 #define BLE_NUS_RAWD_CHAR_HANDLE		2
 #define BLE_NUS_PROD_CHAR_HANDLE		3
 
-#define HRS_UPQUENE_SIZE		128
+#define HRS_UPQUENE_SIZE		256		//128
 extern uint8_t flagBleTxCplt;
 //extern ble_nus_t   m_nus;
 

@@ -10,8 +10,14 @@
 #define TX_MODE_NOT_SEND	1
 #define TX_MODE_SEND_ONCE	2
 
-#define HR_DATA_STRING_LENGTH		12//hr 2bytes + prod 10bytes 
-#define HR_DATA_ASCII_LENGTH		26 //# + 12bytes x2 + *
+//#define HR_DATA_STRING_LENGTH		12//hr 2bytes + prod 10bytes 
+//#define HR_DATA_ASCII_LENGTH		26 //# + 12bytes x2 + *
+//#define HR_DATA_STRING_LENGTH_BY_TEN			HR_DATA_STRING_LENGTH*10
+//#define HR_DATA_ASCII_LENGTH_BY_TEN		HR_DATA_ASCII_LENGTH*10
+#define HR_DATA_STRING_LENGTH		50// 5 bytes * 10
+#define HR_DATA_ASCII_LENGTH		(120+1) // 12 chars * 10+1
+
+
 uint8_t printf_Sending_error[] = " ****sending error****\n\r ";
 uint8_t printf_Sending_sucess[] = " ****sending sucess****\n\r ";
 uint8_t printf_Receiving_error[] = " ****receiving error****\n\r ";
@@ -25,6 +31,7 @@ __IO ITStatus UartRxReady = RESET;
 unsigned char flagTxCtrl=TX_MODE_SENDING;
 unsigned char flagPrintRxContent=RESET;
 uint8_t gRxBufferLast;
+uint8_t gRAWData=0;
 
 extern osMutexId upQueueMutexSema;
 
@@ -160,7 +167,7 @@ void MX_USART1_UART_Init(void)
 
   huart1.State = HAL_UART_STATE_RESET;//weizhong add 20141031
   huart1.Instance = USARTx;
-  huart1.Init.BaudRate = 38400;//9600;
+  huart1.Init.BaudRate = 230400;//;115200//38400;//9600;//460800;//
   huart1.Init.WordLength = UART_WORDLENGTH_8B;//UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -232,25 +239,77 @@ void SendDataThread(void const *argument)
 /****************
 
 *****************/
-
+/*
 void packageHRD(uint8_t *pData,uint8_t *pBuf)
 {
-	uint8_t i;
-	 pBuf[0]='#';
-	 for(i=0;i<HR_DATA_STRING_LENGTH;i++)
+	uint8_t i,k;
+//	 pBuf[0]='#';
+//	 for(i=0;i<HR_DATA_STRING_LENGTH;i++)
+//	 {
+//		 pBuf[i*2+1]=((pData[i+0]&0xf0)>>4)+0x30;
+//		 pBuf[i*2+2]=(pData[i+0]&0x0f)+0x30;		
+//	 }
+//	 pBuf[HR_DATA_ASCII_LENGTH-1]='*';	 
+
+	 for(k=0;k<10;k++)
 	 {
-		 pBuf[i*2+1]=((pData[i+0]&0xf0)>>4)+0x30;
-		 pBuf[i*2+2]=(pData[i+0]&0x0f)+0x30;		
+		pBuf[k*HR_DATA_ASCII_LENGTH+0]='#';
+		 for(i=0;i<HR_DATA_STRING_LENGTH;i++)
+		 {
+			 pBuf[k*HR_DATA_ASCII_LENGTH+i*2+1]=((pData[k*HR_DATA_STRING_LENGTH+i+0]&0xf0)>>4)+0x30;
+			 pBuf[k*HR_DATA_ASCII_LENGTH+i*2+2]=(pData[k*HR_DATA_STRING_LENGTH+i+0]&0x0f)+0x30;		
+		 }
+		 pBuf[k*HR_DATA_ASCII_LENGTH+HR_DATA_ASCII_LENGTH-1]='*';	 
 	 }
-	 pBuf[HR_DATA_ASCII_LENGTH-1]='*';	 
 }
+*/
 
+void packageHRDnew(uint8_t *pData,uint8_t *pBuf)
+{
+//	uint8_t i,k;	 
+//	 pBuf[0]='#';
+//	 for(i=0;i<100;i++)
+//	 {
+//		 pBuf[i*2+1]=((pData[i+0]&0xf0)>>4)+0x30;
+//		 pBuf[i*2+2]=(pData[i+0]&0x0f)+0x30;		
+//	 }
+//	 pBuf[202-1]='*';
 
+/*	 uint8_t i,k;
+	 for(k=0;k<10;k++)
+	 {
+		pBuf[0]='#';
+		for(i=0;i<10;i++)
+		{
+			pBuf[i*2+1]=((pData[i+0]&0xf0)>>4)+0x30;
+		 	pBuf[i*2+2]=(pData[i+0]&0x0f)+0x30;
+		}
+		pBuf[21]='*';
+		pData+=10;
+		pBuf+=22;
+	 }*/
+
+	 uint8_t i,k;
+	 for(k=0;k<10;k++)
+	 {
+		pBuf[0]='#';
+		for(i=0;i<5;i++)
+		{
+			pBuf[i*2+1]=((pData[i+0]&0xf0)>>4)+0x30;
+		 	pBuf[i*2+2]=(pData[i+0]&0x0f)+0x30;
+		}
+		pBuf[11]='*';
+		pData+=5;
+		pBuf+=12;
+	 }
+}
 
 void upQueueReadThread(void const *argument)
 {
 	uint8_t qLength=0;
+//	uint8_t hrstr[HR_DATA_STRING_LENGTH_BY_TEN];
 	uint8_t hrstr[HR_DATA_STRING_LENGTH];
+//	uint8_t hrTxBuf[HR_DATA_ASCII_LENGTH_BY_TEN];
 	uint8_t hrTxBuf[HR_DATA_ASCII_LENGTH];
 	uint8_t dataTemp;
 	uint8_t i;
@@ -260,31 +319,26 @@ void upQueueReadThread(void const *argument)
 		memset(hrstr,0,HR_DATA_STRING_LENGTH);
 		memset(hrTxBuf,0,HR_DATA_ASCII_LENGTH);
 		qLength=app_fifo_length(&upQueue);
-		if(qLength>=HR_DATA_STRING_LENGTH)
+		if(qLength>=50)
 		{
-			//get data from upQueue
-				//take upQueue Sema 
 			osMutexWait(upQueueMutexSema,0);
-			for(i=0;i<HR_DATA_STRING_LENGTH;i++)
+			for(i=0;i<50;i++)
 			{
 				err_code=app_fifo_get(&upQueue,&dataTemp);
 				hrstr[i]=dataTemp;
 			}
-				//give upQueue Sema
 			osMutexRelease(upQueueMutexSema);
-			//change into ASCII and Add # and *
-			packageHRD(hrstr,hrTxBuf);
-			//send 
-			if(HAL_UART_Transmit_DMA(&huart1,hrTxBuf, HR_DATA_ASCII_LENGTH)!= HAL_OK)
-			  {
-			    Error_Handler();
-			  }
+			packageHRDnew(hrstr,hrTxBuf);
+			hrTxBuf[HR_DATA_ASCII_LENGTH-1]='*';
+			if(HAL_UART_Transmit_DMA(&huart1,hrTxBuf, sizeof(hrTxBuf))!= HAL_OK)
+			{
+				Error_Handler();
+			}
 			while(UartTxReady!= SET)
 			{
-				osDelay(10);
 			}
 		}
-		osDelay(10);
+		osDelay(50);
 	}
 }
 
@@ -292,60 +346,23 @@ void upQueueReadThread(void const *argument)
 void upQueueWriteThread(void const *argument)
 {
 	uint8_t upCnt=0;
-	uint8_t upWriteBuf[HR_DATA_STRING_LENGTH];
+//	uint8_t upWriteBuf[HR_DATA_STRING_LENGTH_BY_TEN];
+	uint8_t upWriteBuf[10];
 	uint16_t qLength;
-	uint8_t i;
+	uint8_t i,k;
 	uint32_t err_code;
 	for(;;)
 	{
-		if(upCnt==0)
+		osMutexWait(upQueueMutexSema,0);
+		qLength=app_fifo_length(&upQueue);
+		if(qLength<(HRS_UPQUENE_SIZE-10))
 		{
-/*			//take upqueue sema
-			xSemaphoreTake(xBinarySemaUpQueue,portMAX_DELAY); 
-			app_fifo_put(&upQueue,gHRData);
-			app_fifo_put(&upQueue,gPROData);
-			upCnt++;
-			//give upqueue sema
-			xSemaphoreGive(xBinarySemaUpQueue); */
-
-			upWriteBuf[0]=gHRData;
-			upWriteBuf[1]=0;
-			upWriteBuf[2]=gPROData;
-			upCnt++;
-		}
-		else if((upCnt>0)&&(upCnt<10))// 1-9
-		{
-/*			//take upqueue sema
-			xSemaphoreTake(xBinarySemaUpQueue,portMAX_DELAY); 
-			app_fifo_put(&upQueue,gPROData);
-			upCnt++;
-			//give upqueue sema
-			xSemaphoreGive(xBinarySemaUpQueue); */
-
-			upWriteBuf[upCnt+2]=gPROData;
-			upCnt++;
-		}
-		else
-		{
-		}
-		if(upCnt>=10)
-		{
-			upCnt=0;
-				osMutexWait(upQueueMutexSema,0);
-			qLength=app_fifo_length(&upQueue);
-			if(qLength<(HRS_UPQUENE_SIZE-HR_DATA_STRING_LENGTH))
+			for(i=0;i<10;i++)
 			{
-				for(i=0;i<HR_DATA_STRING_LENGTH;i++)
-				{
-					err_code=app_fifo_put(&upQueue,upWriteBuf[i]);
-				}
-				osMutexRelease(upQueueMutexSema);
-			}
-			else
-			{
-					
+				err_code=app_fifo_put(&upQueue,gRAWData++);
 			}
 		}
+		osMutexRelease(upQueueMutexSema);
 		osDelay(10);
 	}
 }
